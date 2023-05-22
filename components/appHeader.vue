@@ -10,23 +10,23 @@
           <img
                   alt=""
                   class="v-app-header__text__top"
-                  :src="'/'+textTopSrc">
+                  :src="'./'+textTopSrc">
 
           <img
                   alt=""
                   class="v-app-header__text__bottom"
-                  :src="'/'+textBottomSrc">
+                  :src="'./'+textBottomSrc">
         </div>
 
         <img
                 alt=""
                 class="v-app-header__img"
-                :src="'/'+imgSrc"
+                :src="'./'+imgSrc"
         >
         <img
                 alt=""
                 class="v-app-header__tags"
-                src="/tags.jpeg"
+                src="./tags.jpeg"
         >
     </section>
 </template>

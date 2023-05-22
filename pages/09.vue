@@ -1,6 +1,6 @@
 <template>
     <section class="v-09" >
-        <img src="/pages/230522_HEM-page-9.jpg"
+        <img src="./pages/230522_HEM-page-9.jpg"
              alt="">
     </section>
 </template>
