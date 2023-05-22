@@ -10,18 +10,18 @@
           <img
                   alt=""
                   class="v-app-header__text__top"
-                  :src="'/'+textTopSrc">
+                  :src="'/hem.archive.webapp/'+textTopSrc">
 
           <img
                   alt=""
                   class="v-app-header__text__bottom"
-                  :src="'/'+textBottomSrc">
+                  :src="'/hem.archive.webapp/'+textBottomSrc">
         </div>
 
         <img
                 alt=""
                 class="v-app-header__img"
-                :src="'/'+imgSrc"
+                :src="'/hem.archive.webapp/'+imgSrc"
         >
         <img
                 alt=""
