@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/nuxt-github-pages/' // baseURL: '/<repository>/'
   }
-}
+})
 ```
 
 # What it does
