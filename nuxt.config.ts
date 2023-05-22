@@ -2,7 +2,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: 'https://azertypow.github.io/hem.archive.webapp/',
+    baseURL: '/hem.archive.webapp/',
   },
   typescript: {
     shim: true,
