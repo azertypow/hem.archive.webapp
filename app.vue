@@ -33,6 +33,8 @@
 
 
 .v-app {
+    max-width: 1440px;
+    margin: auto;
 }
 
 .header {
