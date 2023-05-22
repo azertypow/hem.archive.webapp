@@ -6,7 +6,8 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
-    "deploy": "gh-pages --dotfiles -d .output/public"
+    "deploy": "gh-pages --dotfiles -d .output/public",
+    "build.github.page": "rm -rf ./docs && npm run generate && cp -r ./.output/public ./docs && rm -rf ./.output"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
