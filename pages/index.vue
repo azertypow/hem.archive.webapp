@@ -4,7 +4,7 @@
                 display="none"
                 xmlns="http://www.w3.org/2000/svg"><filter id="svgTint"><feColorMatrix type="matrix" values="0.1803921568627451 0.1803921568627451 0.1803921568627451  0 0 1 1 1  0 0 0.6313725490196078 0.6313725490196078 0.6313725490196078  0 0  0 0 0 1 0" /></filter></svg>
 
-        <img class="header" alt="" src="./header.jpeg"/>
+        <img class="header" alt="" src="/header.jpeg"/>
 
         <div class="filter-test">
 
