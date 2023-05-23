@@ -5,13 +5,13 @@
             <NuxtLink href="./"      >00</NuxtLink>
             <NuxtLink href="./01"    >01</NuxtLink>
             <NuxtLink href="./02"    >02</NuxtLink>
-            <NuxtLink href="./03"    >03</NuxtLink>
-            <NuxtLink href="./04"    >04</NuxtLink>
-            <NuxtLink href="./05"    >05</NuxtLink>
-            <NuxtLink href="./06"    >06</NuxtLink>
-            <NuxtLink href="./07"    >07</NuxtLink>
-            <NuxtLink href="./08"    >08</NuxtLink>
-            <NuxtLink href="./09"    >09</NuxtLink>
+<!--            <NuxtLink href="./03"    >03</NuxtLink>-->
+            <NuxtLink href="./04"    >03</NuxtLink>
+            <NuxtLink href="./05"    >04</NuxtLink>
+<!--            <NuxtLink href="./06"    >06</NuxtLink>-->
+            <NuxtLink href="./07"    >05</NuxtLink>
+            <NuxtLink href="./08"    >06</NuxtLink>
+            <NuxtLink href="./09"    >07</NuxtLink>
         </nav>
     </div>
 </template>
