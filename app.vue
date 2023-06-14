@@ -33,7 +33,7 @@
 
 
 .v-app {
-    max-width: 1440px;
+    max-width: 1512px;
     margin: auto;
 }
 
