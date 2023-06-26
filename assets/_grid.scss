@@ -1,0 +1,49 @@
+.fp-grid-with-gutter {
+  box-sizing: border-box;
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
+}
+
+.fp-grid-with-vertical-spacing {
+  box-sizing: border-box;
+  padding-top: var(--gutter);
+  padding-bottom: var(--gutter);
+}
+
+// coll
+
+.fp-grid-coll-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &.fp-grid-coll-container--center {
+    justify-content: center;
+  }
+}
+
+
+.fp-grid-coll-1-24 {box-sizing: border-box;width: calc(100% / 24 * 1);}
+.fp-grid-coll-2-24 {box-sizing: border-box;width: calc(100% / 24 * 2);}
+.fp-grid-coll-3-24 {box-sizing: border-box;width: calc(100% / 24 * 3);}
+.fp-grid-coll-4-24 {box-sizing: border-box;width: calc(100% / 24 * 4);}
+.fp-grid-coll-5-24 {box-sizing: border-box;width: calc(100% / 24 * 5);}
+.fp-grid-coll-6-24 {box-sizing: border-box;width: calc(100% / 24 * 6);}
+.fp-grid-coll-7-24 {box-sizing: border-box;width: calc(100% / 24 * 7);}
+.fp-grid-coll-8-24 {box-sizing: border-box;width: calc(100% / 24 * 8);}
+.fp-grid-coll-9-24 {box-sizing: border-box;width: calc(100% / 24 * 9);}
+.fp-grid-coll-10-24 {box-sizing: border-box;width: calc(100% / 24 * 10);}
+.fp-grid-coll-11-24 {box-sizing: border-box;width: calc(100% / 24 * 11);}
+.fp-grid-coll-12-24 {box-sizing: border-box;width: calc(100% / 24 * 12);}
+.fp-grid-coll-13-24 {box-sizing: border-box;width: calc(100% / 24 * 13);}
+.fp-grid-coll-14-24 {box-sizing: border-box;width: calc(100% / 24 * 14);}
+.fp-grid-coll-15-24 {box-sizing: border-box;width: calc(100% / 24 * 15);}
+.fp-grid-coll-16-24 {box-sizing: border-box;width: calc(100% / 24 * 16);}
+.fp-grid-coll-17-24 {box-sizing: border-box;width: calc(100% / 24 * 17);}
+.fp-grid-coll-18-24 {box-sizing: border-box;width: calc(100% / 24 * 18);}
+.fp-grid-coll-19-24 {box-sizing: border-box;width: calc(100% / 24 * 19);}
+.fp-grid-coll-20-24 {box-sizing: border-box;width: calc(100% / 24 * 20);}
+.fp-grid-coll-21-24 {box-sizing: border-box;width: calc(100% / 24 * 21);}
+.fp-grid-coll-22-24 {box-sizing: border-box;width: calc(100% / 24 * 22);}
+.fp-grid-coll-23-24 {box-sizing: border-box;width: calc(100% / 24 * 23);}
+.fp-grid-coll-24-24 {box-sizing: border-box;width: calc(100% / 24 * 24);}

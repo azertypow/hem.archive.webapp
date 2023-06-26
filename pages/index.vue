@@ -1,50 +1,115 @@
 <template>
     <div class="v-index">
-        <svg
-                display="none"
-                xmlns="http://www.w3.org/2000/svg"><filter id="svgTint"><feColorMatrix type="matrix" values="0.1803921568627451 0.1803921568627451 0.1803921568627451  0 0 1 1 1  0 0 0.6313725490196078 0.6313725490196078 0.6313725490196078  0 0  0 0 0 1 0" /></filter></svg>
 
-        <img class="header" alt="" src="/header.jpeg"/>
-
-        <div class="filter-test">
-
-            <app-header
-                    background-color="#aae1c7"
-                    index="1"
-            />
-            <app-header
-                    background-color="#f0e380"
-                    index="2"
-            />
-            <app-header
-                    background-color="#d1b8ec"
-                    index="3"
-            />
-            <app-header
-                    background-color="#d6d7d0"
-                    index="4"
-            />
-            <app-header
-                    background-color="#f79c7b"
-                    index="5"
-            />
-            <app-header
-                    background-color="#9fd8ff"
-                    index="6"
-            />
-
-            <!--            SVG FILTER-->
-            <!--            <div-->
-            <!--                class="filter-test__item"-->
-            <!--                style="filter: brightness(140%) contrast(200%) saturate(203%) url(#svgTint); mix-blend-mode: normal"-->
-            <!--            >-->
-            <!--                <div>text</div>-->
-            <!--                <img-->
-            <!--                    alt=""-->
-            <!--                    src="./1.png"-->
-            <!--                >-->
-            <!--            </div>-->
+        <div
+            class="v-index__tags fp-grid-with-gutter"
+        >
+            <div
+                v-for="tag of tags"
+                class="v-index__tag"
+            >
+                <tag
+                    :name="tag"
+                />
+            </div>
         </div>
+
+        <div
+            class="fp-grid-coll-container fp-grid-with-gutter"
+        >
+
+
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="orange"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="purple"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="brick"
+                />
+            </div>
+
+
+
+
+<!--=====-->
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="yellow"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="orange"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="orange"
+                />
+            </div>
+
+
+<!--=====-->
+            <div
+                class="fp-grid-coll-12-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-12-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="purple"
+                />
+            </div>
+
+        </div>
+
+
     </div>
 </template>
 
@@ -53,26 +118,21 @@
 
 
 <style lang="scss" scoped>
-.filter-test {
-  position: fixed;
-  top: 0;
-  left: 0;
-  scroll-snap-type: y mandatory;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
+.v-index {
 }
 
-
-.v-app {
+.v-index__items {
+    padding: 1rem;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
+.v-index__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.v-index__tag {
+    padding: .5rem;
 }
 </style>
 
@@ -82,5 +142,28 @@
 
 <script lang="ts" setup >
 
-import AppHeader from "~/components/appHeader.vue";
+import Tag from "~/components/tag.vue";
+
+const tags = [
+"Musique et mouvement",
+"Percussion",
+"Vents",
+"Diminution et ornementation",
+"Solmisation",
+"Informatique musicale",
+"Pratique historiquement informée : Claviers",
+"Pratique historiquement informée : Chant",
+"Interprétation et ornementation",
+"Orchestre",
+"Recherche pédagogique",
+"Échanges culturels",
+"Analyse et théorie de la musique",
+"Geste et mouvement",
+"Musiques d’aujourd’hui",
+"Musique et arts performatifs",
+"Musique à Genève et en Suisse",
+"Métiers",
+"Santé du musicien-ne",
+]
+
 </script>
