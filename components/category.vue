@@ -1,0 +1,182 @@
+<template>
+    <div
+        class="v-category"
+        :class="[
+            theme,
+            {'is-active': isActive},
+            {'is-unactive': isUnactive},
+        ]"
+    >
+        <button
+            class="v-category__button"
+            @click="$emit('clicked', name)"
+        >
+            {{name}}
+        </button>
+        <div
+            v-if="isActive"
+            class="v-category__close"
+        >x</div>
+    </div>
+</template>
+
+
+
+
+
+<script lang="ts" setup>
+defineProps<{
+    name: string,
+    isActive: boolean
+    isUnactive: boolean
+    theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
+}>()
+
+defineEmits<{
+    clicked: [name: string]
+}>()
+
+</script>
+
+
+
+
+
+<style lang="scss" scoped >
+.v-category {
+    position: relative;
+    cursor: pointer;
+}
+
+.v-category__button {
+    background: white;
+    border: solid black 2px;
+    border-radius: 2rem;
+    line-height: 2rem;
+    min-height: 4rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    box-sizing: content-box;
+
+    // green
+    .v-category.green & {
+        background-color: var(--color-main--green);
+        border: solid var(--color-main--green) 2px;
+
+    }
+
+    .v-category.is-unactive.green & {
+        background-color: white;
+        color: var(--color-main--green);
+    }
+
+    .v-category.green:hover & {
+        background-color: white;
+        color: var(--color-main--green);
+    }
+
+
+    // yellow
+    .v-category.yellow & {
+        background-color: var(--color-main--yellow);
+        border: solid var(--color-main--yellow) 2px;
+    }
+
+    .v-category.is-unactive.yellow & {
+        background-color: white;
+        color: var(--color-main--yellow);
+    }
+
+    .v-category.yellow:hover & {
+        background-color: white;
+        color: var(--color-main--yellow);
+    }
+
+
+    // purple
+    .v-category.purple & {
+        background-color: var(--color-main--purple);
+        border: solid var(--color-main--purple) 2px;
+    }
+
+    .v-category.is-unactive.purple & {
+        background-color: white;
+        color: var(--color-main--purple);
+    }
+
+    .v-category.purple:hover & {
+        background-color: white;
+        color: var(--color-main--purple);
+    }
+
+
+    // dark-green
+    .v-category.dark-green & {
+        background-color: var(--color-main--dark-green);
+        border: solid var(--color-main--dark-green) 2px;
+        color: white;
+    }
+
+    .v-category.is-unactive.dark-green & {
+        background-color: white;
+        color: var(--color-main--dark-green);
+    }
+
+    .v-category.dark-green:hover & {
+        background-color: white;
+        color: var(--color-main--dark-green);
+    }
+
+
+    // orange
+    .v-category.orange & {
+        background-color: var(--color-main--orange);
+        border: solid var(--color-main--orange) 2px;
+        color: white;
+    }
+
+    .v-category.is-unactive.orange & {
+        background-color: white;
+        color: var(--color-main--orange);
+    }
+
+    .v-category.orange:hover & {
+        background-color: white;
+        color: var(--color-main--orange);
+    }
+
+
+    // orange
+    .v-category.brick & {
+        background-color: var(--color-main--brick);
+        border: solid var(--color-main--brick) 2px;
+        color: white;
+    }
+
+    .v-category.is-unactive.brick & {
+        background-color: white;
+        color: var(--color-main--brick);
+    }
+
+    .v-category.brick:hover & {
+        background-color: white;
+        color: var(--color-main--brick);
+    }
+
+}
+
+.v-category__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    border: solid 2px white;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+}
+</style>

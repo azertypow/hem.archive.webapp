@@ -3,6 +3,7 @@
 export default defineNuxtConfig({
   app: {
     baseURL: '/hem.archive.webapp/',
+    pageTransition: { name: 'page', mode: 'in-out' }
   },
   typescript: {
     shim: true,

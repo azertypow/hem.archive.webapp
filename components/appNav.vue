@@ -1,6 +1,11 @@
 <template>
     <section class="v-app-nav" >
         <div class="v-app-nav__title">Plateforme Recherche HEM</div>
+        <nuxt-link
+            class="v-app-nav__go-back"
+            v-if="useRouter().currentRoute.value.path !== '/'"
+            href="/"
+        >go back</nuxt-link>
     </section>
 </template>
 
@@ -9,8 +14,8 @@
 
 
 <script lang="ts" setup>
-defineProps<{
-}>()
+// defineProps<{
+// }>()
 
 </script>
 
@@ -26,11 +31,19 @@ defineProps<{
   height: var(--nav-height);
   display: flex;
   flex-direction: column;
+    position: relative;
 }
 
 .v-app-nav__title {
   text-align: center;
   margin: auto;
   font-size: 3rem;
+}
+
+.v-app-nav__go-back {
+    position: absolute;
+    right: var(--gutter);
+    top: 50%;
+    transform: translate(0, -50%);
 }
 </style>
