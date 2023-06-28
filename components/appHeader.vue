@@ -1,98 +1,79 @@
 <template>
-    <section
-            :style="{
-              backgroundColor: props.backgroundColor
-            }"
-            class="v-app-header">
-
+    <header class="v-app-header">
         <div
-          class="v-app-header__text">
-          <img
-                  alt=""
-                  class="v-app-header__text__top"
-                  :src="'/hem.archive.webapp/'+textTopSrc">
+            class="fp-grid-coll-container"
+        >
+            <div
+                class="fp-grid-coll-12-24"
+            >
+                <div
+                    class="v-app-header__left"
+                >
+                    <h1 class="" >{{title}}</h1>
+                    <div>
+                        <div class="v-app-header__title">
+                            <div><h5>Responsable</h5></div>
+                            <div>
+                                <p v-for="responsable of responsables">{{responsable}}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="v-app-header__content"
+                        >
+                            <div>
+                                <div><h5>Partenaires</h5></div>
+                                <div>
+                                    <p>Jean-Christophe Revel, CRR Paris</p>
+                                    <p>Mathieu Ferey , CNSM Lyon</p>
+                                    <p>Pierre Bornachot , Centre Culturel d’Ambronay</p>
+                                    <p>Nicolas Bucher, Centre de Musique Baroque de Versailles</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div><h5>Période</h5></div>
+                                <div>{{date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-          <img
-                  alt=""
-                  class="v-app-header__text__bottom"
-                  :src="'/hem.archive.webapp/'+textBottomSrc">
+            </div>
+            <div
+                class="fp-grid-coll-12-24"
+            >
+                <div
+                    class="v-app-header__right"
+                >
+                    <img :src="cover" alt="cover" />
+                </div>
+            </div>
         </div>
-
-        <img
-                alt=""
-                class="v-app-header__img"
-                :src="'/hem.archive.webapp/'+imgSrc"
-        >
-        <img
-                alt=""
-                class="v-app-header__tags"
-                src="/tags.jpeg"
-        >
-    </section>
+    </header>
 </template>
 
 
 <script lang="ts" setup>
-const props = defineProps<{
-    index: string
-    backgroundColor: string
-}>()
 
-const textTopSrc    = computed(() => props.index + '-1.jpg')
-const textBottomSrc = computed(() => props.index + '-2.jpg')
-const imgSrc        = computed(() => props.index + '-3.jpg')
+const props = defineProps<{
+    title: string,
+    responsables: string[],
+    date: string,
+    theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
+    cover: string,
+}>()
 
 </script>
 
 
 <style lang="scss" scoped>
 .v-app-header {
-  padding-top: 38px;
-  padding-bottom: 38px;
-  display: flex;
-  scroll-snap-align: center;
-  flex-wrap: nowrap;
-  height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-
-  .v-app-header__text {
-    position: relative;
-    display: block;
-    width: 50%;
-    height: 100%;
-    mix-blend-mode: multiply;
-  }
-
-  .v-app-header__text__top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-  }
-
-  .v-app-header__text__bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    mix-blend-mode: multiply;
-  }
-
-  .v-app-header__img {
-    display: block;
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: color-burn;
-  }
-
-  .v-app-header__tags {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    box-sizing: border-box;
     width: 100%;
-    z-index: 100;
-  }
+    height: 100vh;
+    padding: 0 5rem;
+}
+
+h1, p, h5 {
+    margin: 0;
 }
 </style>

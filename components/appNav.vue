@@ -1,11 +1,11 @@
 <template>
     <section class="v-app-nav" >
         <div class="v-app-nav__title">Plateforme Recherche HEM</div>
-        <nuxt-link
+        <div
             class="v-app-nav__go-back"
             v-if="useRouter().currentRoute.value.path !== '/'"
-            href="/"
-        >go back</nuxt-link>
+            @click="useRouter().go(-1)"
+        >go back</div>
     </section>
 </template>
 
@@ -41,6 +41,7 @@
 }
 
 .v-app-nav__go-back {
+    cursor: pointer;
     position: absolute;
     right: var(--gutter);
     top: 50%;

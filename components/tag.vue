@@ -47,7 +47,7 @@ defineEmits<{
     border: solid 2px black;
     border-radius: 2rem;
     line-height: 2rem;
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
     cursor: pointer;
 
     &.is-active,
@@ -59,9 +59,9 @@ defineEmits<{
 
 .v-tag__close {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
-    transform: translate(50%, -50%);
+    transform: translate(25%, -50%);
     background: black;
     color: white;
     padding: 1rem;

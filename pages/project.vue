@@ -1,9 +1,19 @@
 <template>
-    <section class="v-project" >
+    <section
+        class="v-project"
+        :class="[useAppStateStore().currentProjectTheme]"
+    >
         <app-header
-                background-color="#aae1c7"
-                index="1"
+            :theme="useAppStateStore().currentProjectTheme"
+            :date="useAppStateStore().currentProjectDate"
+            :responsables="useAppStateStore().currentProjectResponsables"
+            :title="useAppStateStore().currentProjectTitle"
+            :cover="useAppStateStore().currentProjectCover"
         />
+        <img
+            class="v-project__project-img"
+            src="/230628_HEM-page_projet.jpeg" alt="project prototype"
+        >
     </section>
 </template>
 
@@ -16,25 +26,11 @@ import AppHeader from "~/components/appHeader.vue";
 import {useAppStateStore} from "~/stores/appState";
 import Tag from "~/components/tag.vue";
 
-// defineProps<{
-// }>()
-
 definePageMeta({
     pageTransition: {
         name: 'over',
     }
 })
-
-const tags          = useAppStateStore().$state.tags
-const categories    = useAppStateStore().$state.categories
-
-function onToggleTag(value: string) {
-    useAppStateStore().toggleActiveTag(value)
-}
-
-function onToggleCategory(value: string) {
-    useAppStateStore().toggleActiveCategory(value)
-}
 
 </script>
 
@@ -53,24 +49,35 @@ function onToggleCategory(value: string) {
     overflow: scroll;
     padding-top: 6rem;
     z-index: 10;
-}
-.v-project__categories {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-}
+    background: var(--color-main--green);
 
-.v-project__tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
+    &.green {
+        background: var(--color-main--green);
+    }
 
-.v-project__tag {
-    padding: .5rem;
+    &.yellow {
+        background: var(--color-main--yellow);
+    }
+
+    &.purple {
+        background: var(--color-main--purple);
+    }
+
+    &.dark-green {
+        background: var(--color-main--dark-green);
+    }
+
+    &.orange {
+        background: var(--color-main--orange);
+    }
+
+    &.brick {
+        background: var(--color-main--brick);
+    }
+
+}
+.v-project__project-img {
+    display: block;
+    width: 100%;
 }
 </style>

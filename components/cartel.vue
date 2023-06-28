@@ -1,30 +1,36 @@
 <template>
-    <nuxt-link
+    <div
         class="v-cartel"
-        :class="theme"
-        href="/project"
+        ref="cartelElement"
     >
-        <h2
-            class="v-cartel__title"
-        >{{title}}</h2>
-        <div
-            class="v-cartel__details"
+        <nuxt-link
+            class="v-cartel__link"
+            :class="theme"
+            href="/project"
+            @click="onCartelClicked"
         >
-            <h5>Responsabbles</h5>
-            <p
-                v-for="responsable of responsables"
-            >{{responsable}}</p>
+            <h2
+                class="v-cartel__title"
+            >{{title}}</h2>
+            <div
+                class="v-cartel__details"
+            >
+                <h5>Responsabbles</h5>
+                <p
+                    v-for="responsable of responsables"
+                >{{responsable}}</p>
 
-            <h5>Période</h5>
-            <p
-            >{{date}}</p>
-        </div>
-        <img
-            class="v-cartel__cover"
-            src="https://www.hesge.ch/hem/sites/default/files/styles/fiche_enseign_projet_publi/public/recherche/images/waouh_photo_choeur_escalier_1.jpg?itok=zk_Gu-kH"
-            alt="cover"
-        >
-    </nuxt-link>
+                <h5>Période</h5>
+                <p
+                >{{date}}</p>
+            </div>
+            <img
+                class="v-cartel__cover"
+                :src="cover"
+                alt="cover"
+            >
+        </nuxt-link>
+    </div>
 </template>
 
 
@@ -32,12 +38,35 @@
 
 
 <script lang="ts" setup>
-defineProps<{
+import {useAppStateStore} from "~/stores/appState";
+
+const props = defineProps<{
     title: string,
     responsables: string[],
     date: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
+    cover: string,
 }>()
+
+const emit = defineEmits<{
+    cartelClicked: [cartelElement: HTMLElement]
+}>()
+
+const cartelElement = ref(null)
+
+function onCartelClicked() {
+    if( cartelElement.value instanceof HTMLElement) {
+        useAppStateStore().currentProjectTitle          = props.title
+        useAppStateStore().currentProjectResponsables   = props.responsables
+        useAppStateStore().currentProjectTheme           = props.theme
+        useAppStateStore().currentProjectDate           = props.date
+        useAppStateStore().currentProjectCover          = props.cover
+
+        emit('cartelClicked', cartelElement.value)
+    } else {
+        console.error("cartelElement.value isn't instanceof HTMLElement", cartelElement.value)
+    }
+}
 </script>
 
 
@@ -46,6 +75,27 @@ defineProps<{
 
 <style lang="scss" scoped >
 .v-cartel {
+    position: relative;
+
+    &.is-full { // for page transition started in parent
+        transform: scale(10);
+        transition: transform .75s cubic-bezier(1,0,1,0);
+        z-index: 1000;
+
+        .v-cartel__title,
+        .v-cartel__details, {
+            display: none !important;
+        }
+
+        .v-cartel__cover {
+            opacity: 0 !important;
+            transition: opacity .25s ease-in !important;
+        }
+    }
+
+}
+
+.v-cartel__link {
     background-color: red;
     width: 100%;
     padding-bottom: 100%;
@@ -94,11 +144,7 @@ defineProps<{
     position: absolute;
     top: var(--gutter);
     left: var(--gutter);
-    font-weight: 400;
-    font-size: 4rem;
-    line-height: 4rem;
     margin: 0;
-    font-family: 'PPAgrandir', sans-serif;
     max-height: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -106,7 +152,7 @@ defineProps<{
     //transition: opacity .25s ease-in-out;
     opacity: 1;
 
-    .v-cartel:hover & {
+    .v-cartel__link:hover & {
         opacity: 0;
     }
 }
@@ -125,7 +171,7 @@ defineProps<{
     h5 {
         margin-bottom: 0;
     }
-    .v-cartel:hover & {
+    .v-cartel__link:hover & {
         opacity: 0;
     }
 }
@@ -145,12 +191,12 @@ defineProps<{
     transition: opacity .25s ease-in-out;
     opacity: 0;
 
-    .v-cartel:hover & {
+    .v-cartel__link:hover & {
         opacity: 1;
     }
 
-    .v-cartel.brick &,
-    .v-cartel.dark-green & {
+    .v-cartel__link.brick &,
+    .v-cartel__link.dark-green & {
         mix-blend-mode: color-dodge;
     }
 }

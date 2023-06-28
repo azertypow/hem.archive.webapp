@@ -1,5 +1,8 @@
 <template>
-    <div class="v-index">
+    <div
+        class="v-index"
+        :class="classColor"
+    >
         <div>
             <div
                 class="v-index__categories fp-grid-with-gutter"
@@ -43,6 +46,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="orange"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/brick.jpg"
                 />
             </div>
             <div
@@ -53,6 +58,8 @@
                     :responsables="['Rémy Campos']"
                     date="2010-2012"
                     theme="green"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/green.jpg"
                 />
             </div>
             <div
@@ -63,6 +70,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy']"
                     date="2022-2023"
                     theme="purple"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/purple.jpg"
                 />
             </div>
 
@@ -78,6 +87,8 @@
                     :responsables="[ 'Rémy Campos']"
                     date="2010-2012"
                     theme="yellow"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/yellow.jpg"
                 />
             </div>
             <div
@@ -88,6 +99,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy']"
                     date="2022-2023"
                     theme="dark-green"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/dark-green.png"
                 />
             </div>
             <div
@@ -98,6 +111,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="brick"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/brick.jpg"
                 />
             </div>
 
@@ -111,6 +126,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="yellow"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/yellow.jpg"
                 />
             </div>
             <div
@@ -121,6 +138,8 @@
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="purple"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/purple.jpg"
                 />
             </div>
 
@@ -179,9 +198,12 @@
 
 import Tag from "~/components/tag.vue";
 import {useAppStateStore} from "~/stores/appState";
+import {Ref, UnwrapRef} from "vue"
 
 const tags          = useAppStateStore().$state.tags
 const categories    = useAppStateStore().$state.categories
+
+const classColor: Ref<UnwrapRef< string >> = ref('default')
 
 function onToggleTag(value: string) {
     useAppStateStore().toggleActiveTag(value)
@@ -189,6 +211,10 @@ function onToggleTag(value: string) {
 
 function onToggleCategory(value: string) {
     useAppStateStore().toggleActiveCategory(value)
+}
+
+function goToProject(cartelElement: HTMLElement) {
+    cartelElement.classList.add('is-full')
 }
 
 </script>

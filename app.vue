@@ -32,12 +32,14 @@
 
 <style lang="scss">
 
-.over-enter-active,
+.over-enter-active {
+    transition: transform .5s, opacity .5s 0s linear;
+}
 .over-leave-active {
-    transition: transform 1s, opacity .5s .5s;
+    transition: transform 1s;
 }
 .over-enter-from {
-    transform: scale(0.9);
+    transform: scale(1);
     opacity: 0;
 }
 .over-leave-to {
@@ -47,15 +49,14 @@
 
 .page-enter-active,
 .page-leave-active {
-    transition: opacity .5s, transform .5s;
+    transition: transform 1s;
+    transform-origin: bottom;
 }
 .page-enter-from {
-    opacity: 1;
-    transform: translate(-1rem);
+    transform: scale(1);
 }
 .page-leave-to {
-    opacity: 0;
-    transform: scale(1.1);
+    transform: scale(1);
 }
 </style>
 
@@ -63,5 +64,17 @@
 
 
 <script lang="ts" setup >
+
+import {useAppStateStore} from "~/stores/appState"
+
+useRouter().beforeEach((to, from, next) => {
+    if(from.fullPath === '/') {
+        window.setTimeout(() => {
+            next()
+        }, 1000)
+    } else {
+        next()
+    }
+})
 
 </script>

@@ -70,12 +70,6 @@ defineEmits<{
         color: var(--color-main--green);
     }
 
-    .v-category.green:hover & {
-        background-color: white;
-        color: var(--color-main--green);
-    }
-
-
     // yellow
     .v-category.yellow & {
         background-color: var(--color-main--yellow);
@@ -87,12 +81,6 @@ defineEmits<{
         color: var(--color-main--yellow);
     }
 
-    .v-category.yellow:hover & {
-        background-color: white;
-        color: var(--color-main--yellow);
-    }
-
-
     // purple
     .v-category.purple & {
         background-color: var(--color-main--purple);
@@ -103,12 +91,6 @@ defineEmits<{
         background-color: white;
         color: var(--color-main--purple);
     }
-
-    .v-category.purple:hover & {
-        background-color: white;
-        color: var(--color-main--purple);
-    }
-
 
     // dark-green
     .v-category.dark-green & {
@@ -122,12 +104,6 @@ defineEmits<{
         color: var(--color-main--dark-green);
     }
 
-    .v-category.dark-green:hover & {
-        background-color: white;
-        color: var(--color-main--dark-green);
-    }
-
-
     // orange
     .v-category.orange & {
         background-color: var(--color-main--orange);
@@ -139,12 +115,6 @@ defineEmits<{
         background-color: white;
         color: var(--color-main--orange);
     }
-
-    .v-category.orange:hover & {
-        background-color: white;
-        color: var(--color-main--orange);
-    }
-
 
     // orange
     .v-category.brick & {
@@ -158,18 +128,17 @@ defineEmits<{
         color: var(--color-main--brick);
     }
 
-    .v-category.brick:hover & {
-        background-color: white;
-        color: var(--color-main--brick);
+    .v-category:hover & {
+        background: black;
+        color: white;
     }
-
 }
 
 .v-category__close {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
-    transform: translate(50%, -50%);
+    transform: translate(25%, -50%);
     background: black;
     color: white;
     padding: 1rem;

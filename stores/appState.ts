@@ -34,7 +34,14 @@ export const useAppStateStore = defineStore('appState', {
             {value: "INTERPRÉTATION HISTORIQUE", theme: "dark-green"},
             {value: "TRANSMISSION", theme:              "orange"},
             {value: "MUSIQUES DU MONDE", theme:         "brick"},
-        ] as {value: string, theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'}[],
+        ] satisfies {value: string, theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'}[],
+
+
+        currentProjectTitle: "",
+        currentProjectResponsables: [] satisfies string[],
+        currentProjectDate: "",
+        currentProjectTheme: "" satisfies 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
+        currentProjectCover: "",
     }),
 
     actions: {
