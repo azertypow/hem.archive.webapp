@@ -47,7 +47,7 @@ definePageMeta({
     height: 100%;
     box-sizing: border-box;
     overflow: scroll;
-    padding-top: 6rem;
+    padding-top: 5rem;
     z-index: 10;
     background: var(--color-main--green);
 

@@ -42,6 +42,9 @@ export const useAppStateStore = defineStore('appState', {
         currentProjectDate: "",
         currentProjectTheme: "" satisfies 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
         currentProjectCover: "",
+
+        menuIsOPen: false,
+        searchIsOpen: false,
     }),
 
     actions: {

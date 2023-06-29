@@ -3,19 +3,17 @@
         class="v-index"
         :class="classColor"
     >
-        <div>
-            <div
-                class="v-index__categories fp-grid-with-gutter"
-            >
-                    <category
-                        v-for="category of categories"
-                        @clicked="onToggleCategory($event)"
-                        :name="category.value"
-                        :theme="category.theme"
-                        :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
-                        :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
-                    />
-            </div>
+        <div
+            class="v-index__categories fp-grid-with-gutter"
+        >
+                <category
+                    v-for="category of categories"
+                    @clicked="onToggleCategory($event)"
+                    :name="category.value"
+                    :theme="category.theme"
+                    :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
+                    :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
+                />
         </div>
 
         <div
@@ -162,7 +160,7 @@
     height: 100%;
     box-sizing: border-box;
     overflow: scroll;
-    padding-top: 6rem;
+    padding-top: 11rem;
 }
 
 .v-index__items {
@@ -175,6 +173,11 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    top: 6rem;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
 }
 
 .v-index__tags {
