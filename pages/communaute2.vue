@@ -32,7 +32,6 @@ definePageMeta({
 .v-communaute2 {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -40,6 +39,10 @@ definePageMeta({
     padding-top: 5rem;
     z-index: 10;
     background: white;
+    left: 50%;
+    max-width: 1500px;
+    min-width: 1400px;
+    transform: translate(-50%, 0);
 }
 .v-communaute2__project-img {
     display: block;

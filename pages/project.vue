@@ -160,7 +160,6 @@ onMounted(() => {
 .v-project {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -168,6 +167,10 @@ onMounted(() => {
     padding-top: 5rem;
     z-index: 10;
     background: var(--color-main--green);
+    left: 50%;
+    max-width: 1500px;
+    min-width: 1400px;
+    transform: translate(-50%, 0);
 
     &.green {
         background: var(--color-main--green);

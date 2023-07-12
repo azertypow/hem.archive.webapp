@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
 .v-app {
-    max-width: 1512px;
+    max-width: 1400px;
     margin: auto;
     padding-top: var(--nav-height);
 }
@@ -30,9 +30,12 @@
 .v-app__nav {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
+    left: 50%;
+    max-width: 1500px;
+    min-width: 1400px;
+    transform: translate(-50%, 0);
 }
 </style>
 
@@ -50,7 +53,7 @@
     opacity: 0;
 }
 .over-leave-to {
-    transform: translate(0, -100vh);
+    transform: translate(-50%, -100vh) !important;
 }
 
 

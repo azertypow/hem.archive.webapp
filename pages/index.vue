@@ -4,19 +4,6 @@
         :class="classColor"
     >
         <div
-            class="v-index__categories fp-grid-with-gutter"
-        >
-                <category
-                    v-for="category of categories"
-                    @clicked="onToggleCategory($event)"
-                    :name="category.value"
-                    :theme="category.theme"
-                    :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
-                    :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
-                />
-        </div>
-
-        <div
             class="v-index__tags fp-grid-with-gutter"
         >
             <div
@@ -120,6 +107,7 @@
                 class="fp-grid-coll-12-24 v-index__items"
             >
                 <cartel
+                    size="big"
                     title="Une nouvelle esthétique de la cadence"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
@@ -132,6 +120,7 @@
                 class="fp-grid-coll-12-24 v-index__items"
             >
                 <cartel
+                    size="big"
                     title="Art.School. Differences"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
@@ -141,6 +130,89 @@
                 />
             </div>
 
+
+
+
+
+<!--=====-->
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Art.School. Differences"
+                    :responsables="[ 'Rémy Campos']"
+                    date="2010-2012"
+                    theme="green"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/yellow.jpg"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Aux origines du piano français"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy']"
+                    date="2022-2023"
+                    theme="brick"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/dark-green.png"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de&nbsp;l’Institut Jaques&#8209;Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="brick"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/brick.jpg"
+                />
+            </div>
+
+
+
+
+
+            <!--=====-->
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Actes du congrès de&nbsp;l’Institut Jaques&#8209;Dalcroze"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
+                    date="2010-2012"
+                    theme="dark-green"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/brick.jpg"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Alphabet du geste&nbsp;: l’art scénique du chanteur d’opéra"
+                    :responsables="['Rémy Campos']"
+                    date="2010-2012"
+                    theme="yellow"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/green.jpg"
+                />
+            </div>
+            <div
+                class="fp-grid-coll-8-24 v-index__items"
+            >
+                <cartel
+                    title="Apprentissage au clavier&nbsp;: Influence du mouvement corporel lorem sample"
+                    :responsables="[ 'Rémy Campos', 'Pierre Goy']"
+                    date="2022-2023"
+                    theme="dark-green"
+                    @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    cover="cover/yellow.jpg"
+                />
+            </div>
         </div>
 
 
@@ -155,36 +227,20 @@
 .v-index {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     overflow: scroll;
     padding-top: 11rem;
+    left: 50%;
+    max-width: 1500px;
+    min-width: 1400px;
+    transform: translate(-50%, 0);
+    background: white;
 }
 
 .v-index__items {
     padding: 1rem;
-}
-
-.v-index__categories {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    top: 5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    left: 0;
-    width: 100%;
-    position: fixed;
-    z-index: 1000;
-
-    .search-is-open & {
-        transition: background-color .5s ease-in-out;
-        background: var(--color-grey);
-    }
 }
 
 .v-index__tags {
@@ -212,15 +268,10 @@ import {Ref, UnwrapRef} from "vue"
 import {goToProject} from "~/global/goToProject";
 
 const tags          = useAppStateStore().$state.tags
-const categories    = useAppStateStore().$state.categories
 
 const classColor: Ref<UnwrapRef< string >> = ref('default')
 
 function onToggleTag(value: string) {
     useAppStateStore().toggleActiveTag(value)
-}
-
-function onToggleCategory(value: string) {
-    useAppStateStore().toggleActiveCategory(value)
 }
 </script>

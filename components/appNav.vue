@@ -121,6 +121,19 @@
             <div class="hem-font-xl" >Impressum</div>
         </div>
 
+        <div
+            class="v-app-nav__categories"
+            v-if="useRouter().currentRoute.value.fullPath === '/' && ! useAppStateStore().menuIsOPen"
+        >
+            <category
+                v-for="category of categories"
+                @clicked="onToggleCategory($event)"
+                :name="category.value"
+                :theme="category.theme"
+                :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
+                :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
+            />
+        </div>
     </section>
 </template>
 
@@ -133,6 +146,12 @@
 // }>()
 
 import {useAppStateStore} from "~/stores/appState";
+
+const categories    = useAppStateStore().$state.categories
+
+function onToggleCategory(value: string) {
+    useAppStateStore().toggleActiveCategory(value)
+}
 </script>
 
 
@@ -293,6 +312,30 @@ import {useAppStateStore} from "~/stores/appState";
         }
     }
 }
+
+.v-app-nav__categories {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    top: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+
+    .search-is-open & {
+        transition: background-color .5s ease-in-out;
+        background: var(--color-grey);
+    }
+}
+
+//
+//animation
+//
 
 .v-app-nav__animation {
     animation: open-menu .5s .25s ease-in-out;
