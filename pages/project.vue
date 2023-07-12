@@ -206,8 +206,7 @@ onMounted(() => {
 .v-project__end-page__detector {
     width: 100%;
     height: 100vh;
-    margin-top: 25vh;
-    //background-color: white;
+    background-color: var(--color-grey);
 }
 
 .v-project__connected {
@@ -216,9 +215,10 @@ onMounted(() => {
     overflow-x: auto;
     overflow-y: hidden;
     padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding-bottom: calc(10rem + 50vh); // height of scroll detection space
     flex-wrap: nowrap;
     gap: var(--gutter-xl);
+    background-color: var(--color-grey);
 
     > * {
         flex-shrink: 0;
