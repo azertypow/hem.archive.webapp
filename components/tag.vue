@@ -1,11 +1,13 @@
 <template>
-    <div class="v-tag">
+    <div
+        class="v-tag"
+        @click="$emit('clicked', name)"
+    >
         <button
             class="v-tag__button"
             :class="{
                 'is-active': isActive
             }"
-            @click="$emit('clicked', name)"
         >
             {{name}}
         </button>
@@ -40,6 +42,7 @@ defineEmits<{
 .v-tag {
     position: relative;
     cursor: pointer;
+    user-select: none;
 }
 
 .v-tag__button {

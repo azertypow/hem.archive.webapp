@@ -6,10 +6,10 @@
             {'is-active': isActive},
             {'is-unactive': isUnactive},
         ]"
+        @click="$emit('clicked', name)"
     >
         <button
             class="v-category__button"
-            @click="$emit('clicked', name)"
         >
             {{name}}
         </button>
@@ -46,6 +46,7 @@ defineEmits<{
 .v-category {
     position: relative;
     cursor: pointer;
+    user-select: none;
 }
 
 .v-category__button {
@@ -129,8 +130,8 @@ defineEmits<{
     }
 
     .v-category:hover & {
-        background: black;
-        color: white;
+        background: black !important;
+        color: white !important;
     }
 }
 
