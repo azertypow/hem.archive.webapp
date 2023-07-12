@@ -26,11 +26,22 @@ h2,
 .hem-font-xl {
   font-weight: 400;
   font-size: 4rem;
-  line-height: 4rem;
+  line-height: 4.5rem;
   font-family: 'PPAgrandir', sans-serif;
 }
 
 p, h5 {
   font-size: 1.8rem;
   line-height: 2rem;
+}
+
+
+input[type='text'],
+select {
+  display: block;
+  border-radius: 0;
+  box-sizing: border-box;
+  line-height: 4rem;
+  height: 5rem;
+  border: solid 2px;
 }

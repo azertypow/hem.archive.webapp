@@ -38,9 +38,9 @@ export const useAppStateStore = defineStore('appState', {
 
 
         currentProjectTitle: "",
-        currentProjectResponsables: [] satisfies string[],
+        currentProjectResponsables: [] as string[],
         currentProjectDate: "",
-        currentProjectTheme: "" satisfies 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
+        currentProjectTheme: "" as 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
         currentProjectCover: "",
 
         menuIsOPen: false,

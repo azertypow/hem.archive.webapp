@@ -173,11 +173,18 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    top: 6rem;
+    top: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     left: 0;
     width: 100%;
     position: fixed;
     z-index: 1000;
+
+    .search-is-open & {
+        transition: background-color .5s ease-in-out;
+        background: var(--color-grey);
+    }
 }
 
 .v-index__tags {
@@ -202,6 +209,7 @@
 import Tag from "~/components/tag.vue";
 import {useAppStateStore} from "~/stores/appState";
 import {Ref, UnwrapRef} from "vue"
+import {goToProject} from "~/global/goToProject";
 
 const tags          = useAppStateStore().$state.tags
 const categories    = useAppStateStore().$state.categories
@@ -215,9 +223,4 @@ function onToggleTag(value: string) {
 function onToggleCategory(value: string) {
     useAppStateStore().toggleActiveCategory(value)
 }
-
-function goToProject(cartelElement: HTMLElement) {
-    cartelElement.classList.add('is-full')
-}
-
 </script>

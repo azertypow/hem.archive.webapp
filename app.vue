@@ -1,5 +1,12 @@
 <template>
-    <div class="v-app">
+    <div
+        class="v-app"
+
+        :class="{
+            'nav-is-open':      useAppStateStore().menuIsOPen,
+            'search-is-open':   useAppStateStore().searchIsOpen,
+        }"
+    >
         <div
             class="v-app__nav"
         >
@@ -33,10 +40,10 @@
 <style lang="scss">
 
 .over-enter-active {
-    transition: transform .5s, opacity .5s 0s linear;
+    transition: opacity .25s 0s linear;
 }
 .over-leave-active {
-    transition: transform 1s;
+    transition: transform .5s ease-in-out;
 }
 .over-enter-from {
     transform: scale(1);
@@ -68,10 +75,13 @@
 import {useAppStateStore} from "~/stores/appState"
 
 useRouter().beforeEach((to, from, next) => {
+
+    useAppStateStore().menuIsOPen = false
+
     if(from.fullPath === '/') {
         window.setTimeout(() => {
             next()
-        }, 1000)
+        }, 750)
     } else {
         next()
     }

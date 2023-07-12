@@ -39,6 +39,7 @@
 
 <script lang="ts" setup>
 import {useAppStateStore} from "~/stores/appState";
+import {Ref} from "vue";
 
 const props = defineProps<{
     title: string,
@@ -52,7 +53,7 @@ const emit = defineEmits<{
     cartelClicked: [cartelElement: HTMLElement]
 }>()
 
-const cartelElement = ref(null)
+const cartelElement: Ref<HTMLElement | null> = ref(null)
 
 function onCartelClicked() {
     if( cartelElement.value instanceof HTMLElement) {
@@ -78,7 +79,7 @@ function onCartelClicked() {
     position: relative;
 
     &.is-full { // for page transition started in parent
-        transform: scale(10);
+        transform: scale(100);
         transition: transform .75s cubic-bezier(1,0,1,0);
         z-index: 1000;
 
@@ -142,11 +143,15 @@ function onCartelClicked() {
 }
 .v-cartel__title {
     position: absolute;
-    top: var(--gutter);
-    left: var(--gutter);
+    top: 0;
+    left: 0;
     margin: 0;
+    width: 100%;
+    padding: var(--gutter-xl);
+    box-sizing: border-box;
     max-height: 16rem;
     overflow: hidden;
+    padding-bottom: 10px;
     text-overflow: ellipsis;
 
     //transition: opacity .25s ease-in-out;
@@ -160,7 +165,7 @@ function onCartelClicked() {
 .v-cartel__details {
     position: absolute;
     top: 16rem;
-    left: var(--gutter);
+    left: var(--gutter-xl);
 
     //transition: opacity .25s ease-in-out;
     opacity: 1;
