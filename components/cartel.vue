@@ -165,11 +165,15 @@ function onCartelClicked() {
 
 .v-cartel__details {
     position: absolute;
-    top: 16rem;
+    top: 50%;
     left: var(--gutter-xl);
 
     transition: opacity .15s .2s ease-in-out;
     opacity: 1;
+
+    *:first-child {
+        margin-top: 0 !important;
+    }
 
     p {
         margin: 0;
