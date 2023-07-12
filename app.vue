@@ -43,7 +43,7 @@
     transition: opacity .25s 0s linear;
 }
 .over-leave-active {
-    transition: transform .5s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 .over-enter-from {
     transform: scale(1);
