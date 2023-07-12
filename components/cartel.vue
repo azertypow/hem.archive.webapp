@@ -51,7 +51,7 @@ const props = defineProps<{
     date: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
     cover: string,
-    size: 'big' | 'regular'
+    size?: 'big' | 'regular'
 }>()
 
 const emit = defineEmits<{
@@ -165,6 +165,12 @@ function onCartelClicked() {
     .v-cartel__link:hover & {
         transition: none;
         opacity: 0;
+    }
+
+    .v-cartel--big & {
+        font-size: 6rem;
+        line-height: 7rem;
+        max-height: 24rem;
     }
 }
 
