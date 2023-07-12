@@ -40,7 +40,7 @@
                 class="fp-grid-coll-8-24 v-index__items"
             >
                 <cartel
-                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    title="Actes du congrès de&nbsp;l’Institut Jaques&#8209;Dalcroze"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="orange"
@@ -52,7 +52,7 @@
                 class="fp-grid-coll-8-24 v-index__items"
             >
                 <cartel
-                    title="Alphabet du geste : l’art scénique du chanteur d’opéra"
+                    title="Alphabet du geste&nbsp;: l’art scénique du chanteur d’opéra"
                     :responsables="['Rémy Campos']"
                     date="2010-2012"
                     theme="green"
@@ -64,7 +64,7 @@
                 class="fp-grid-coll-8-24 v-index__items"
             >
                 <cartel
-                    title="Apprentissage au clavier : Influence du mouvement corporel lorem sample"
+                    title="Apprentissage au clavier&nbsp;: Influence du mouvement corporel lorem sample"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy']"
                     date="2022-2023"
                     theme="purple"
@@ -105,7 +105,7 @@
                 class="fp-grid-coll-8-24 v-index__items"
             >
                 <cartel
-                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    title="Actes du congrès de&nbsp;l’Institut Jaques&#8209;Dalcroze"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="brick"
@@ -120,7 +120,7 @@
                 class="fp-grid-coll-12-24 v-index__items"
             >
                 <cartel
-                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    title="Une nouvelle esthétique de la cadence"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="yellow"
@@ -132,7 +132,7 @@
                 class="fp-grid-coll-12-24 v-index__items"
             >
                 <cartel
-                    title="Actes du congrès de l’Institut Jaques-Dalcroze"
+                    title="Art.School. Differences"
                     :responsables="[ 'Rémy Campos', 'Pierre Goy', 'Aurélien']"
                     date="2010-2012"
                     theme="purple"
