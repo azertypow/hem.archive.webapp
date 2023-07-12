@@ -74,9 +74,14 @@
 
 import {useAppStateStore} from "~/stores/appState"
 
+
+
 useRouter().beforeEach((to, from, next) => {
 
     useAppStateStore().menuIsOPen = false
+    useAppStateStore().searchIsOpen = false
+    useAppStateStore().activeTag = ""
+    useAppStateStore().activeCategory = ""
 
     if(to.fullPath === '/project' ) {
         window.setTimeout(() => {

@@ -2,6 +2,10 @@
     <div
         class="v-cartel"
         ref="cartelElement"
+        :class="{
+            'v-cartel--big': size === 'big',
+            'v-cartel--reg': size !== 'big',
+        }"
     >
         <nuxt-link
             class="v-cartel__link"
@@ -47,6 +51,7 @@ const props = defineProps<{
     date: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
     cover: string,
+    size: 'big' | 'regular'
 }>()
 
 const emit = defineEmits<{
