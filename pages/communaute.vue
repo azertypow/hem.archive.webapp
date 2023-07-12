@@ -6,7 +6,7 @@
     >
         <img
             class="v-communaute__project-img"
-            src="/230707_HEM-pages_communaute.jpeg" alt="project prototype"
+            src="/230707_HEM-pages_communaute.jpg" alt="project prototype"
         >
     </section>
 </template>
@@ -39,35 +39,12 @@ definePageMeta({
     overflow: scroll;
     padding-top: 5rem;
     z-index: 10;
-    background: var(--color-main--green);
-
-    &.green {
-        background: var(--color-main--green);
-    }
-
-    &.yellow {
-        background: var(--color-main--yellow);
-    }
-
-    &.purple {
-        background: var(--color-main--purple);
-    }
-
-    &.dark-green {
-        background: var(--color-main--dark-green);
-    }
-
-    &.orange {
-        background: var(--color-main--orange);
-    }
-
-    &.brick {
-        background: var(--color-main--brick);
-    }
-
+    background: white;
 }
 .v-communaute__project-img {
     display: block;
     width: 100%;
+    user-select: none;
+    cursor: pointer;
 }
 </style>
