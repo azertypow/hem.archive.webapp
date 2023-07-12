@@ -12,35 +12,31 @@
                 <div
                     class="v-app-header__left"
                 >
-                    <h1 class="" >{{title}}</h1>
+                    <h1 class="">{{ title }}</h1>
                     <div>
                         <div class="v-app-header__title">
                             <div><h5>Responsable</h5></div>
                             <div>
-                                <p v-for="responsable of responsables">{{responsable}}</p>
+                                <p v-for="responsable of responsables">{{ responsable }}</p>
                             </div>
                         </div>
-                        <div
-                            class="v-app-header__content"
-                        >
+                        <div class="v-app-header__partners">
+                            <div><h5>Partenaires</h5></div>
                             <div>
-                                <div><h5>Partenaires</h5></div>
-                                <div>
-                                    <p>Jean-Christophe Revel, CRR Paris</p>
-                                    <p>Mathieu Ferey , CNSM Lyon</p>
-                                    <p>Pierre Bornachot , Centre Culturel d’Ambronay</p>
-                                    <p>Nicolas Bucher, Centre de Musique Baroque de Versailles</p>
-                                </div>
+                                <p>Jean-Christophe Revel, CRR Paris</p>
+                                <p>Mathieu Ferey , CNSM Lyon</p>
+                                <p>Pierre Bornachot , Centre Culturel d’Ambronay</p>
+                                <p>Nicolas Bucher, Centre de Musique Baroque de Versailles</p>
                             </div>
-                            <div>
-                                <div><h5>Période</h5></div>
-                                <div>{{date}}</div>
-                            </div>
+                        </div>
+                        <div class="v-app-header__date" >
+                            <div><h5>Période</h5></div>
+                            <div>{{ date }}</div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <div
                 class="fp-grid-coll-12-24"
             >
@@ -102,6 +98,17 @@ h1, p, h5 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.v-app-header__title,
+.v-app-header__partners,
+.v-app-header__date {
+    display: flex;
+    margin-top: 2rem;
+
+    > *:first-child {
+        width: calc(100% / 4 * 1);
+    }
 }
 
 .brick,
