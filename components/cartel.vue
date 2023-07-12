@@ -154,10 +154,11 @@ function onCartelClicked() {
     padding-bottom: 10px;
     text-overflow: ellipsis;
 
-    //transition: opacity .25s ease-in-out;
+    transition: opacity .15s .15s ease-in-out;
     opacity: 1;
 
     .v-cartel__link:hover & {
+        transition: none;
         opacity: 0;
     }
 }
@@ -167,7 +168,7 @@ function onCartelClicked() {
     top: 16rem;
     left: var(--gutter-xl);
 
-    //transition: opacity .25s ease-in-out;
+    transition: opacity .15s .2s ease-in-out;
     opacity: 1;
 
     p {
@@ -177,6 +178,7 @@ function onCartelClicked() {
         margin-bottom: 0;
     }
     .v-cartel__link:hover & {
+        transition: none;
         opacity: 0;
     }
 }
