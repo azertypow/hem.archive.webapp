@@ -2,12 +2,6 @@
     <section
         class="v-app-nav"
     >
-        <img
-            class="v-app-nav__logo"
-            src="/logo-hem.svg"
-            alt="logo"
-        >
-
         <nuxt-link
             href="/"
             class="v-app-nav__title"
@@ -17,6 +11,7 @@
         <div
             class="v-app-nav__right"
         >
+
             <img
                 alt="open research"
                 src="/ui/HEM-loupe-10pt.png"
@@ -29,8 +24,20 @@
                 alt="close project"
                 class="v-app-nav__icon v-app-nav__icon--close-project"
                 v-if="useRouter().currentRoute.value.path !== '/'"
-                @click="useRouter().go(-1)"
+                @click="useRouter().push({path: '/'})"
             >
+
+            <a
+                target="_blank"
+                href="https://www.hesge.ch/hem/"
+            >
+                <img
+                    class="v-app-nav__logo"
+                    src="/logo-hem.svg"
+                    alt="logo"
+                >
+            </a>
+
             <img
                 alt="close menu"
                 @click="useAppStateStore().menuIsOPen = !useAppStateStore().menuIsOPen"
@@ -141,7 +148,7 @@ import {useAppStateStore} from "~/stores/appState";
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     position: relative;
     transition:
         color .25s ease-in-out,
@@ -184,7 +191,11 @@ import {useAppStateStore} from "~/stores/appState";
 .v-app-nav__logo {
     display: block;
     height: 3rem;
-    padding-left: var(--gutter-xl);
+    padding: 0 .8rem 0 0;
+
+    .nav-is-open & {
+        filter: invert(1);
+    }
 }
 
 .v-app-nav__title {
