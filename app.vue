@@ -78,7 +78,7 @@ useRouter().beforeEach((to, from, next) => {
 
     useAppStateStore().menuIsOPen = false
 
-    if(from.fullPath === '/') {
+    if(to.fullPath === '/project' ) {
         window.setTimeout(() => {
             next()
         }, 750)

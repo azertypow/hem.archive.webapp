@@ -19,9 +19,7 @@
 import {useAppStateStore} from "~/stores/appState";
 
 definePageMeta({
-    pageTransition: {
-        name: 'over',
-    }
+    pageTransition: false,
 })
 
 </script>

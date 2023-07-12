@@ -2,7 +2,7 @@
     <section
         class="v-communaute2"
         :class="[useAppStateStore().currentProjectTheme]"
-        @click="useRouter().push({name: 'communaute3'})"
+        @click="useRouter().push({name: 'communaute'})"
     >
         <img
             class="v-communaute2__project-img"
@@ -19,9 +19,7 @@
 import {useAppStateStore} from "~/stores/appState";
 
 definePageMeta({
-    pageTransition: {
-        name: 'over',
-    }
+    pageTransition: false
 })
 
 </script>
