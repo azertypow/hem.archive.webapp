@@ -215,7 +215,7 @@ onMounted(() => {
     overflow-x: auto;
     overflow-y: hidden;
     padding-top: 10rem;
-    padding-bottom: calc(10rem + 50vh); // height of scroll detection space
+    padding-bottom: calc(10rem + 33.333vh); // height of scroll detection space
     flex-wrap: nowrap;
     gap: var(--gutter-xl);
     background-color: var(--color-grey);
