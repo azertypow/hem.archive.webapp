@@ -1,9 +1,32 @@
 import { defineStore } from 'pinia'
 
+export type tagPosibility =
+    ""
+    | "Musique et mouvement"
+    | "Percussion"
+    | "Vents"
+    | "Diminution et ornementation"
+    | "Solmisation"
+    | "Informatique musicale"
+    | "Pratique historiquement informée : Claviers"
+    | "Pratique historiquement informée : Chant"
+    | "Interprétation et ornementation"
+    | "Orchestre"
+    | "Recherche pédagogique"
+    | "Échanges culturels"
+    | "Analyse et théorie de la musique"
+    | "Geste et mouvement"
+    | "Musiques d’aujourd’hui"
+    | "Musique et arts performatifs"
+    | "Musique à Genève et en Suisse"
+    | "Métiers"
+    | "Santé du musicien-ne"
+
+
 export const useAppStateStore = defineStore('appState', {
     state: () => ({
         activeCategory: "",
-        activeTag: "",
+        activeTag: "" as tagPosibility,
 
         tags: [
             "Musique et mouvement",
@@ -27,6 +50,8 @@ export const useAppStateStore = defineStore('appState', {
             "Santé du musicien-ne",
         ],
 
+        tagsAreVisibleInIndexPage: true,
+
         categories: [
             {value: "MÉTIERS DE LA MUSIQUE", theme:     "green"},
             {value: "MUSIQUE ET TECHNOLOGIE", theme:    "yellow"},
@@ -48,7 +73,7 @@ export const useAppStateStore = defineStore('appState', {
     }),
 
     actions: {
-        toggleActiveTag(value: string) {
+        toggleActiveTag(value: tagPosibility) {
             this.$state.activeTag = this.$state.activeTag === value ? "" : value;
             this.$state.activeCategory = "";
         },

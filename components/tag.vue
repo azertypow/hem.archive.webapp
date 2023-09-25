@@ -52,6 +52,7 @@ defineEmits<{
     line-height: 2rem;
     padding: 1rem 4rem;
     cursor: pointer;
+    background: white;
 
     &.is-active,
     &:hover {

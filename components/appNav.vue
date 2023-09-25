@@ -122,7 +122,7 @@
         </div>
 
         <div
-            class="v-app-nav__categories"
+            class="v-app-nav__categories fp-grid-with-gutter"
             v-if="useRouter().currentRoute.value.fullPath === '/' && ! useAppStateStore().menuIsOPen"
         >
             <category
@@ -133,6 +133,17 @@
                 :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
                 :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
             />
+        </div>
+
+        <div
+            class="v-app-nav__activated-tag"
+        >
+            <tag
+                v-if="useAppStateStore().activeTag && !useAppStateStore().tagsAreVisibleInIndexPage"
+                :name="useAppStateStore().activeTag"
+                :is-active="true"
+                @clicked="onToggleTagInNav($event)"
+            ></tag>
         </div>
     </section>
 </template>
@@ -150,7 +161,27 @@ import {useAppStateStore} from "~/stores/appState";
 const categories    = useAppStateStore().$state.categories
 
 function onToggleCategory(value: string) {
+    document.querySelectorAll('.v-index').forEach(value => {
+        if(! (value instanceof HTMLElement) ) return
+        value.scroll({
+            top:0,
+            behavior: 'smooth',
+        })
+    })
+
     useAppStateStore().toggleActiveCategory(value)
+}
+
+function onToggleTagInNav(name: string) {
+    document.querySelectorAll('.v-index').forEach(value => {
+        if(! (value instanceof HTMLElement) ) return
+        value.scroll({
+            top:0,
+            behavior: 'smooth',
+        })
+    })
+
+    useAppStateStore().activeTag = ""
 }
 </script>
 
@@ -331,6 +362,13 @@ function onToggleCategory(value: string) {
         transition: background-color .5s ease-in-out;
         background: var(--color-grey);
     }
+}
+
+.v-app-nav__activated-tag {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 14rem;
 }
 
 //

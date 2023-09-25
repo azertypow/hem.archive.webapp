@@ -2,10 +2,6 @@
     <div
         class="v-cartel"
         ref="cartelElement"
-        :class="{
-            'v-cartel--big': size === 'big',
-            'v-cartel--reg': size !== 'big',
-        }"
     >
         <nuxt-link
             class="v-cartel__link"
@@ -19,7 +15,7 @@
             <div
                 class="v-cartel__details"
             >
-                <h5>Responsabbles</h5>
+                <h5>Responsables</h5>
                 <p
                     v-for="responsable of responsables"
                 >{{responsable}}</p>
@@ -51,7 +47,6 @@ const props = defineProps<{
     date: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
     cover: string,
-    size?: 'big' | 'regular'
 }>()
 
 const emit = defineEmits<{
@@ -82,6 +77,8 @@ function onCartelClicked() {
 <style lang="scss" scoped >
 .v-cartel {
     position: relative;
+    container-name: container-cartel;
+    container-type: inline-size;
 
     &.is-full { // for page transition started in parent
         transform: scale(100);
@@ -166,12 +163,6 @@ function onCartelClicked() {
         transition: none;
         opacity: 0;
     }
-
-    .v-cartel--big & {
-        font-size: 6rem;
-        line-height: 7rem;
-        max-height: 24rem;
-    }
 }
 
 .v-cartel__details {
@@ -221,6 +212,14 @@ function onCartelClicked() {
     .v-cartel__link.dark-green & {
         mix-blend-mode: color-dodge;
     }
+}
+
+@container container-cartel (min-width: 500px) {
+        .v-cartel__title {
+            font-size: 6rem;
+            line-height: 7rem;
+            max-height: 24rem;
+        }
 }
 
 </style>
