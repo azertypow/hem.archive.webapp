@@ -17,7 +17,7 @@
                         <div class="v-app-header__title">
                             <div><h5>Responsable</h5></div>
                             <div>
-                                <p v-for="responsable of responsables">{{ responsable }}</p>
+                                <p v-for="responsable of responsables">{{ responsable.firstname }}</p>
                             </div>
                         </div>
                         <div class="v-app-header__partners">
@@ -56,10 +56,11 @@
 <script lang="ts" setup>
 
 import {onMounted} from "#imports";
+import {IHemApi_authorInfo} from "~/global/hemApi"
 
 const props = defineProps<{
     title: string,
-    responsables: string[],
+    responsables: IHemApi_authorInfo[],
     date: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
     cover: string,

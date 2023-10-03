@@ -18,11 +18,11 @@
                 <h5>Responsables</h5>
                 <p
                     v-for="responsable of responsables"
-                >{{responsable}}</p>
+                >{{responsable.firstname}} {{responsable.Name}}</p>
 
                 <h5>Période</h5>
                 <p
-                >{{date}}</p>
+                >{{`${dateStart} - ${dateEnd}`}}</p>
             </div>
             <img
                 class="v-cartel__cover"
@@ -40,11 +40,13 @@
 <script lang="ts" setup>
 import {useAppStateStore} from "~/stores/appState";
 import {Ref} from "vue";
+import {IHemApi_authorInfo} from "~/global/hemApi"
 
 const props = defineProps<{
     title: string,
-    responsables: string[],
-    date: string,
+    responsables: IHemApi_authorInfo[],
+    dateStart: string,
+    dateEnd: string,
     theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
     cover: string,
 }>()
@@ -59,7 +61,7 @@ function onCartelClicked() {
     if( cartelElement.value instanceof HTMLElement) {
         useAppStateStore().currentProjectTitle          = props.title
         useAppStateStore().currentProjectResponsables   = props.responsables
-        useAppStateStore().currentProjectTheme           = props.theme
+        useAppStateStore().currentProjectTheme          = props.theme
         useAppStateStore().currentProjectDate           = props.date
         useAppStateStore().currentProjectCover          = props.cover
 

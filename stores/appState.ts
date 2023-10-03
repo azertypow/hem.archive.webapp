@@ -1,32 +1,10 @@
 import { defineStore } from 'pinia'
-
-export type tagPosibility =
-    ""
-    | "Musique et mouvement"
-    | "Percussion"
-    | "Vents"
-    | "Diminution et ornementation"
-    | "Solmisation"
-    | "Informatique musicale"
-    | "Pratique historiquement informée : Claviers"
-    | "Pratique historiquement informée : Chant"
-    | "Interprétation et ornementation"
-    | "Orchestre"
-    | "Recherche pédagogique"
-    | "Échanges culturels"
-    | "Analyse et théorie de la musique"
-    | "Geste et mouvement"
-    | "Musiques d’aujourd’hui"
-    | "Musique et arts performatifs"
-    | "Musique à Genève et en Suisse"
-    | "Métiers"
-    | "Santé du musicien-ne"
-
+import {IHemApi_authorInfo} from "~/global/hemApi"
 
 export const useAppStateStore = defineStore('appState', {
     state: () => ({
         activeCategory: "",
-        activeTag: "" as tagPosibility,
+        activeTag: "",
 
         tags: [
             "Musique et mouvement",
@@ -63,7 +41,7 @@ export const useAppStateStore = defineStore('appState', {
 
 
         currentProjectTitle: "",
-        currentProjectResponsables: [] as string[],
+        currentProjectResponsables: [] as IHemApi_authorInfo[],
         currentProjectDate: "",
         currentProjectTheme: "" as 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
         currentProjectCover: "",
@@ -73,7 +51,7 @@ export const useAppStateStore = defineStore('appState', {
     }),
 
     actions: {
-        toggleActiveTag(value: tagPosibility) {
+        toggleActiveTag(value: string) {
             this.$state.activeTag = this.$state.activeTag === value ? "" : value;
             this.$state.activeCategory = "";
         },
