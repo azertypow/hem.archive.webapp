@@ -5,28 +5,28 @@
     >
         <nuxt-link
             class="v-cartel__link"
-            :class="theme"
-            href="/project"
+            :class="projectInfo.themes"
+            :href="`/project/${projectInfo.uid}`"
             @click="onCartelClicked"
         >
             <h2
                 class="v-cartel__title"
-            >{{title}}</h2>
+            >{{projectInfo.title}}</h2>
             <div
                 class="v-cartel__details"
             >
                 <h5>Responsables</h5>
                 <p
-                    v-for="responsable of responsables"
+                    v-for="responsable of projectInfo.authors"
                 >{{responsable.firstname}} {{responsable.Name}}</p>
 
                 <h5>Période</h5>
                 <p
-                >{{`${dateStart} - ${dateEnd}`}}</p>
+                >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(projectInfo.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`}}</p>
             </div>
             <img
                 class="v-cartel__cover"
-                :src="cover"
+                :src="Object.values(projectInfo.cover)[0].resize.large"
                 alt="cover"
             >
         </nuxt-link>
@@ -38,17 +38,11 @@
 
 
 <script lang="ts" setup>
-import {useAppStateStore} from "~/stores/appState";
 import {Ref} from "vue";
-import {IHemApi_authorInfo} from "~/global/hemApi"
+import {IHemApi_projectInfo} from "~/global/hemApi"
 
 const props = defineProps<{
-    title: string,
-    responsables: IHemApi_authorInfo[],
-    dateStart: string,
-    dateEnd: string,
-    theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
-    cover: string,
+    projectInfo: IHemApi_projectInfo
 }>()
 
 const emit = defineEmits<{
@@ -59,12 +53,6 @@ const cartelElement: Ref<HTMLElement | null> = ref(null)
 
 function onCartelClicked() {
     if( cartelElement.value instanceof HTMLElement) {
-        useAppStateStore().currentProjectTitle          = props.title
-        useAppStateStore().currentProjectResponsables   = props.responsables
-        useAppStateStore().currentProjectTheme          = props.theme
-        useAppStateStore().currentProjectDate           = props.date
-        useAppStateStore().currentProjectCover          = props.cover
-
         emit('cartelClicked', cartelElement.value)
     } else {
         console.error("cartelElement.value isn't instanceof HTMLElement", cartelElement.value)

@@ -40,12 +40,6 @@ export const useAppStateStore = defineStore('appState', {
         ] satisfies {value: string, theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'}[],
 
 
-        currentProjectTitle: "",
-        currentProjectResponsables: [] as IHemApi_authorInfo[],
-        currentProjectDate: "",
-        currentProjectTheme: "" as 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
-        currentProjectCover: "",
-
         menuIsOPen: false,
         searchIsOpen: false,
     }),

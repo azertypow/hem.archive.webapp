@@ -33,13 +33,8 @@
                     })'
                 >
                     <cartel
-                        :title="projectInfo.title"
-                        :responsables="projectInfo.authors"
-                        :dateStart="projectInfo.dateStart"
-                        :dateEnd="projectInfo.dateEnd"
-                        theme="orange"
+                        :project-info="projectInfo"
                         @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
-                        cover="cover/brick.jpg"
                     />
                 </div>
             </template>
@@ -129,6 +124,7 @@ onMounted(() => {
 
 async function loadData() {
     allProjectsInfo.value = await getProjectsData()
+    console.log( allProjectsInfo.value )
 }
 
 function setTagVisibilityInPageObserver() {
