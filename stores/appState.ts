@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import {IHemApi_authorInfo} from "~/global/hemApi"
+import {AxesClassColor} from "~/global/getClassColorUidFromAxesUid";
 
 export const useAppStateStore = defineStore('appState', {
     state: () => ({
@@ -30,6 +31,7 @@ export const useAppStateStore = defineStore('appState', {
 
         tagsAreVisibleInIndexPage: true,
 
+        // todo: catégories
         categories: [
             {value: "MÉTIERS DE LA MUSIQUE", theme:     "green"},
             {value: "MUSIQUE ET TECHNOLOGIE", theme:    "yellow"},
@@ -37,7 +39,7 @@ export const useAppStateStore = defineStore('appState', {
             {value: "INTERPRÉTATION HISTORIQUE", theme: "dark-green"},
             {value: "TRANSMISSION", theme:              "orange"},
             {value: "MUSIQUES DU MONDE", theme:         "brick"},
-        ] satisfies {value: string, theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'}[],
+        ] satisfies {value: string, theme: AxesClassColor}[],
 
 
         menuIsOPen: false,

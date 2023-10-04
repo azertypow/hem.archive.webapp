@@ -1,7 +1,7 @@
 <template>
     <header
         class="v-app-header"
-        :class="[theme]"
+        :class="[getClassColorUidFromAxesUid(axesUid)]"
     >
         <div
             class="fp-grid-coll-container"
@@ -57,12 +57,13 @@
 
 import {onMounted} from "#imports";
 import {IHemApi_authorInfo} from "~/global/hemApi"
+import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 
 const props = defineProps<{
     title: string,
     responsables: IHemApi_authorInfo[],
     date: string,
-    theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick' | "",
+    axesUid: AxesUid,
     cover: string,
 }>()
 

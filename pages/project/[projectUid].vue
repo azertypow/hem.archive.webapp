@@ -1,7 +1,7 @@
 <template>
     <section
         class="v--project-uid"
-        :class="{}"
+        :class="[getClassColorUidFromAxesUid(project?.axes[0].uid || 'interpretation-historique')]"
     >
         <template
             v-if="project === null"
@@ -27,7 +27,7 @@
             v-else
         >
             <app-header
-                :theme="'orange'"
+                :axesUid="project.axes[0].uid"
                 :date="`${new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`"
                 :responsables="project.authors"
                 :title="project.title"
@@ -69,6 +69,7 @@ import AppHeader from "~/components/appHeader.vue";
 import {Ref, UnwrapRef} from "vue";
 import {IHemApi_projectDetails} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
+import {getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)

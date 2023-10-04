@@ -1,3 +1,5 @@
+import {AxesUid} from "~/global/getClassColorUidFromAxesUid";
+
 export interface IHemApi_allProjectInfo {
   projects: {[slug: string]: IHemApi_projectInfo}
 }
@@ -17,7 +19,7 @@ export interface IHemApi_projectInfo {
   }[],
   axes: {
     title: string
-    uid: string
+    uid: AxesUid
   }[],
 }
 

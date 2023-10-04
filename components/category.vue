@@ -25,11 +25,13 @@
 
 
 <script lang="ts" setup>
+import {AxesClassColor} from "~/global/getClassColorUidFromAxesUid";
+
 defineProps<{
     name: string,
     isActive: boolean
     isUnactive: boolean
-    theme: 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick',
+    theme: AxesClassColor,
 }>()
 
 defineEmits<{
