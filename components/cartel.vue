@@ -89,7 +89,7 @@ function onCartelClicked() {
 }
 
 .v-cartel__link {
-    background-color: red;
+    background-color: rgb(50, 50, 50);
     width: 100%;
     padding-bottom: 100%;
     position: relative;
