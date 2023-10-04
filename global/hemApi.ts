@@ -13,9 +13,11 @@ export interface IHemApi_projectInfo {
   cover: { [slug: string]: IHemApi_imageData  },
   themes: {
     title: string
+    uid: string
   }[],
   axes: {
-    title: "Interprétation historique"
+    title: string
+    uid: string
   }[],
 }
 
