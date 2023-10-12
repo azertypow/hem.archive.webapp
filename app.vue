@@ -22,8 +22,6 @@
 
 <style lang="scss" scoped>
 .v-app {
-    max-width: 1400px;
-    margin: auto;
     padding-top: var(--nav-height);
 }
 
@@ -53,7 +51,7 @@
     opacity: 0;
 }
 .over-leave-to {
-    transform: translate(-50%, -100vh) !important;
+    transform: translate(0, -100vh) !important;
 }
 
 

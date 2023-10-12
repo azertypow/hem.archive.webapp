@@ -26,13 +26,28 @@
         <template
             v-else
         >
-            <app-header
-                :axesUid="project.axes[0].uid"
-                :date="`${new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`"
-                :responsables="project.authors"
-                :title="project.title"
-                :cover="Object.values(project.cover)[0].resize.large"
-            />
+            <div
+                class="v--project-uid__header"
+            >
+                <app-header
+                    :axesUid="project.axes[0].uid"
+                    :date="`${new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`"
+                    :responsables="project.authors"
+                    :title="project.title"
+                    :cover="Object.values(project.cover)[0].resize.large"
+                />
+            </div>
+
+
+            <div
+                class="fp-grid-coll-container"
+            >
+                <div
+                    class="fp-grid-coll-24-24"
+                >
+                    coucou
+                </div>
+            </div>
 
             <div
                 class="v--project-uid__connected"
@@ -127,36 +142,35 @@ async function loadProjectDataFromHEMAPI() {
     overflow: scroll;
     padding-top: 5rem;
     z-index: 10;
-    background: var(--color-main--green);
-    left: 50%;
-    max-width: 1500px;
-    min-width: 1400px;
-    transform: translate(-50%, 0);
+}
 
-    &.green {
+
+.v--project-uid__header {
+    background: var(--color-main--green);
+
+    .green & {
         background: var(--color-main--green);
     }
 
-    &.yellow {
+    .yellow & {
         background: var(--color-main--yellow);
     }
 
-    &.purple {
+    .purple & {
         background: var(--color-main--purple);
     }
 
-    &.dark-green {
+    .dark-green & {
         background: var(--color-main--dark-green);
     }
 
-    &.orange {
+    .orange & {
         background: var(--color-main--orange);
     }
 
-    &.brick {
+    .brick & {
         background: var(--color-main--brick);
     }
-
 }
 .v--project-uid__project-img {
     display: block;
