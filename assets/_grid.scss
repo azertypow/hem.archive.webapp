@@ -1,3 +1,12 @@
+.hem-rm-margins {
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+  > *:last-child {
+    margin-top: 0 !important;
+  }
+}
+
 .fp-grid-with-gutter {
   box-sizing: border-box;
   padding-right: var(--gutter);

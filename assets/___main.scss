@@ -46,3 +46,18 @@ select {
   height: 5rem;
   border: solid 2px;
 }
+
+ul {
+  display: block;
+  padding: 0 0 0 1.5em;
+
+  li {
+    display: block;
+    position: relative;
+    &:before {
+      content: "—";
+      position: absolute;
+      left: -1.5em;
+    }
+  }
+}

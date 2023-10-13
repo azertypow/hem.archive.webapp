@@ -27,7 +27,27 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   partners: string,
   team: string,
   financement: string,
-  content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image },
+  content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image | IHemApi_bloks_video },
+  filesChapters: Record<string, IHemApi_filesChapter>
+}
+
+interface IHemApi_fileInfo {
+  extension: string;
+  mime: string;
+  modified: number;
+  name: string;
+  niceSize: string;
+  type: string;
+  url: string;
+  id: string;
+}
+
+interface IHemApi_filesChapter {
+  title: string;
+  uid: string;
+  slug: string;
+  uri: string;
+  files: Record<string, IHemApi_fileInfo>;
 }
 
 export interface IHemApi_bloks {
@@ -47,6 +67,15 @@ export interface IHemApi_bloks_image extends IHemApi_bloks {
   link: string,
   photoCredit: string,
   image: IHemApi_imageData,
+}
+
+export interface IHemApi_bloks_video extends IHemApi_bloks {
+  type: "video",
+  isHidden: false,
+  content: {
+    url: "https://www.youtube.com/watch?v=mqg_FPNRO-A&list=PLbs-tlxAEvhRZib0VWTz5gKs-5XiMMr6I&index=15",
+    caption: "video caption"
+  }
 }
 
 
