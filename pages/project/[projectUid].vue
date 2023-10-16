@@ -51,13 +51,18 @@
                 class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                    class="fp-grid-coll-20-24"
+                    class="fp-grid-coll-16-24"
+                >
+                    <h2>Résumé</h2>
+                </div>
+                <div
+                    class="fp-grid-coll-16-24"
                 >
                     <template
                         v-for="projectItem of project.content"
                     >
                         <div
-                            class="v--project-uid__content__text"
+                            class="v--project-uid__content__text hem-rm-margins"
                             v-if="projectItem.type === 'text'"
                             v-html="projectItem.value"
                         ></div>
@@ -230,23 +235,27 @@
                         >
                             <div
                                 v-for="file of filesChapter.files"
-                                class="v--project-uid__filesChapter-box__chapter__files__item"
+                                class="v--project-uid__filesChapter-box__chapter__files__coll"
                             >
-                                <div>
+                                <div
+                                    class="v--project-uid__filesChapter-box__chapter__files__item"
+                                >
                                     <div>
-                                        {{file.name}}
+                                        <div class="v--project-uid__filesChapter-box__chapter__files__item__name" >
+                                            {{file.name}}
+                                        </div>
+                                        <div>
+                                            {{file.extension}}
+                                            <br>({{file.niceSize}})
+                                        </div>
                                     </div>
-                                    <div>
-                                        {{file.extension}}
-                                        <br>({{file.niceSize}})
-                                    </div>
-                                </div>
 
-                                <div>
                                     <div>
-                                        {{file.type}}
+                                        <div>
+                                            {{file.type}}
+                                        </div>
+                                        <button>télécharger</button>
                                     </div>
-                                    <button>télécharger</button>
                                 </div>
                             </div>
                         </div>
@@ -520,8 +529,12 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__filesChapter-box__chapter__files {
-    gap: 2rem;
     padding-bottom: 10rem;
+    gap: 2rem;
+}
+
+.v--project-uid__filesChapter-box__chapter__files__coll {
+    width: calc( (100% - 2rem * 2 ) / 3);
 }
 
 .v--project-uid__filesChapter-box__chapter__files__item {
@@ -531,7 +544,25 @@ function extractVideoID(url: string) {
     padding: 1rem;
     border-radius: 1rem;
     display: flex;
-    gap: 5rem;
+    gap: 2rem;
+}
+.v--project-uid__filesChapter-box__chapter__files__item__name {
+    font-weight: 600;
+    max-width: 10em;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2rem;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0), rgba(214,215,210,255));
+    }
 }
 </style>
 
