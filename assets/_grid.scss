@@ -29,6 +29,10 @@
   &.fp-grid-coll-container--center {
     justify-content: center;
   }
+
+  &.fp-grid-coll-container--no-wrap {
+    flex-wrap: nowrap;
+  }
 }
 
 

@@ -6,11 +6,20 @@
         <template
             v-if="project === null"
         >
-            <h1
-                style="color: white"
+
+            <app-header
+                title="Chargement…"
+            />
+
+            <div
+                class="v--project-uid__header"
             >
-                chargement…
-            </h1>
+                <h1
+                    style="color: white"
+                >
+                    chargement…
+                </h1>
+            </div>
         </template>
 
         <template
@@ -297,8 +306,6 @@ definePageMeta({
 
 onMounted(() => {
     nextTick(() => {
-        console.log(endOfPage.value)
-
         if(! (endOfPage.value instanceof HTMLElement) ) return
 
         const endOfPageObserver = new IntersectionObserver((entries) => {
@@ -336,6 +343,7 @@ function extractVideoID(url: string) {
 
 <style lang="scss" scoped >
 .v--project-uid {
+    background: white;
     position: fixed;
     top: 0;
     width: 100%;
@@ -531,7 +539,7 @@ function extractVideoID(url: string) {
 .v--project-uid__content__text {
     p {
         line-height: 3rem;
-        font-size: 2.8rem;
+        font-size: 2.7rem;
         margin-top: 3rem;
         margin-bottom: 3rem;
     }

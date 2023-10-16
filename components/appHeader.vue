@@ -61,10 +61,10 @@ import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFro
 
 const props = defineProps<{
     title: string,
-    responsables: IHemApi_authorInfo[],
-    date: string,
-    axesUid: AxesUid,
-    cover: string,
+    responsables?: IHemApi_authorInfo[],
+    date?: string,
+    axesUid?: AxesUid,
+    cover?: string,
 }>()
 
 </script>

@@ -58,8 +58,6 @@
     overflow: scroll;
     padding-top: 11rem;
     left: 50%;
-    max-width: 1500px;
-    min-width: 1400px;
     transform: translate(-50%, 0);
     background: white;
 }

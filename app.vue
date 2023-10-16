@@ -30,10 +30,6 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    left: 50%;
-    max-width: 1500px;
-    min-width: 1400px;
-    transform: translate(-50%, 0);
 }
 </style>
 

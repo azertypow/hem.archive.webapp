@@ -297,7 +297,6 @@ function onToggleTagInNav(name: string) {
 }
 
 .v-app-nav__search__content {
-    max-width: 1100px;
     margin: auto;
     width: 100%;
     padding: 5rem var(--gutter-xl) 10rem;

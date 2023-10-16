@@ -40,8 +40,6 @@ definePageMeta({
     z-index: 10;
     background: white;
     left: 50%;
-    max-width: 1500px;
-    min-width: 1400px;
     transform: translate(-50%, 0);
 }
 .v-communaute2__project-img {

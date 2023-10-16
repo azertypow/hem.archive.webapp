@@ -31,7 +31,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   filesChapters: Record<string, IHemApi_filesChapter>
 }
 
-interface IHemApi_fileInfo {
+export interface IHemApi_fileInfo {
   extension: string;
   mime: string;
   modified: number;
@@ -42,7 +42,7 @@ interface IHemApi_fileInfo {
   id: string;
 }
 
-interface IHemApi_filesChapter {
+export interface IHemApi_filesChapter {
   title: string;
   uid: string;
   slug: string;
@@ -105,3 +105,14 @@ export interface IHemApi_authorInfo {
   Name: string
 }
 
+export interface IHemApi_communaute {
+  pages: Record<string, Person>
+}
+
+interface Person {
+  uid: string
+  data: string
+  firstname: string
+  name: string
+  job: string
+}
