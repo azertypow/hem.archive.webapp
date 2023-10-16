@@ -9,7 +9,7 @@ export async function getProjectsData() {
 }
 
 export async function getProjectDataByUdi(uid:string) {
-  const response = await fetch(`${hemApiBaseUrl}/projectByUid/${uid}`)
+  const response = await fetch(`${hemApiBaseUrl}/project-by-uid/${uid}`)
   return await response.json() as (IHemApi_projectDetails | {error: string})
 }
 
