@@ -135,6 +135,7 @@ function onCartelClicked() {
     }
 }
 .v-cartel__title {
+    font-family: 'PPAgrandir', sans-serif;
     position: absolute;
     top: 0;
     left: 0;
