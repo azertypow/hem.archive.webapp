@@ -486,6 +486,7 @@ function extractVideoID(url: string) {
     }
 
     .dark-green & {
+        color: white;
         background: var(--color-main--dark-green);
     }
 
@@ -503,6 +504,9 @@ function extractVideoID(url: string) {
         padding-top: 1rem;
         padding-bottom: 1rem;
 
+        .dark-green & {
+            border-color: white;
+        }
     }
 
     .v--project-uid__details__item__title {
