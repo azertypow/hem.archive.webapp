@@ -2,7 +2,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: '/',
+    // baseURL: '/',
+    baseURL: '/hem.archive.webapp/',
     pageTransition: { name: 'page', mode: 'in-out' }
   },
   typescript: {
