@@ -6,11 +6,6 @@
         <template
             v-if="project === null"
         >
-
-            <app-header
-                title="Chargement…"
-            />
-
             <div
                 class="v--project-uid__header"
             >
