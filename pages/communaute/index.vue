@@ -175,6 +175,10 @@ async function loadCommunauteDataFromHEMAPI() {
 
 
 <style lang="scss" scoped >
+.v-communaute-index {
+    background: white;
+}
+
 .v-communaute-index__header {
     background-color: #0e264e;
     color: white;
