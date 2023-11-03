@@ -1,4 +1,9 @@
-import {IHemApi_allProjectInfo, IHemApi_communaute, IHemApi_projectDetails} from "~/global/hemApi"
+import {
+    IHemApi_allProjectInfo,
+    IHemApi_communaute,
+    IHemApi_PersonDetails,
+    IHemApi_projectDetails
+} from "~/global/hemApi"
 
 export const hemApiBaseUrl = 'https://hemadmin.sdrvl.ch/webapp/api/v1'
 // export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
@@ -17,4 +22,10 @@ export async function getProjectDataByUdi(uid:string) {
 export async function getCommunityData() {
   const response = await fetch(`${hemApiBaseUrl}/community`)
   return await response.json() as (IHemApi_communaute | {error: string})
+}
+
+// todo: check error response in Kirby API project
+export async function getPersonDetails(uid:string) {
+    const response = await fetch(`${hemApiBaseUrl}/community-by-uid/${uid}`)
+    return await response.json() as (IHemApi_PersonDetails | {error: string})
 }

@@ -43,11 +43,12 @@ export interface IHemApi_fileInfo {
 }
 
 export interface IHemApi_filesChapter {
-  title: string;
-  uid: string;
-  slug: string;
-  uri: string;
-  files: Record<string, IHemApi_fileInfo>;
+  title: string
+  uid: string
+  slug: string
+  uri: string
+  textDescription: string
+  files: Record<string, IHemApi_fileInfo>
 }
 
 export interface IHemApi_bloks {
@@ -106,13 +107,69 @@ export interface IHemApi_authorInfo {
 }
 
 export interface IHemApi_communaute {
-  pages: Record<string, Person>
+  pages: Record<string, IHemApi_Person>
 }
 
-interface Person {
+export interface IHemApi_Person {
   uid: string
   data: string
   firstname: string
   name: string
   job: string
+}
+
+
+
+export interface IHemApi_PersonDetails {
+    "uid":          string,
+    "title":        string,
+    "firstname":    string,
+    "name":         string,
+    "bio":          string,
+    "job":          string,
+    "jobdetail":    string,
+    "mail":         string,
+    "publications":         {
+        "id":                       string,
+        "publicationdescription":   string,
+        "publicationlink":          string
+    }[],
+    "researchProject": {
+        [key: string]: {
+            "children": string[],
+            "content": {
+                "title": string,
+                "text": string,
+                "cover": string,
+                "datestart": string,
+                "dateend": string,
+                "showmonth": string,
+                "author": string,
+                "partners": string,
+                "team": string,
+                "financement": string,
+                "axes": string,
+                "themes": string,
+                "theme": string,
+                "axe": string,
+                "imagesfiles": string,
+                "videofiles": string,
+                "autiofiles": string,
+                "pdffiles": string,
+                "categories": string,
+                "uuid": string
+            },
+            "files": string[],
+            "id": string,
+            "mediaUrl": string,
+            "mediaRoot": string,
+            "num": number,
+            "parent": string,
+            "slug": string,
+            "uid": string,
+            "uri": string,
+            "url": string
+        }
+    },
+    "cover": IHemApi_imageData
 }

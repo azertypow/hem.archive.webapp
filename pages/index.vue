@@ -29,7 +29,7 @@
                     class="v-index__items"
                     v-if='showThisCartel({
                         tags: projectInfo.themes.map(value => {return value.title}),
-                        category: "TRANSMISSION"
+                        category: projectInfo.axes[0].title,
                     })'
                 >
                     <cartel

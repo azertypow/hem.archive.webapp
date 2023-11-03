@@ -22,7 +22,6 @@
 
 <style lang="scss" scoped>
 .v-app {
-    padding-top: var(--nav-height);
 }
 
 .v-app__nav {

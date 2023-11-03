@@ -212,44 +212,45 @@
                 <div
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
-                    <div
-                        class="fp-grid-coll-20-24"
-                    >
-                        <h2>Fichiers à télécharger</h2>
-                    </div>
-                    <div
-                        class="v--project-uid__filesChapter-box__chapter fp-grid-coll-20-24 hem-rm-margins"
-                        v-for="filesChapter of project.filesChapters"
-                    >
-                        <h3
-                            class="v--project-uid__filesChapter-box__chapter__title"
-                        >{{ filesChapter.title }}</h3>
-
+                    <div class="fp-grid-coll-20-24">
                         <div
-                            class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
+                            class="hem-rm-margins v--project-uid__filesChapter-box__chapter"
+                            v-for="filesChapter of project.filesChapters"
                         >
+                            <h2
+                                class="v--project-uid__filesChapter-box__chapter__title"
+                            >{{ filesChapter.title }}</h2>
+
                             <div
-                                v-for="file of filesChapter.files"
-                                class="v--project-uid__filesChapter-box__chapter__files__coll"
+                                v-html="filesChapter.textDescription"
+                            ></div>
+
+                            <div
+                                class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
                             >
                                 <div
-                                    class="v--project-uid__filesChapter-box__chapter__files__item"
+                                    v-for="file of filesChapter.files"
+                                    class="v--project-uid__filesChapter-box__chapter__files__coll"
                                 >
-                                    <div>
-                                        <div class="v--project-uid__filesChapter-box__chapter__files__item__name" >
-                                            {{file.name}}
-                                        </div>
+                                    <div
+                                        class="v--project-uid__filesChapter-box__chapter__files__item"
+                                    >
                                         <div>
-                                            {{file.extension}}
-                                            <br>({{file.niceSize}})
+                                            <div class="v--project-uid__filesChapter-box__chapter__files__item__name">
+                                                {{ file.name }}
+                                            </div>
+                                            <div>
+                                                {{ file.extension }}
+                                                <br>({{ file.niceSize }})
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div>
                                         <div>
-                                            {{file.type}}
+                                            <div>
+                                                {{ file.type }}
+                                            </div>
+                                            <button>télécharger</button>
                                         </div>
-                                        <button>télécharger</button>
                                     </div>
                                 </div>
                             </div>
@@ -360,6 +361,13 @@ function extractVideoID(url: string) {
 
 
 .v--project-uid__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: var(--nav-height);
+    min-height: 50rem;
+
     background: var(--color-main--green);
 
     .green & {
@@ -518,6 +526,7 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__filesChapter-box {
+    padding-top: 10rem;
 }
 
 .v--project-uid__filesChapter-box__chapter {

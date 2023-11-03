@@ -12,7 +12,7 @@
                 <div
                     class="v-app-header__left"
                 >
-                    <h1 class="">{{ title }}</h1>
+                    <h1 class="" v-html="italicMarkdownToHtml(title)" ></h1>
                     <div>
                         <div class="v-app-header__title">
                             <div><h5>Responsable</h5></div>
@@ -58,6 +58,7 @@
 import {onMounted} from "#imports";
 import {IHemApi_authorInfo} from "~/global/hemApi"
 import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {italicMarkdownToHtml} from "../global/italicMarkdownToHtml";
 
 const props = defineProps<{
     title: string,
@@ -74,7 +75,8 @@ const props = defineProps<{
 .v-app-header {
     box-sizing: border-box;
     width: 100%;
-    height: calc( 100vh - 5rem );
+    height: 100%;
+    overflow: hidden;
 
     > * {
         height: 100%;

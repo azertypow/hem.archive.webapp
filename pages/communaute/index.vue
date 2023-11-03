@@ -39,7 +39,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
                     <div
-                        class="fp-grid-coll-20-24"
+                        class="fp-grid-coll-16-24"
                     >
                         <h1>
                             Communauté des chercheur•euse•s
@@ -53,7 +53,7 @@
                 class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                    class="fp-grid-coll-20-24 v-communaute-index__form"
+                    class="fp-grid-coll-16-24 v-communaute-index__form"
                 >
                     <form>
                         <fieldset
@@ -119,23 +119,24 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                        class="fp-grid-coll-20-24 v-communaute-index__person-box"
+                        class="fp-grid-coll-16-24 v-communaute-index__person-box"
                 >
-                    <div
+                    <nuxt-link
+                        :href="`/communaute/${person.uid}`"
                         class="v-communaute-index__person-box__item hem-rm-margins"
                         v-for="person of communaute.pages"
                     >
                         <h3
                             class="v-communaute-index__person-box__item__user"
                         >
-                            {{person.firstname}} {{person.name}}
+                            {{person.firstname}} <span style="text-transform: uppercase;" >{{person.name}}</span>
                         </h3>
-                        <div
+                        <h4
                             class="v-communaute-index__person-box__item__status"
                         >
                             {{person.job}}
-                        </div>
-                    </div>
+                        </h4>
+                    </nuxt-link>
                 </div>
             </div>
         </template>
@@ -189,9 +190,10 @@ async function loadCommunauteDataFromHEMAPI() {
 }
 
 .v-communaute-index__person-box__item {
-    border-top: solid 1px black;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  display: block;
+  border-top: solid 1px black;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .v-communaute-index__person-box__item__user {
