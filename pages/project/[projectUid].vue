@@ -232,26 +232,33 @@
                                     v-for="file of filesChapter.files"
                                     class="v--project-uid__filesChapter-box__chapter__files__coll"
                                 >
-                                    <div
+                                    <a
+                                        :href="file.url"
+                                        :download="`${file.name}.${file.extension}`"
                                         class="v--project-uid__filesChapter-box__chapter__files__item"
                                     >
-                                        <div>
-                                            <div class="v--project-uid__filesChapter-box__chapter__files__item__name">
+                                        <div
+                                            class="fp-grid-coll-container fp-grid-coll-container--justify"
+                                        >
+                                            <div class="fp-grid-coll-24-24 v--project-uid__filesChapter-box__chapter__files__item__name">
                                                 {{ file.name }}
                                             </div>
-                                            <div>
-                                                {{ file.extension }}
-                                                <br>({{ file.niceSize }})
+                                            <div class="fp-grid-coll-24-24">
+                                                {{ file.extension }} ({{ file.niceSize }})
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <div>
+                                        <div class="fp-grid-coll-container fp-grid-coll-container--no-wrap fp-grid-coll-container--with-gap fp-grid-coll-container--align-bottom" >
+                                            <div class="fp-grid-coll-24-24" style="text-align: right">
                                                 {{ file.type }}
                                             </div>
-                                            <button>télécharger</button>
+                                            <img
+                                                class="v--project-uid__download-icon"
+                                                alt="download icon"
+                                                src="../../assets/downloading_FILL0_wght400_GRAD0_opsz24.svg"
+                                            >
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -553,6 +560,9 @@ function extractVideoID(url: string) {
     border-radius: 1rem;
     display: flex;
     gap: 2rem;
+    color: inherit;
+    text-decoration: none;
+     user-select: none;
 }
 .v--project-uid__filesChapter-box__chapter__files__item__name {
     font-weight: 600;
@@ -572,6 +582,14 @@ function extractVideoID(url: string) {
         background: linear-gradient(90deg, rgba(0,0,0,0), rgba(214,215,210,255));
     }
 }
+
+.v--project-uid__download-icon {
+    user-select: none;
+    display: block;
+    height: 5rem;
+    width: auto;
+}
+
 </style>
 
 <style lang="scss">

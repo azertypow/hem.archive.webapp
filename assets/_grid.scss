@@ -30,8 +30,20 @@
     justify-content: center;
   }
 
+  &.fp-grid-coll-container--justify {
+    justify-content: space-between;
+  }
+
   &.fp-grid-coll-container--no-wrap {
     flex-wrap: nowrap;
+  }
+
+  &.fp-grid-coll-container--with-gap {
+    gap: var(--gutter);
+  }
+
+  &.fp-grid-coll-container--align-bottom {
+    align-items: flex-end;
   }
 }
 
