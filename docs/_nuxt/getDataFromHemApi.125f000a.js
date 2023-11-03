@@ -1,1 +1,0 @@
-const e="https://hemadmin.sdrvl.ch/webapp/api/v1";async function a(){return await(await fetch(`${e}/projects`)).json()}async function n(t){return await(await fetch(`${e}/project-by-uid/${t}`)).json()}async function o(){return await(await fetch(`${e}/community`)).json()}export{a,n as b,o as g};
