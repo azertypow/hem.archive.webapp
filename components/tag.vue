@@ -43,6 +43,7 @@ defineEmits<{
     position: relative;
     cursor: pointer;
     user-select: none;
+    white-space: nowrap;
 }
 
 .v-tag__button {

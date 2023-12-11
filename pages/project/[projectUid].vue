@@ -97,7 +97,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
                     <div
-                        class="fp-grid-coll-20-24 hem-rm-margins"
+                        class="fp-grid-coll-16-24 hem-rm-margins"
                     >
                         <h2>Fiche technique du projet</h2>
 
@@ -144,6 +144,7 @@
                             <div
                                 class="v--project-uid__details__item__content"
                             >
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores beatae blanditiis cumque deleniti dignissimos doloribus, dolorum eaque excepturi exercitationem hic, id impedit iusto nemo perspiciatis quaerat quibusdam saepe vitae voluptatum?</p>
                                 <div
                                     v-html="project.team"
                                 ></div>
@@ -212,7 +213,7 @@
                 <div
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
-                    <div class="fp-grid-coll-20-24">
+                    <div class="fp-grid-coll-16-24">
                         <div
                             class="hem-rm-margins v--project-uid__filesChapter-box__chapter"
                             v-for="filesChapter of project.filesChapters"
@@ -236,22 +237,19 @@
                                         :href="file.url"
                                         :download="`${file.name}.${file.extension}`"
                                         class="v--project-uid__filesChapter-box__chapter__files__item"
+                                        target="_blank"
                                     >
-                                        <div
-                                            class="fp-grid-coll-container fp-grid-coll-container--justify"
-                                        >
-                                            <div class="fp-grid-coll-24-24 v--project-uid__filesChapter-box__chapter__files__item__name">
+                                        <div>
+                                            <div
+                                                class="v--project-uid__filesChapter-box__chapter__files__item__name">
                                                 {{ file.name }}
                                             </div>
-                                            <div class="fp-grid-coll-24-24">
+                                            <div class="">
                                                 {{ file.extension }} ({{ file.niceSize }})
                                             </div>
                                         </div>
 
-                                        <div class="fp-grid-coll-container fp-grid-coll-container--no-wrap fp-grid-coll-container--with-gap fp-grid-coll-container--align-bottom" >
-                                            <div class="fp-grid-coll-24-24" style="text-align: right">
-                                                {{ file.type }}
-                                            </div>
+                                        <div>
                                             <img
                                                 class="v--project-uid__download-icon"
                                                 alt="download icon"
@@ -372,7 +370,6 @@ function extractVideoID(url: string) {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding-top: var(--nav-height);
     min-height: 50rem;
 
     background: var(--color-main--green);
@@ -511,8 +508,8 @@ function extractVideoID(url: string) {
     .v--project-uid__details__item {
         display: flex;
         border-top: black 1px solid;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
 
         .dark-green & {
             border-color: white;
@@ -525,9 +522,12 @@ function extractVideoID(url: string) {
     }
 
     .v--project-uid__details__item__content {
+        width: calc(100% / 12 * 9);
+
         &.v--project-uid__details__item__content--is-list {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
     }
 }
@@ -558,15 +558,13 @@ function extractVideoID(url: string) {
     background-color: var(--color-grey);
     padding: 1rem;
     border-radius: 1rem;
-    display: flex;
-    gap: 2rem;
     color: inherit;
     text-decoration: none;
-     user-select: none;
+    user-select: none;
+    display: block;
 }
 .v--project-uid__filesChapter-box__chapter__files__item__name {
     font-weight: 600;
-    max-width: 10em;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
@@ -593,12 +591,11 @@ function extractVideoID(url: string) {
 </style>
 
 <style lang="scss">
+@use '../../assets/__main';
+
 .v--project-uid__content__text {
     p {
-        line-height: 3rem;
-        font-size: 2.7rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        @extend .hem-font-l;
     }
 }
 </style>
