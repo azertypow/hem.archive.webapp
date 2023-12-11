@@ -80,7 +80,6 @@ useRouter().beforeEach((to, from, next) => {
     useAppStateStore().activeCategory = ""
 
     if(to.name === 'project-projectUid' ) {
-        console.log('pouet!!!')
         window.setTimeout(() => {
             next()
         }, 750)
