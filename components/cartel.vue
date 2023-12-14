@@ -11,7 +11,8 @@
         >
             <h2
                 class="v-cartel__title"
-            >{{projectInfo.title}}</h2>
+                v-html="italicMarkdownToHtml(projectInfo.title)"
+            ></h2>
             <div
                 class="v-cartel__details"
             >
@@ -41,6 +42,7 @@
 import {Ref} from "vue";
 import {IHemApi_projectInfo} from "~/global/hemApi"
 import {getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 
 const props = defineProps<{
     projectInfo: IHemApi_projectInfo
@@ -77,7 +79,7 @@ function onCartelClicked() {
         z-index: 1000;
 
         .v-cartel__title,
-        .v-cartel__details, {
+        .v-cartel__details {
             display: none !important;
         }
 
