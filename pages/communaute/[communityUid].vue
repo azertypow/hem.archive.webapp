@@ -37,15 +37,6 @@
 
                       <p>{{personDetails.mail}}</p>
                   </div>
-                  <div
-                          class="fp-grid-coll-6-24"
-                  >
-                    <img
-                            class="v-community-uid__header__cover"
-                            alt="cover person image"
-                            :src="personDetails.cover.url"
-                    >
-                  </div>
 
                 </div>
             </div>
