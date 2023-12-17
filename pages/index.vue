@@ -8,13 +8,14 @@
             ref="tagsContainer"
         >
             <div
-                v-for="tag of tags"
+                v-for="tag of useAppStateStore().tag_themeList"
                 class="v-index__tag"
             >
                 <tag
-                    @clicked="onToggleTag($event)"
-                    :name="tag"
-                    :is-active="useAppStateStore().activeTag === tag"
+                    @clicked="onToggleTag(tag)"
+                    :title="tag.title"
+                    :uri="tag.uri"
+                    :is-active="useAppStateStore().activeTag_theme?.uri === tag.uri"
                 />
             </div>
         </div>
@@ -28,8 +29,8 @@
                 <div
                     class="v-index__items"
                     v-if='showThisCartel({
-                        tags: projectInfo.themes.map(value => {return value.title}),
-                        category: projectInfo.axes[0].title,
+                        themes: projectInfo.themes.map(value => {return value.uri}),
+                        axe: projectInfo.axes[0].uri,
                     })'
                 >
                     <cartel
@@ -102,9 +103,7 @@ import {Ref, UnwrapRef} from "vue"
 import {goToProject} from "~/global/goToProject";
 import {onMounted} from "@vue/runtime-core";
 import {getProjectsData} from "~/global/getDataFromHemApi"
-import {IHemApi_allProjectInfo} from "~/global/hemApi"
-
-const tags          = useAppStateStore().$state.tags
+import {IHemApi_allProjectInfo, IHemApi_tag_theme} from "~/global/hemApi"
 
 const classColor: Ref<UnwrapRef< string >> = ref('default')
 
@@ -135,28 +134,30 @@ function setTagVisibilityInPageObserver() {
     tagsVisibilityObserver.observe(tagsContainer.value)
 }
 
-function onToggleTag(value: string) {
-    useAppStateStore().toggleActiveTag(value)
+function onToggleTag(value: IHemApi_tag_theme) {
+    useAppStateStore().toggleActiveTag_theme(value)
 }
 
-function showThisCartel({category, tags}: {
-    category: string,
-    tags: string[],
+function showThisCartel({axe, themes}: {
+    axe: string,
+    themes: string[],
 }): boolean {
 
+    const activeTag_axes = useAppStateStore().activeTag_axes
+    const activeTag_theme = useAppStateStore().activeTag_theme
+
     if(
-        useAppStateStore().activeCategory.length < 1
-        && useAppStateStore().activeTag.length < 1
+        !activeTag_axes
+        && !activeTag_theme
     ) return true
 
     else if(
-        useAppStateStore().activeCategory.length > 0
-        && category === useAppStateStore().activeCategory
+        axe === activeTag_axes?.uri
     ) return true
 
     else if(
-        useAppStateStore().activeTag.length > 0
-        && tags.includes(useAppStateStore().activeTag)
+        activeTag_theme
+        && themes.includes(activeTag_theme.uri)
     ) return true
 
     return false

@@ -6,7 +6,7 @@
             {'is-active': isActive},
             {'is-unactive': isUnactive},
         ]"
-        @click="$emit('clicked', name)"
+        @click="$emit('clicked')"
     >
         <button
             class="v-category__button"
@@ -32,10 +32,11 @@ defineProps<{
     isActive: boolean
     isUnactive: boolean
     theme: AxesClassColor,
+    uri: string
 }>()
 
 defineEmits<{
-    clicked: [name: string]
+    clicked: []
 }>()
 
 </script>

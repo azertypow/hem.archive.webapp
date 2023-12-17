@@ -126,12 +126,13 @@
             v-if="useRouter().currentRoute.value.fullPath === '/' && ! useAppStateStore().menuIsOPen"
         >
             <category
-                v-for="category of categories"
-                @clicked="onToggleCategory($event)"
-                :name="category.value"
-                :theme="category.theme"
-                :is-active="useAppStateStore().activeCategory === category.value && useAppStateStore().activeCategory.length > 1"
-                :is-unactive="useAppStateStore().activeCategory !== category.value && useAppStateStore().activeCategory.length > 1"
+                v-for="axe of appStateStore.tag_axesList"
+                @clicked="onToggleAxe(axe)"
+                :name="axe.title"
+                :theme="axe.theme"
+                :uri="axe.uri"
+                :is-active="useAppStateStore().activeTag_axes?.uri === axe.uri"
+                :is-unactive="useAppStateStore().activeTag_axes?.uri !== axe.uri"
             />
         </div>
 
@@ -139,8 +140,9 @@
             class="v-app-nav__activated-tag"
         >
             <tag
-                v-if="useAppStateStore().activeTag && !useAppStateStore().tagsAreVisibleInIndexPage"
-                :name="useAppStateStore().activeTag"
+                v-if="useAppStateStore().activeTag_theme && !useAppStateStore().tagsAreVisibleInIndexPage"
+                :title="useAppStateStore().activeTag_theme?.title"
+                :uri="useAppStateStore().activeTag_theme?.uri"
                 :is-active="true"
                 @clicked="onToggleTagInNav($event)"
             ></tag>
@@ -157,10 +159,12 @@
 // }>()
 
 import {useAppStateStore} from "~/stores/appState";
+import Tag from "~/components/tag.vue";
+import {IHemApi_tag_axes} from "~/global/hemApi";
 
-const categories    = useAppStateStore().$state.categories
+const appStateStore    = useAppStateStore()
 
-function onToggleCategory(value: string) {
+function onToggleAxe(axe: IHemApi_tag_axes) {
     document.querySelectorAll('.v-index').forEach(value => {
         if(! (value instanceof HTMLElement) ) return
         value.scroll({
@@ -169,7 +173,7 @@ function onToggleCategory(value: string) {
         })
     })
 
-    useAppStateStore().toggleActiveCategory(value)
+    useAppStateStore().toggleActiveTag_axes(axe)
 }
 
 function onToggleTagInNav(name: string) {
@@ -181,7 +185,7 @@ function onToggleTagInNav(name: string) {
         })
     })
 
-    useAppStateStore().activeTag = ""
+    useAppStateStore().activeTag_theme = null
 }
 </script>
 
@@ -358,7 +362,7 @@ function onToggleTagInNav(name: string) {
     z-index: 1000;
 
     .search-is-open & {
-        transition: background-color .5s ease-in-out;
+        //transition: background-color .5s ease-in-out;
         background: var(--color-grey);
     }
 }

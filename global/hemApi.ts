@@ -1,4 +1,4 @@
-import {AxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {AxesClassColor, AxesUid} from "~/global/getClassColorUidFromAxesUid";
 
 export interface IHemApi_allProjectInfo {
   projects: {[slug: string]: IHemApi_projectInfo}
@@ -13,14 +13,8 @@ export interface IHemApi_projectInfo {
   dateEnd:    string,
   showMonth: string,
   cover: { [slug: string]: IHemApi_imageData  },
-  themes: {
-    title: string
-    uid: string
-  }[],
-  axes: {
-    title: string
-    uid: AxesUid
-  }[],
+  themes: IHemApi_tag_theme[],
+  axes: IHemApi_tag_axes[],
 }
 
 export interface IHemApi_projectDetails extends IHemApi_projectInfo {
@@ -118,7 +112,16 @@ export interface IHemApi_Person {
   job: string
 }
 
+export interface IHemApi_tag_theme {
+    title: string,
+    uuid: string,
+    uri: string,
+    uid: string,
+}
 
+export interface IHemApi_tag_axes extends IHemApi_tag_theme {
+    theme: AxesClassColor
+}
 
 export interface IHemApi_PersonDetails {
     "uid":          string,

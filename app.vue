@@ -69,15 +69,21 @@
 <script lang="ts" setup >
 
 import {useAppStateStore} from "~/stores/appState"
+import {getTagsList} from "~/global/getDataFromHemApi";
 
 
+onMounted(async () => {
+  const tagsList = await getTagsList()
+  useAppStateStore().tag_themeList = tagsList.listTheme
+  useAppStateStore().tag_axesList = tagsList.listAxes
+})
 
 useRouter().beforeEach((to, from, next) => {
 
     useAppStateStore().menuIsOPen = false
     useAppStateStore().searchIsOpen = false
-    useAppStateStore().activeTag = ""
-    useAppStateStore().activeCategory = ""
+    useAppStateStore().activeTag_theme = null
+    useAppStateStore().activeTag_axes = null
 
     if(to.name === 'project-projectUid' ) {
         window.setTimeout(() => {

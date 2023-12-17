@@ -1,7 +1,7 @@
 <template>
     <div
         class="v-tag"
-        @click="$emit('clicked', name)"
+        @click="$emit('clicked')"
     >
         <button
             class="v-tag__button"
@@ -9,7 +9,7 @@
                 'is-active': isActive
             }"
         >
-            {{name}}
+            {{title}}
         </button>
         <div
             v-if="isActive"
@@ -24,12 +24,13 @@
 
 <script lang="ts" setup>
 defineProps<{
-    name: string,
-    isActive: boolean
+    title?: string,
+    isActive?: boolean,
+    uri?: string,
 }>()
 
 defineEmits<{
-    clicked: [name: string]
+    clicked: []
 }>()
 
 </script>
