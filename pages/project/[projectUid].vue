@@ -597,5 +597,9 @@ function extractVideoID(url: string) {
     p {
         @extend .hem-font-l;
     }
+
+}
+h6 {
+    @extend .hem-font-reg;
 }
 </style>

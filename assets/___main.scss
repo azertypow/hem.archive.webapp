@@ -50,9 +50,13 @@ h4,
 
 
 p,
-h5 {
+h5,
+.hem-font-reg {
   font-size:    var(--font-base-font-size);
   line-height:  var(--font-base-line-height);
+  margin-top: var(--font-base-line-height);
+  margin-bottom: var(--font-base-line-height);
+  font-weight: 500;
 }
 
 
