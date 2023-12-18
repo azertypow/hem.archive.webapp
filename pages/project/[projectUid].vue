@@ -1,7 +1,7 @@
 <template>
     <section
         class="v--project-uid"
-        :class="[getClassColorUidFromAxesUid(project?.axes[0].uid || 'interpretation-historique')]"
+        :class="[getClassColorUidFromAxesUid(project?.axes[0].uid as AxesUid)]"
     >
         <template
             v-if="project === null"
@@ -34,11 +34,11 @@
                 class="v--project-uid__header"
             >
                 <app-header
-                    :axesUid="project.axes[0].uid"
+                    :axesUid="projectUid"
                     :date="`${new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`"
                     :responsables="project.authors"
                     :title="project.title"
-                    :cover="Object.values(project.cover)[0].resize.large"
+                    :cover="Object.values(project.cover)[0].resize.xxl"
                 />
             </div>
 
@@ -69,7 +69,7 @@
                                 :alt="projectItem.alt"
                                 :src="projectItem.image.resize.small"
                             >
-                            <h6>{{projectItem.caption}}</h6>
+                            <h6 v-html="projectItem.caption" ></h6>
                         </div>
 
                         <div
@@ -195,10 +195,10 @@
                             >
                                 <tag
                                     v-for="theme of project.themes"
-                                    :name="theme.title"
+                                    :title="theme.title"
+                                    :uri="theme.uri"
                                     :is-active="false"
-                                >
-                                </tag>
+                                />
                             </div>
                         </div>
                     </div>
@@ -249,12 +249,10 @@
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <img
-                                                class="v--project-uid__download-icon"
-                                                alt="download icon"
-                                                src="../../assets/downloading_FILL0_wght400_GRAD0_opsz24.svg"
-                                            >
+                                        <div
+                                            class="v--project-uid__filesChapter-box__chapter__files__item__button"
+                                        >
+                                            télécharger
                                         </div>
                                     </a>
                                 </div>
@@ -300,12 +298,14 @@ import AppHeader from "~/components/appHeader.vue";
 import {Ref, UnwrapRef} from "vue";
 import {IHemApi_projectDetails} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
-import {getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
 const endOfPage = ref()
 const activeBackHistoryNavigation: Ref<UnwrapRef<boolean>> = ref(false)
+
+const projectUid = ref(project.value?.axes[0].uid as AxesUid)
 
 
 definePageMeta({
@@ -581,6 +581,13 @@ function extractVideoID(url: string) {
     }
 }
 
+.v--project-uid__filesChapter-box__chapter__files__item__button {
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 0 1rem;
+    background: white;
+}
+
 .v--project-uid__download-icon {
     user-select: none;
     display: block;
@@ -598,8 +605,16 @@ function extractVideoID(url: string) {
         @extend .hem-font-l;
     }
 
+    h6 {
+        @extend .hem-font-reg;
+    }
 }
-h6 {
-    @extend .hem-font-reg;
+
+.v--project-uid__content__img {
+    h6 {
+        @extend .hem-font-reg;
+        margin-top: .5rem;
+    }
 }
+
 </style>

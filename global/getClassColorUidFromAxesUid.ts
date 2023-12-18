@@ -9,7 +9,10 @@ export type AxesUid =
 
 export type AxesClassColor = 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'
 
-export function getClassColorUidFromAxesUid(themeUid: AxesUid): AxesClassColor {
+export function getClassColorUidFromAxesUid(themeUid?: AxesUid): AxesClassColor {
+
+    if(themeUid === undefined) return 'interpretation-historique' as AxesClassColor
+
     if(themeUid === 'interpretation-historique')
         return 'dark-green'
     if(themeUid === 'metiers-de-la-musique')

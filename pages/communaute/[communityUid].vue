@@ -30,13 +30,23 @@
                     class="v-community-uid__header"
             >
                 <div class="fp-grid-coll-container fp-grid-coll-container--center fp-grid-coll-container--no-wrap">
-                  <div class="fp-grid-coll-10-24" >
-                      <h1>{{personDetails.firstname}} {{personDetails.name}}</h1>
-                      <h3>{{personDetails.job}}</h3>
-                      <p>{{personDetails.jobdetail}}</p>
 
-                      <p>{{personDetails.mail}}</p>
-                  </div>
+                    <div
+                        class="fp-grid-coll-16-24"
+                    >
+                        <div
+                            class="fp-grid-coll-container"
+                        >
+                            <div class="fp-grid-coll-16-24">
+                                <h1>{{ personDetails.firstname }} {{ personDetails.name }}</h1>
+                                <h3>{{ personDetails.job }}</h3>
+                                <p>{{ personDetails.jobdetail }}</p>
+
+                                <p>{{ personDetails.mail }}</p>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -150,7 +160,7 @@ async function loadPersonDetailsFromHEMAPI() {
 
 .v-community-uid__header {
   display: flex;
-
+    padding-top: var(--nav-height);
 
   &.v-community-uid__header--is-loading {
     color: var(--color-grey);

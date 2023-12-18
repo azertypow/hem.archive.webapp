@@ -38,3 +38,15 @@ export async function getTagsList() {
         listTheme: IHemApi_tag_theme[]
     }
 }
+
+export async function getSearch(query: string) {
+    const querySearch: string = encodeURIComponent(query)
+
+    const apiSearchResponse = await fetch(`${hemApiBaseUrl}/search?q=${querySearch}`)
+
+    console.log(`${hemApiBaseUrl}/search?q=${querySearch}`)
+
+    return await apiSearchResponse.json() as {
+        value: string
+    }
+}

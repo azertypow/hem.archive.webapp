@@ -62,7 +62,14 @@
             <div
                 class="v-app-nav__search__content"
             >
-                <input type="text" placeholder="recherche">
+                <div
+                    class="v-app-nav__search__content__search"
+                >
+                    <input type="text" placeholder="recherche" v-model="querySearch">
+                    <button
+                        @click="postQuerySearch"
+                    >rechercher</button>
+                </div>
 
                 <select>
                     <option selected disabled >Nom du projet</option>
@@ -123,7 +130,9 @@
 
         <div
             class="v-app-nav__categories fp-grid-with-gutter"
-            v-if="useRouter().currentRoute.value.fullPath === '/' && ! useAppStateStore().menuIsOPen"
+            v-if="useRouter().currentRoute.value.fullPath === '/'
+            && ! useAppStateStore().menuIsOPen
+            && ! useAppStateStore().searchIsOpen "
         >
             <category
                 v-for="axe of appStateStore.tag_axesList"
@@ -161,8 +170,15 @@
 import {useAppStateStore} from "~/stores/appState";
 import Tag from "~/components/tag.vue";
 import {IHemApi_tag_axes} from "~/global/hemApi";
+import {getSearch} from "~/global/getDataFromHemApi";
 
 const appStateStore    = useAppStateStore()
+
+const querySearch = ref('')
+
+async function postQuerySearch() {
+    console.log( await getSearch(querySearch.value) )
+}
 
 function onToggleAxe(axe: IHemApi_tag_axes) {
     document.querySelectorAll('.v-index').forEach(value => {
@@ -206,8 +222,7 @@ function onToggleTagInNav(name: string) {
     position: relative;
     transition:
         color .25s ease-in-out,
-        background-color .25s ease-in-out,
-        border-radius .25s ease-in-out;
+        background-color .25s ease-in-out;
 
     .nav-is-open & {
         background-color: black;
@@ -266,6 +281,17 @@ function onToggleTagInNav(name: string) {
     color: inherit;
 }
 
+select {
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 3rem;
+    cursor: pointer;
+}
+
 .v-app-nav__right {
     user-select: none;
     top: 0;
@@ -289,15 +315,10 @@ function onToggleTagInNav(name: string) {
     width: 100%;
     color: white;
     position: fixed;
-    top: 13rem;
+    top: 5rem;
     text-align: center;
     border-bottom-left-radius: 8rem;
     border-bottom-right-radius: 8rem;
-    animation-delay: .5s !important;
-
-    > * {
-        animation-delay: 1s !important;
-    }
 }
 
 .v-app-nav__search__content {
@@ -309,12 +330,33 @@ function onToggleTagInNav(name: string) {
     flex-wrap: wrap;
     gap: var(--gutter-xl);
 
-    > input[type='text'] {
-        width: 100%;
-    }
-
     > select {
         width: calc( ( ( 100% + var(--gutter-xl) )  / 3 ) - var(--gutter-xl) );
+        border: solid 2px black;
+        border-radius: 2rem;
+        padding: var(--gutter);
+    }
+}
+
+.v-app-nav__search__content__search {
+    display: flex;
+    width: 100%;
+    gap: var(--gutter-xl);
+
+    > input[type='text'] {
+        width: 100%;
+        box-sizing: border-box;
+        border: solid 2px black;
+        border-radius: 2rem;
+        padding: var(--gutter);
+    }
+
+    button {
+        display: block;
+        border: solid 2px black;
+        border-radius: 2rem;
+        padding: var(--gutter);
+        cursor: pointer;
     }
 }
 
@@ -362,7 +404,6 @@ function onToggleTagInNav(name: string) {
     z-index: 1000;
 
     .search-is-open & {
-        //transition: background-color .5s ease-in-out;
         background: var(--color-grey);
     }
 }
