@@ -1,0 +1,1 @@
+import{a as e,b as o,o as t,e as s}from"./entry.fa39f012.js";const _={class:"v-about"},a=e({__name:"about",props:{message:{}},setup(c){return(n,p)=>(t(),o("section",_))}});const u=s(a,[["__scopeId","data-v-2fd9b782"]]);export{u as default};
