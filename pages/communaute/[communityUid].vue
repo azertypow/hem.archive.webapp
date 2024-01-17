@@ -190,6 +190,8 @@ async function loadPersonDetailsFromHEMAPI() {
   border-top: solid 1px;
   cursor: pointer;
   position: relative;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     color: white;

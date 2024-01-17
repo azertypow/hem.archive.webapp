@@ -9,11 +9,7 @@
             <div
                 class="v--project-uid__header"
             >
-                <h1
-                    style="color: white"
-                >
-                    chargement…
-                </h1>
+                <div class="hem-loader"></div>
             </div>
         </template>
 
@@ -229,6 +225,7 @@
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
                             >
+                                <h5>À télécharger</h5>
                                 <div
                                     v-for="file of filesChapter.files"
                                     class="v--project-uid__filesChapter-box__chapter__files__coll"
@@ -239,20 +236,22 @@
                                         class="v--project-uid__filesChapter-box__chapter__files__item"
                                         target="_blank"
                                     >
-                                        <div>
+                                        <div class="v--project-uid__filesChapter-box__chapter__files__item__box">
                                             <div
                                                 class="v--project-uid__filesChapter-box__chapter__files__item__name">
                                                 {{ file.name }}
                                             </div>
-                                            <div class="">
-                                                {{ file.extension }} ({{ file.niceSize }})
-                                            </div>
                                         </div>
 
-                                        <div
-                                            class="v--project-uid__filesChapter-box__chapter__files__item__button"
-                                        >
-                                            télécharger
+                                        <div class="v--project-uid__filesChapter-box__chapter__files__item__box">
+                                            <div class="v--project-uid__filesChapter-box__chapter__files__item__ext">
+                                                {{ file.extension }} ({{ file.niceSize }})
+                                            </div>
+                                            <div
+                                                class="v--project-uid__filesChapter-box__chapter__files__item__button"
+                                            >
+                                                télécharger
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -336,7 +335,11 @@ async function loadProjectDataFromHEMAPI() {
         const projectData = await getProjectDataByUdi(projectUid)
 
         if('error' in projectData) errorMessage.value = projectData.error
-        else project.value = projectData
+        else {
+            window.setTimeout(() => {
+                project.value = projectData
+            }, 2_000)
+        }
     }
 }
 
@@ -422,7 +425,7 @@ function extractVideoID(url: string) {
     padding-bottom: calc(10rem + 33.333vh); // height of scroll detection space
     flex-wrap: nowrap;
     gap: var(--gutter-xl);
-    background-color: var(--color-grey);
+    background-color: var(--color-grey--dark);
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {
@@ -549,7 +552,7 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__filesChapter-box__chapter__files__coll {
-    width: calc( (100% - 2rem * 2 ) / 3);
+    width: 100%;
 }
 
 .v--project-uid__filesChapter-box__chapter__files__item {
@@ -563,22 +566,21 @@ function extractVideoID(url: string) {
     user-select: none;
     display: block;
 }
+
+.v--project-uid__filesChapter-box__chapter__files__item__box {
+    display: flex;
+    justify-content: space-between;
+
+    &+& {
+        margin-top: 1rem;
+    }
+}
+
 .v--project-uid__filesChapter-box__chapter__files__item__name {
     font-weight: 600;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-
-    &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 2rem;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(0,0,0,0), rgba(214,215,210,255));
-    }
 }
 
 .v--project-uid__filesChapter-box__chapter__files__item__button {
@@ -602,7 +604,11 @@ function extractVideoID(url: string) {
 
 .v--project-uid__content__text {
     p {
-        @extend .hem-font-l;
+        font-weight: 400;
+        line-height: 2.5rem;
+        font-size: 2.25rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
     }
 
     h6 {

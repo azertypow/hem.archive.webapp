@@ -47,6 +47,8 @@ export async function getSearch(query: string) {
     console.log(`${hemApiBaseUrl}/search?q=${querySearch}`)
 
     return await apiSearchResponse.json() as {
-        value: string
+        minLength: number
+        query: string
+        result: []
     }
 }

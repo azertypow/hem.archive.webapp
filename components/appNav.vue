@@ -63,51 +63,59 @@
                 class="v-app-nav__search__content"
             >
                 <div
-                    class="v-app-nav__search__content__search"
+                    class="v-app-nav__search__content__search hem-form"
                 >
-                    <input type="text" placeholder="recherche" v-model="querySearch">
+                    <input type="text"
+                           placeholder="recherche"
+                           v-model="querySearch"
+                           @keydown="(e) => {if(e.code === 'Enter') postQuerySearch()}"
+                    />
                     <button
                         @click="postQuerySearch"
                     >rechercher</button>
                 </div>
 
-                <select>
-                    <option selected disabled >Nom du projet</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
-                    <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
-                    <option>Art.School. Differences</option>
-                    <option>Aux origines du piano français</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
-                    <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
-                    <option>Art.School. Differences</option>
-                    <option>Aux origines du piano français</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                </select>
-                <select>
-                    <option selected disabled >Responsable de projet</option>
-                </select>
-                <select>
-                    <option selected disabled >Membres de l’équipe</option>
-                </select>
-                <select>
-                    <option selected disabled >Début du projet</option>
-                </select>
-                <select>
-                    <option selected disabled >Partenaires</option>
-                </select>
-                <select>
-                    <option selected disabled>Objets</option>
-                </select>
-                <select>
-                    <option selected disabled>Matières</option>
-                </select>
+                <div class="hem-form">
+                    <select>
+                        <option selected disabled >Nom du projet</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
+                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
+                        <option>Art.School. Differences</option>
+                        <option>Aux origines du piano français</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
+                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
+                        <option>Art.School. Differences</option>
+                        <option>Aux origines du piano français</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
+                    </select>
+                    <select>
+                        <option selected disabled >Responsable de projet</option>
+                    </select>
+                    <select>
+                        <option selected disabled >Début du projet</option>
+                    </select>
+
+    <!--                <select>-->
+    <!--                    <option selected disabled >Membres de l’équipe</option>-->
+    <!--                </select>-->
+    <!--                <select>-->
+    <!--                    <option selected disabled >Partenaires</option>-->
+    <!--                </select>-->
+    <!--                <select>-->
+    <!--                    <option selected disabled>Objets</option>-->
+    <!--                </select>-->
+    <!--                <select>-->
+    <!--                    <option selected disabled>Matières</option>-->
+    <!--                </select>-->
+
+                </div>
 
             </div>
 
@@ -124,8 +132,6 @@
                 href="/communaute"
                 class="hem-font-xl"
             >Communauté</nuxt-link>
-            <div class="hem-font-xl" >Contact</div>
-            <div class="hem-font-xl" >Impressum</div>
         </div>
 
         <div
@@ -177,7 +183,23 @@ const appStateStore    = useAppStateStore()
 const querySearch = ref('')
 
 async function postQuerySearch() {
-    console.log( await getSearch(querySearch.value) )
+
+    useAppStateStore().searchHomeStatus = querySearch.value.length === 0 ? null : "waiting"
+
+    if( useAppStateStore().searchHomeStatus === null ) return
+
+    const {result} = await getSearch(querySearch.value)
+
+    window.setTimeout(() => {
+        console.log(result)
+        useAppStateStore().searchHomeStatus = 'ended'
+        useAppStateStore().searchHomeResults = result
+    }, 10_000)
+
+}
+
+function clearHomeResearch() {
+
 }
 
 function onToggleAxe(axe: IHemApi_tag_axes) {
@@ -281,17 +303,6 @@ function onToggleTagInNav(name: string) {
     color: inherit;
 }
 
-select {
-    display: block;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    line-height: 3rem;
-    cursor: pointer;
-}
-
 .v-app-nav__right {
     user-select: none;
     top: 0;
@@ -329,35 +340,6 @@ select {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gutter-xl);
-
-    > select {
-        width: calc( ( ( 100% + var(--gutter-xl) )  / 3 ) - var(--gutter-xl) );
-        border: solid 2px black;
-        border-radius: 2rem;
-        padding: var(--gutter);
-    }
-}
-
-.v-app-nav__search__content__search {
-    display: flex;
-    width: 100%;
-    gap: var(--gutter-xl);
-
-    > input[type='text'] {
-        width: 100%;
-        box-sizing: border-box;
-        border: solid 2px black;
-        border-radius: 2rem;
-        padding: var(--gutter);
-    }
-
-    button {
-        display: block;
-        border: solid 2px black;
-        border-radius: 2rem;
-        padding: var(--gutter);
-        cursor: pointer;
-    }
 }
 
 .v-app-nav__menu {

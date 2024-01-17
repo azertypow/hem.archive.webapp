@@ -58,9 +58,10 @@ defineEmits<{
     border-radius: 2rem;
     line-height: 2rem;
     min-height: 4rem;
-    padding: 1rem 2rem;
+    padding: .5rem 2rem;
     cursor: pointer;
     box-sizing: content-box;
+    text-transform: uppercase;
 
     // green
     .v-category.green & {

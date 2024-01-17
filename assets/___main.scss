@@ -84,3 +84,72 @@ ul {
     }
   }
 }
+
+button {
+  //font-size: 1.75rem;
+  line-height: 1em !important;
+}
+
+//form
+.hem-form {
+  display: flex;
+  width: 100%;
+  gap: var(--gutter-xl);
+
+  input[type='text'] {
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 2px black;
+    border-radius: 2rem;
+    padding: var(--gutter);
+  }
+
+  button {
+    display: block;
+    border: solid 2px black;
+    border-radius: 2rem;
+    padding: var(--gutter);
+    cursor: pointer;
+  }
+
+  select {
+    width: 100%;
+    border: solid 2px black;
+    border-radius: 2rem;
+    padding: var(--gutter);
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 3rem;
+    cursor: pointer;
+  }
+}
+
+
+// loader
+.hem-loader {
+  --hem-loader-gradient: no-repeat radial-gradient(farthest-side,white 95%, transparent);
+
+  width: 3rem;
+  aspect-ratio: 1;
+
+  background:
+          var(--hem-loader-gradient) 0    0,
+          var(--hem-loader-gradient) 100% 0,
+          var(--hem-loader-gradient) 100% 100%,
+          var(--hem-loader-gradient) 0    100%;
+  background-size: 45% 45%;
+  animation: hem-loader-animation 1s infinite;
+}
+@keyframes hem-loader-animation {
+  100% {
+    background-position:
+            100% 0,
+            100% 100%,
+            0 100%,
+            0 0
+  }
+}

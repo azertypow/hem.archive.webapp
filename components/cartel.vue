@@ -149,6 +149,7 @@ function onCartelClicked() {
     overflow: hidden;
     padding-bottom: 10px;
     text-overflow: ellipsis;
+    font-weight: 500;
 
     transition: opacity .15s .15s ease-in-out;
     opacity: 1;

@@ -19,27 +19,44 @@
                 />
             </div>
         </div>
-        <div
-            v-if="allProjectsInfo"
-            class="fp-grid-coll-container fp-grid-with-gutter"
+
+        <template v-if='useAppStateStore().searchHomeStatus === null'
         >
-            <template
-                v-for="projectInfo of allProjectsInfo.projects"
+            <div
+                v-if="allProjectsInfo"
+                class="fp-grid-coll-container fp-grid-with-gutter"
             >
-                <div
-                    class="v-index__items"
-                    v-if='showThisCartel({
-                        themes: projectInfo.themes.map(value => {return value.uri}),
-                        axe: projectInfo.axes[0].uri,
-                    })'
+                <template
+                    v-for="(projectInfo, index) of allProjectsInfo"
                 >
-                    <cartel
-                        :project-info="projectInfo"
-                        @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
-                    />
-                </div>
-            </template>
-        </div>
+                    <div
+                        class="v-index__items"
+                        :class="`v-index__items--${index % 8}`"
+                        v-if='showThisCartel({
+                            themes: projectInfo.themes.map(value => {return value.uri}),
+                            axe: projectInfo.axes[0].uri,
+                        })'
+                    >
+                        <cartel
+                            :project-info="projectInfo"
+                            @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                        />
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template v-else-if="useAppStateStore().searchHomeStatus === 'waiting'"
+        >
+            <div class="v-index__search--loader fp-grid-coll-container fp-grid-coll-container--center">
+                <app-loader :is-black="true"/>
+            </div>
+        </template>
+        <template v-else-if="useAppStateStore().searchHomeStatus === 'ended' && useAppStateStore().searchHomeResults.length === 0">
+            <div>Aucun résultats</div>
+        </template>
+        <template v-else>
+            <div>{{useAppStateStore().searchHomeResults}}</div>
+        </template>
 
 
     </div>
@@ -71,8 +88,8 @@
         box-sizing: border-box;
     }
 
-    &:nth-child(7n):not( &:nth-child(14n) ),
-    &:nth-child(8n) {
+    &.v-index__items--6,
+    &.v-index__items--7 {
         width: calc( 100% / 24 * 12 );
         box-sizing: border-box;
     }
@@ -82,12 +99,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
 }
 
 .v-index__tag {
     padding: .5rem;
+}
+
+.v-index__search--loader {
+    padding-top: 5rem;
 }
 </style>
 
@@ -103,13 +124,13 @@ import {Ref, UnwrapRef} from "vue"
 import {goToProject} from "~/global/goToProject";
 import {onMounted} from "@vue/runtime-core";
 import {getProjectsData} from "~/global/getDataFromHemApi"
-import {IHemApi_allProjectInfo, IHemApi_tag_theme} from "~/global/hemApi"
+import {IHemApi_projectInfo, IHemApi_tag_theme} from "~/global/hemApi"
 
 const classColor: Ref<UnwrapRef< string >> = ref('default')
 
 const tagsContainer: Ref<HTMLElement|null> = ref(null)
 
-let allProjectsInfo: Ref<UnwrapRef<IHemApi_allProjectInfo | null>> = ref(null)
+let allProjectsInfo: Ref<UnwrapRef<IHemApi_projectInfo[] | null>> = ref(null)
 
 onMounted(() => {
     loadData()
@@ -120,8 +141,9 @@ onMounted(() => {
 })
 
 async function loadData() {
-    allProjectsInfo.value = await getProjectsData()
-    console.log( allProjectsInfo.value )
+  const projectsData = await getProjectsData()
+  allProjectsInfo.value = Object.values( projectsData.projects )
+  console.log(allProjectsInfo.value)
 }
 
 function setTagVisibilityInPageObserver() {

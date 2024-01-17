@@ -15,6 +15,9 @@ export const useAppStateStore = defineStore('appState', {
 
         menuIsOPen: false,
         searchIsOpen: false,
+
+        searchHomeStatus: null as null | 'waiting' | 'ended',
+        searchHomeResults: [],
     }),
 
     actions: {

@@ -4,17 +4,15 @@
                 v-if="communaute === null"
         >
             <div
-                class="v-communaute-index__header hem-rm-margins"
+                class="v-communaute-index__header"
             >
                 <div
-                    class="fp-grid-coll-container fp-grid-coll-container--center"
+                    class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
-                        class="fp-grid-coll-20-24"
+                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center fp-grid-row-container--align-center"
                     >
-                        <h1>
-                            Chargement…
-                        </h1>
+                        <div class="hem-loader" ></div>
                     </div>
                 </div>
             </div>
@@ -33,13 +31,13 @@
                 v-else
         >
             <div
-                class="v-communaute-index__header hem-rm-margins"
+                class="v-communaute-index__header"
             >
                 <div
-                    class="fp-grid-coll-container fp-grid-coll-container--center"
+                    class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
                     >
                         <h1>
                             Communauté des chercheur•euse•s
@@ -55,62 +53,15 @@
                 <div
                     class="fp-grid-coll-16-24 v-communaute-index__form"
                 >
-                    <form>
-                        <fieldset
-                            class="fp-grid-coll-container fp-grid-coll-container--no-wrap"
-                        >
-                            <div
-                                class="fp-grid-coll-24-24"
-                            >
-                                <input type="text" placeholder="Recherche">
-                            </div>
-                            <button>valider la recherche</button>
-                        </fieldset>
-                        <fieldset
-                            class="fp-grid-coll-container"
-                        >
-                            <div
-                                class="fp-grid-coll-8-24"
-                            >
-                                <select>
-                                    <option>Ordre</option>
-                                </select>
-                            </div>
-
-                            <div
-                                class="fp-grid-coll-8-24"
-                            >
-                                <select>
-                                    <option>Département</option>
-                                </select>
-                            </div>
-
-                            <div
-                                class="fp-grid-coll-8-24"
-                            >
-                                <select>
-                                    <option>Disciplines principale</option>
-                                </select>
-                            </div>
-
-                            <div
-                                class="fp-grid-coll-8-24"
-                            >
-                                <select>
-                                    <option>Lieu d'enseignement</option>
-                                </select>
-                            </div>
-
-                            <div
-                                class="fp-grid-coll-8-24"
-                            >
-                                <select>
-                                    <option>Arrivé par année académique</option>
-                                </select>
-                            </div>
-                        </fieldset>
-
-                    </form>
+                    <div class="hem-form">
+                        <input type="text" placeholder="Recherche">
+                        <button>recherche</button>
+                    </div>
+                    <div class="hem-form">
+                        <select>
+                            <option selected disabled>Ordre</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -165,8 +116,11 @@ onMounted(() => {
 async function loadCommunauteDataFromHEMAPI() {
     const communauteData = await getCommunityData()
 
-    if('error' in communauteData) errorMessage.value = communauteData.error
-    else communaute.value = communauteData
+    window.setTimeout(() => {
+        if('error' in communauteData) errorMessage.value = communauteData.error
+        else communaute.value = communauteData
+    }, 2_000)
+
 }
 
 </script>
@@ -180,20 +134,35 @@ async function loadCommunauteDataFromHEMAPI() {
     background: white;
 }
 
+.v-communaute-index__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-xl);
+    margin-top: 8rem;
+}
+
 .v-communaute-index__header {
+    margin-top: var(--nav-height);
     background-color: #0e264e;
     color: white;
+    height: 30rem;
+}
+
+.v-communaute-index__header__box {
+    height: 100%;
 }
 
 .v-communaute-index__person-box {
-    margin-top: 10rem;
+    margin-top: 8rem;
 }
 
 .v-communaute-index__person-box__item {
-  display: block;
-  border-top: solid 1px black;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+    display: block;
+    border-top: solid 2px black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: black;
+    text-decoration: none;
 }
 
 .v-communaute-index__person-box__item__user {
@@ -201,7 +170,8 @@ async function loadCommunauteDataFromHEMAPI() {
 }
 
 .v-communaute-index__person-box__item__status {
-
+    margin-top: 0;
+    margin-bottom: 0;
 }
 </style>
 

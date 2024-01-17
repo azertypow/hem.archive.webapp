@@ -58,7 +58,7 @@
 import {onMounted} from "#imports";
 import {IHemApi_authorInfo} from "~/global/hemApi"
 import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
-import {italicMarkdownToHtml} from "../global/italicMarkdownToHtml";
+import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 
 const props = defineProps<{
     title: string,
@@ -94,6 +94,11 @@ h1, p, h5 {
     height: 100%;
     padding: 3rem 2rem 3rem 5rem;
     box-sizing: border-box;
+
+    .brick &,
+    .dark-green & {
+        color: white;
+    }
 }
 
 .v-app-header__right {
@@ -117,7 +122,6 @@ h1, p, h5 {
 
 .brick,
 .dark-green {
-    color: white;
 
     .v-app-header__right {
         mix-blend-mode: color-dodge;
