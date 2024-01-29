@@ -388,29 +388,36 @@ function extractVideoID(url: string) {
     min-height: 50rem;
 
     background: var(--color-main--green);
+    box-shadow: 0 -10rem 0 0 var(--color-main--green);
 
     .green & {
         background: var(--color-main--green);
+        box-shadow: 0 -10rem 0 0 var(--color-main--green);
     }
 
     .yellow & {
         background: var(--color-main--yellow);
+        box-shadow: 0 -10rem 0 0 var(--color-main--yellow);
     }
 
     .purple & {
         background: var(--color-main--purple);
+        box-shadow: 0 -10rem 0 0 var(--color-main--purple);
     }
 
     .dark-green & {
         background: var(--color-main--dark-green);
+        box-shadow: 0 -10rem 0 0 var(--color-main--dark-green);
     }
 
     .orange & {
         background: var(--color-main--orange);
+        box-shadow: 0 -10rem 0 0 var(--color-main--orange);
     }
 
     .brick & {
         background: var(--color-main--brick);
+        box-shadow: 0 -10rem 0 0 var(--color-main--brick);
     }
 }
 .v--project-uid__project-img {
@@ -525,6 +532,7 @@ function extractVideoID(url: string) {
     }
 
     .brick & {
+        color: white;
         background: var(--color-main--brick);
     }
 

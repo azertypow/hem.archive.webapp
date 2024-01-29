@@ -127,10 +127,11 @@
             class="v-app-nav__menu v-app-nav__animation"
             v-if="useAppStateStore().menuIsOPen"
         >
-            <div class="hem-font-xl" >À propos</div>
-            <nuxt-link
-                href="/communaute"
-                class="hem-font-xl"
+            <nuxt-link href="/about"
+                       class="hem-font-xl"
+            >À propos</nuxt-link>
+            <nuxt-link href="/communaute"
+                       class="hem-font-xl"
             >Communauté</nuxt-link>
         </div>
 
