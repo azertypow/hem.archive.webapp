@@ -73,7 +73,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 11rem;
     left: 50%;
     transform: translate(-50%, 0);
