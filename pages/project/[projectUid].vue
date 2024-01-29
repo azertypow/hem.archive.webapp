@@ -1,7 +1,9 @@
 <template>
     <section
         class="v--project-uid"
-        :class="[getClassColorUidFromAxesUid(project?.axes[0].uid as AxesUid)]"
+        :class="[
+            axesClassColor,
+        ]"
     >
         <template
             v-if="project === null"
@@ -297,7 +299,12 @@ import AppHeader from "~/components/appHeader.vue";
 import {Ref, UnwrapRef} from "vue";
 import {IHemApi_projectDetails} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
-import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {
+    AxesClassColor, AxesClassColorShort,
+    AxesUid, getAxeClassColorFromShortedLetter,
+    getClassColorUidFromAxesUid,
+    getShortedLetterFromAxeClassColor
+} from "~/global/getClassColorUidFromAxesUid";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
@@ -306,6 +313,11 @@ const activeBackHistoryNavigation: Ref<UnwrapRef<boolean>> = ref(false)
 
 const projectUid = ref(project.value?.axes[0].uid as AxesUid)
 
+const axesClassColor: ComputedRef<AxesClassColor> = computed(() => {
+    const {c} = useRoute().query
+
+    return getAxeClassColorFromShortedLetter(c as AxesClassColorShort) || getClassColorUidFromAxesUid(project.value?.axes[0].uid as AxesUid)
+})
 
 definePageMeta({
     pageTransition: {
