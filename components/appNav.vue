@@ -159,7 +159,7 @@
                 :title="useAppStateStore().activeTag_theme?.title"
                 :uri="useAppStateStore().activeTag_theme?.uri"
                 :is-active="true"
-                @clicked="onToggleTagInNav($event)"
+                @clicked="onToggleTagInNav($event as any)"
             ></tag>
         </div>
     </section>
