@@ -9,10 +9,12 @@
             :href="`/project/${projectInfo.uid}`"
             @click="onCartelClicked"
         >
-            <h2
-                class="v-cartel__title"
-                v-html="italicMarkdownToHtml(projectInfo.title)"
-            ></h2>
+            <div class="v-cartel__title"
+            >
+                <h2 class="v-cartel__title__value"
+                    v-html="italicMarkdownToHtml(projectInfo.title)"
+                ></h2>
+            </div>
             <div
                 class="v-cartel__details"
             >
@@ -78,7 +80,7 @@ function onCartelClicked() {
         transition: transform .75s cubic-bezier(1,0,1,0);
         z-index: 1000;
 
-        .v-cartel__title,
+        .v-cartel__title__value,
         .v-cartel__details {
             display: none !important;
         }
@@ -137,26 +139,43 @@ function onCartelClicked() {
     }
 }
 .v-cartel__title {
-    font-family: 'PPAgrandir', sans-serif;
     position: absolute;
     top: 0;
     left: 0;
     margin: 0;
     width: 100%;
     padding: var(--gutter-xl);
-    box-sizing: border-box;
-    max-height: 16rem;
-    overflow: hidden;
     padding-bottom: 10px;
-    text-overflow: ellipsis;
-    font-weight: 500;
-
     transition: opacity .15s .15s ease-in-out;
     opacity: 1;
+    box-sizing: border-box;
 
     .v-cartel__link:hover & {
         transition: none;
         opacity: 0;
+    }
+}
+.v-cartel__title__value {
+    font-family: 'PPAgrandir', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    font-weight: 500;
+    line-height: 1em;
+    height: 4em;
+
+    &:after {
+        content: "";
+        height: 2em;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        .green &        {background: linear-gradient(0deg, #8dd7acff 15%, #8dd7ac00);}
+        .yellow &       {background: linear-gradient(0deg, #ebda55ff 15%, #ebda5500);}
+        .purple &       {background: linear-gradient(0deg, #c29fe6ff 15%, #c29fe600);}
+        .dark-green &   {background: linear-gradient(0deg, #18382aff 15%, #18382a00);}
+        .orange &       {background: linear-gradient(0deg, #f27d4eff 15%, #f27d4e00);}
     }
 }
 
@@ -210,10 +229,8 @@ function onCartelClicked() {
 }
 
 @container container-cartel (min-width: 500px) {
-        .v-cartel__title {
+        .v-cartel__title__value {
             font-size: 6rem;
-            line-height: 7rem;
-            max-height: 24rem;
         }
 }
 
