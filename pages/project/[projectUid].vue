@@ -466,9 +466,16 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__content__img {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
     img {
         display: block;
         width: 100%;
+    }
+
+    h6 {
+        margin-top: 1rem;
     }
 }
 
@@ -494,6 +501,7 @@ function extractVideoID(url: string) {
     padding-bottom: 10rem;
     border-bottom-left-radius: 5rem;
     border-bottom-right-radius: 5rem;
+    margin-top: 4rem;
 
     .green & {
         background: var(--color-main--green);
