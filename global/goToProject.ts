@@ -1,4 +1,4 @@
 export function goToProject(cartelElement: HTMLElement) {
-    console.log( useRouter().currentRoute.value.name )
+    document.querySelector('.v-index')?.classList.add('ts-nav-transition')
     cartelElement.classList.add('is-full')
 }

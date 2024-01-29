@@ -74,10 +74,15 @@
     height: 100%;
     box-sizing: border-box;
     overflow: auto;
+    scrollbar-gutter: stable;
     padding-top: 11rem;
     left: 50%;
     transform: translate(-50%, 0);
     background: white;
+
+    &.ts-nav-transition {
+        overflow: hidden;
+    }
 }
 
 .v-index__items {
