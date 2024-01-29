@@ -191,10 +191,13 @@ async function postQuerySearch() {
     const {result} = await getSearch(querySearch.value)
 
     window.setTimeout(() => {
-        console.log(result)
+
+
+
+
         useAppStateStore().searchHomeStatus = 'ended'
-        useAppStateStore().searchHomeResults = result
-    }, 10_000)
+        useAppStateStore().searchHomeResults = Object.values(result)
+    }, 1_000)
 
 }
 

@@ -176,3 +176,9 @@ export interface IHemApi_PersonDetails {
     },
     "cover": IHemApi_imageData
 }
+
+export interface IHemApi_searchResult {
+    "query": string,
+    "result": {[key: string]: IHemApi_projectInfo },
+    "minLength": 2
+}

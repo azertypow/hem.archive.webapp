@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {IHemApi_tag_axes, IHemApi_tag_theme} from "~/global/hemApi"
+import {IHemApi_projectInfo, IHemApi_tag_axes, IHemApi_tag_theme} from "~/global/hemApi"
 
 export const useAppStateStore = defineStore('appState', {
     state: () => ({
@@ -17,7 +17,7 @@ export const useAppStateStore = defineStore('appState', {
         searchIsOpen: false,
 
         searchHomeStatus: null as null | 'waiting' | 'ended',
-        searchHomeResults: [],
+        searchHomeResults: [] as IHemApi_projectInfo[],
     }),
 
     actions: {

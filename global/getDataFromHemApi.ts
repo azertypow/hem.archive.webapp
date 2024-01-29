@@ -2,7 +2,7 @@ import {
     IHemApi_allProjectInfo,
     IHemApi_communaute,
     IHemApi_PersonDetails,
-    IHemApi_projectDetails, IHemApi_tag_axes, IHemApi_tag_theme
+    IHemApi_projectDetails, IHemApi_searchResult, IHemApi_tag_axes, IHemApi_tag_theme
 } from "~/global/hemApi"
 
 export const hemApiBaseUrl = 'https://hemadmin.sdrvl.ch/webapp/api/v1'
@@ -46,9 +46,5 @@ export async function getSearch(query: string) {
 
     console.log(`${hemApiBaseUrl}/search?q=${querySearch}`)
 
-    return await apiSearchResponse.json() as {
-        minLength: number
-        query: string
-        result: []
-    }
+    return await apiSearchResponse.json() as IHemApi_searchResult
 }

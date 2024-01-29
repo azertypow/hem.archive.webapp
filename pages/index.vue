@@ -55,7 +55,26 @@
             <div>Aucun résultats</div>
         </template>
         <template v-else>
-            <div>{{useAppStateStore().searchHomeResults}}</div>
+            <div
+                class="fp-grid-coll-container fp-grid-with-gutter"
+            >
+                <template
+                    v-for="(projectInfo) of useAppStateStore().searchHomeResults"
+                >
+                    <div
+                        class="v-index__items"
+                        v-if='showThisCartel({
+                            themes: projectInfo.themes.map(value => {return value.uri}),
+                            axe: projectInfo.axes[0].uri,
+                        })'
+                    >
+                        <cartel
+                            :project-info="projectInfo"
+                            @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                        />
+                    </div>
+                </template>
+            </div>
         </template>
 
 
