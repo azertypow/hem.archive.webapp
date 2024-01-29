@@ -262,6 +262,12 @@ function onToggleTagInNav(name: string) {
     height: 100%;
     box-sizing: border-box;
     padding: 1rem 0;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 
     &.v-app-nav__icon--menu_close {
         padding: 1rem 1.35rem;
