@@ -8,7 +8,7 @@
     "postinstall": "nuxi prepare",
     "check": "nuxi typecheck",
     "deploy": "gh-pages --dotfiles -d .output/public",
-    "build.github.page": "rm -rf ./docs && npm run generate && cp -r ./.output/public ./docs && rm -rf ./.output"
+    "build.spa": "rm -rf ./docs && npm run generate && cp -r ./.output/public ./docs && rm -rf ./.output"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
