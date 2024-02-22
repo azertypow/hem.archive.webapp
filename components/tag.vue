@@ -14,7 +14,7 @@
         <div
             v-if="isActive"
             class="v-tag__close"
-        >x</div>
+        ><span>x</span></div>
     </div>
 </template>
 
@@ -76,5 +76,8 @@ defineEmits<{
     width: 1rem;
     height: 1rem;
     line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

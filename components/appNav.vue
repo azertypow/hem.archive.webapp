@@ -101,20 +101,6 @@
                     <select>
                         <option selected disabled >Début du projet</option>
                     </select>
-
-    <!--                <select>-->
-    <!--                    <option selected disabled >Membres de l’équipe</option>-->
-    <!--                </select>-->
-    <!--                <select>-->
-    <!--                    <option selected disabled >Partenaires</option>-->
-    <!--                </select>-->
-    <!--                <select>-->
-    <!--                    <option selected disabled>Objets</option>-->
-    <!--                </select>-->
-    <!--                <select>-->
-    <!--                    <option selected disabled>Matières</option>-->
-    <!--                </select>-->
-
                 </div>
 
             </div>
@@ -236,6 +222,8 @@ function onToggleTagInNav(name: string) {
 
 
 <style lang="scss" scoped >
+@use "@/assets/scss-var";
+
 .v-app-nav {
     background-color: var(--color-grey);
     border-bottom-right-radius: 2rem;
@@ -276,11 +264,6 @@ function onToggleTagInNav(name: string) {
     &.v-app-nav__icon--menu_close {
         padding: 1rem 1.35rem;
     }
-
-    &.v-app-nav__icon--search_open {
-
-    }
-
 
 }
 .nav-is-open {
@@ -397,6 +380,11 @@ function onToggleTagInNav(name: string) {
 
     .search-is-open & {
         background: var(--color-grey);
+    }
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 }
 

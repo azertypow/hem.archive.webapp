@@ -127,29 +127,3 @@ button {
     cursor: pointer;
   }
 }
-
-
-// loader
-.hem-loader {
-  --hem-loader-gradient: no-repeat radial-gradient(farthest-side,white 95%, transparent);
-
-  width: 3rem;
-  aspect-ratio: 1;
-
-  background:
-          var(--hem-loader-gradient) 0    0,
-          var(--hem-loader-gradient) 100% 0,
-          var(--hem-loader-gradient) 100% 100%,
-          var(--hem-loader-gradient) 0    100%;
-  background-size: 45% 45%;
-  animation: hem-loader-animation 1s infinite;
-}
-@keyframes hem-loader-animation {
-  100% {
-    background-position:
-            100% 0,
-            100% 100%,
-            0 100%,
-            0 0
-  }
-}

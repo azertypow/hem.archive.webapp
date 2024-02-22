@@ -1,96 +1,65 @@
 <template>
-    <section class="v-about-index" >
+    <section class="v-community-uid" >
         <template
-            v-if="communaute === null"
+            v-if="aboutContent === null"
         >
             <div
-                class="v-about-index__header"
+                class="v-community-uid__header v-community-uid__header--is-loading"
             >
-                <div
-                    class="fp-grid-coll-container fp-grid-coll-container--center v-about-index__header__box"
-                >
-                    <div
-                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center fp-grid-row-container--align-center"
-                    >
-                        <div class="hem-loader" ></div>
-                    </div>
-                </div>
+                <app-loader :is-black="false" />
             </div>
         </template>
 
         <template
-            v-else-if="errorMessage"
-        >
-            <h1
-                style="color: white"
-            >
-                {{errorMessage}}
-            </h1>
-        </template>
-        <template
             v-else
         >
+
             <div
-                class="v-about-index__header"
+                class="v-communaute-index__header"
             >
                 <div
-                    class="fp-grid-coll-container fp-grid-coll-container--center v-about-index__header__box"
+                    class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
                         class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
                     >
-                        <h1>
-                            À Propos
-                        </h1>
+                        <h1>{{aboutContent.title}}</h1>
                     </div>
                 </div>
 
             </div>
 
-            <div
-                class="fp-grid-coll-container fp-grid-coll-container--center"
-            >
-                <div
-                    class="fp-grid-coll-16-24 v-about-index__form"
-                >
-                    <div class="hem-form">
-                        <input type="text" placeholder="Recherche">
-                        <button>recherche</button>
-                    </div>
-                    <div class="hem-form">
-                        <select>
-                            <option selected disabled>Ordre</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
 
             <div
-                class="fp-grid-coll-container fp-grid-coll-container--center"
+                class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
+                v-if="aboutContent.abouttext.length"
             >
                 <div
-                    class="fp-grid-coll-16-24 v-about-index__person-box"
+                    class="fp-grid-coll-16-24"
                 >
-                    <nuxt-link
-                        :href="`/communaute/${person.uid}`"
-                        class="v-about-index__person-box__item hem-rm-margins"
-                        v-for="person of communaute.pages"
+                    <template
+                        v-for="textItem of aboutContent.abouttext"
                     >
-                        <h3
-                            class="v-about-index__person-box__item__user"
+                        <template
+                            v-if="textItem.type === 'heading'"
                         >
-                            {{person.firstname}} <span style="text-transform: uppercase;" >{{person.name}}</span>
-                        </h3>
-                        <h4
-                            class="v-about-index__person-box__item__status"
+                            <h2 v-if="(textItem as IHeadingBlock).content.level === 'h2'" >{{(textItem as IHeadingBlock).content.text}}</h2>
+                            <h3 v-if="(textItem as IHeadingBlock).content.level === 'h3'" >{{(textItem as IHeadingBlock).content.text}}</h3>
+                            <h4 v-if="(textItem as IHeadingBlock).content.level === 'h4'" >{{(textItem as IHeadingBlock).content.text}}</h4>
+                            <h5 v-if="(textItem as IHeadingBlock).content.level === 'h5'" >{{(textItem as IHeadingBlock).content.text}}</h5>
+                            <h6 v-if="(textItem as IHeadingBlock).content.level === 'h6'" >{{(textItem as IHeadingBlock).content.text}}</h6>
+                        </template>
+                        <template
+                            v-else-if="textItem.type === 'text'"
                         >
-                            {{person.job}}
-                        </h4>
-                    </nuxt-link>
+                            <div v-html="textItem.value" ></div>
+                        </template>
+                    </template>
                 </div>
             </div>
         </template>
+
+
     </section>
 </template>
 
@@ -99,26 +68,21 @@
 
 
 <script lang="ts" setup>
-// defineProps<{
-// }>()
-
 import {Ref, UnwrapRef} from "vue";
-import {IHemApi_bloks, IHemApi_bloks_image, IHemApi_communaute} from "~/global/hemApi";
-import {getCommunityData, getProjectDataByUdi} from "~/global/getDataFromHemApi";
+import {IHeadingBlock, IHemApi_about} from "~/global/hemApi";
+import {getAbout} from "~/global/getDataFromHemApi";
 
-const communaute: Ref<UnwrapRef<null | IHemApi_communaute>> = ref(null)
-const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
+const aboutContent: Ref<UnwrapRef<null | IHemApi_about>> = ref(null)
 
 onMounted(() => {
     loadCommunauteDataFromHEMAPI()
 })
 
 async function loadCommunauteDataFromHEMAPI() {
-    const communauteData = await getCommunityData()
+    const aboutData = await getAbout()
 
     window.setTimeout(() => {
-        if('error' in communauteData) errorMessage.value = communauteData.error
-        else communaute.value = communauteData
+        aboutContent.value = aboutData
     }, 2_000)
 
 }
@@ -130,6 +94,21 @@ async function loadCommunauteDataFromHEMAPI() {
 
 
 <style lang="scss" scoped >
+.v-communaute-index__header {
+    margin-top: var(--nav-height);
+    background-color: #0e264e;
+    color: white;
+    height: 30rem;
+}
+
+.v-communaute-index__header__box {
+    height: 100%;
+}
+
+.v-community-uid__publication {
+    padding-bottom: 5rem;
+}
+
 .v-about-index {
     background: white;
 }

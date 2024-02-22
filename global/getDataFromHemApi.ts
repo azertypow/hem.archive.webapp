@@ -1,11 +1,12 @@
 import {
+    IHemApi_about,
     IHemApi_allProjectInfo,
     IHemApi_communaute,
     IHemApi_PersonDetails,
     IHemApi_projectDetails, IHemApi_searchResult, IHemApi_tag_axes, IHemApi_tag_theme
 } from "~/global/hemApi"
 
-export const hemApiBaseUrl = 'https://hemadmin.sdrvl.ch/webapp/api/v1'
+export const hemApiBaseUrl = 'https://admin.hem-rad.ch/webapp/api/v1'
 // export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
 
 export async function getProjectsData() {
@@ -37,6 +38,11 @@ export async function getTagsList() {
         listAxes: IHemApi_tag_axes[]
         listTheme: IHemApi_tag_theme[]
     }
+}
+
+export async function getAbout() {
+    const response = await fetch(`${hemApiBaseUrl}/about`)
+    return await response.json() as IHemApi_about
 }
 
 export async function getSearch(query: string) {

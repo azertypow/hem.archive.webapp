@@ -68,7 +68,7 @@ export interface IHemApi_bloks_video extends IHemApi_bloks {
   type: "video",
   isHidden: false,
   content: {
-    url: "https://www.youtube.com/watch?v=mqg_FPNRO-A&list=PLbs-tlxAEvhRZib0VWTz5gKs-5XiMMr6I&index=15",
+    url: string,
     caption: "video caption"
   }
 }
@@ -181,4 +181,25 @@ export interface IHemApi_searchResult {
     "query": string,
     "result": {[key: string]: IHemApi_projectInfo },
     "minLength": 2
+}
+
+export interface IHemApi_about {
+    "uid": string,
+    "title": string,
+    "abouttext": (IHeadingBlock | ITextBlock)[]
+}
+
+export interface IHeadingBlock {
+    "type": "heading",
+    "content": {
+        "level": "h2" | "h3" | "h4" | "h5" | "h6",
+        "text": string
+    },
+    "isHidden": false
+}
+
+export interface ITextBlock         {
+    "type": 'text',
+    "isHidden": boolean,
+    "value": string
 }

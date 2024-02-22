@@ -12,7 +12,7 @@
                     <div
                         class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center fp-grid-row-container--align-center"
                     >
-                        <div class="hem-loader" ></div>
+                        <app-loader :is-black="false"/>
                     </div>
                 </div>
             </div>
@@ -47,23 +47,23 @@
 
             </div>
 
-            <div
-                class="fp-grid-coll-container fp-grid-coll-container--center"
-            >
-                <div
-                    class="fp-grid-coll-16-24 v-communaute-index__form"
-                >
-                    <div class="hem-form">
-                        <input type="text" placeholder="Recherche">
-                        <button>recherche</button>
-                    </div>
-                    <div class="hem-form">
-                        <select>
-                            <option selected disabled>Ordre</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+<!--            <div-->
+<!--                class="fp-grid-coll-container fp-grid-coll-container&#45;&#45;center"-->
+<!--            >-->
+<!--                <div-->
+<!--                    class="fp-grid-coll-16-24 v-communaute-index__form"-->
+<!--                >-->
+<!--                    <div class="hem-form">-->
+<!--                        <input type="text" placeholder="Recherche">-->
+<!--                        <button>recherche</button>-->
+<!--                    </div>-->
+<!--                    <div class="hem-form">-->
+<!--                        <select>-->
+<!--                            <option selected disabled>Ordre</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
 
             <div

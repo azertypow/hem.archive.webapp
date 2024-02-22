@@ -6,9 +6,7 @@
             <div
                     class="v-community-uid__header v-community-uid__header--is-loading"
             >
-                <h1>
-                    chargement…
-                </h1>
+                <app-loader :is-black="false" />
             </div>
         </template>
 

@@ -86,6 +86,8 @@
 
 
 <style lang="scss" scoped>
+@use "@/assets/scss-var";
+
 .v-index {
     position: fixed;
     top: 0;
@@ -99,6 +101,10 @@
     transform: translate(-50%, 0);
     background: white;
 
+    @media (max-width: scss-var.$breakpoint-reg) {
+        padding-top: 16rem;
+    }
+
     &.ts-nav-transition {
         overflow: hidden;
     }
@@ -106,16 +112,19 @@
 
 .v-index__items {
     padding: 1rem;
-
-    &:nth-child(1n) {
-        width: calc( 100% / 24 * 8 );
-        box-sizing: border-box;
-    }
+    width: calc( 100% / 24 * 8 );
+    box-sizing: border-box;
 
     &.v-index__items--6,
     &.v-index__items--7 {
         width: calc( 100% / 24 * 12 );
-        box-sizing: border-box;
+    }
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        width: calc( 100% / 24 * 12 );
+    }
+    @media (max-width: scss-var.$breakpoint-sm) {
+        width: calc( 100% / 24 * 24 );
     }
 }
 
@@ -125,6 +134,10 @@
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 2rem;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        justify-content: flex-start;
+    }
 }
 
 .v-index__tag {

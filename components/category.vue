@@ -46,6 +46,8 @@ defineEmits<{
 
 
 <style lang="scss" scoped >
+@use '@/assets/scss-var';
+
 .v-category {
     position: relative;
     cursor: pointer;
@@ -56,12 +58,19 @@ defineEmits<{
     background: white;
     border: solid black 2px;
     border-radius: 2rem;
+    font-size: 1.5rem;
     line-height: 2rem;
     min-height: 4rem;
     padding: .5rem 2rem;
     cursor: pointer;
     box-sizing: content-box;
     text-transform: uppercase;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        padding: .25rem 1rem;
+    }
 
     // green
     .v-category.green & {

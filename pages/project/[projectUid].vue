@@ -65,7 +65,7 @@
                         >
                             <img
                                 :alt="projectItem.alt"
-                                :src="projectItem.image.resize.small"
+                                :src="projectItem.image.resize.large"
                             >
                             <h6 v-html="projectItem.caption" ></h6>
                         </div>
