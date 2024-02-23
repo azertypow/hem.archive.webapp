@@ -33,7 +33,6 @@ export async function getPersonDetails(uid:string) {
 
 export async function getTagsList() {
     const response = await fetch(`${hemApiBaseUrl}/tags`)
-    console.log(response)
     return await response.json() as {
         listAxes: IHemApi_tag_axes[]
         listTheme: IHemApi_tag_theme[]

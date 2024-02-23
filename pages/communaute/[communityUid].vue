@@ -30,12 +30,12 @@
                 <div class="fp-grid-coll-container fp-grid-coll-container--center fp-grid-coll-container--no-wrap">
 
                     <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                     >
                         <div
                             class="fp-grid-coll-container"
                         >
-                            <div class="fp-grid-coll-16-24">
+                            <div class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24">
                                 <h1>{{ personDetails.firstname }} {{ personDetails.name }}</h1>
                                 <h3>{{ personDetails.job }}</h3>
                                 <p>{{ personDetails.jobdetail }}</p>
@@ -53,12 +53,12 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <h2>Biographie</h2>
                 </div>
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                         v-html="personDetails.bio"
                 >
 
@@ -67,41 +67,47 @@
 
             <div
                     class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
-                    v-if="Object.keys(personDetails.researchProject).length"
+                    v-if="personDetails.researchProject && Object.keys(personDetails.researchProject).length"
             >
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <h2>Projets de recherche</h2>
                 </div>
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                    <div
-                            class="v-community-uid__publication__index"
-                            v-for="researchProject of personDetails.researchProject"
-                    >{{researchProject.content.title}}</div>
+                    <nuxt-link class="v-community-uid__publication__index"
+                               :href="`/project/${researchProject.slug}`"
+                               v-for="researchProject of personDetails.researchProject"
+                               v-html="italicMarkdownToHtml(researchProject.content.title)"
+                    ></nuxt-link>
                 </div>
             </div>
 
             <div
                     class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
-                    v-if="personDetails?.publications.length"
+                    v-if="personDetails?.publications?.length"
             >
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <h2>Publications</h2>
                 </div>
                 <div
-                        class="fp-grid-coll-16-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                    <a
-                            target="_blank"
-                            v-for="publication of personDetails?.publications"
-                            class="v-community-uid__publication__index"
-                            :href="publication.publicationlink.length ? publication.publicationlink : undefined"
-                    >{{publication.publicationdescription}}</a>
+                    <template v-for="publication of personDetails?.publications"
+                    >
+                        <a class="v-community-uid__publication__index"
+                           v-if="publication.publicationlink.length"
+                           target="_blank"
+                           :href="publication.publicationlink"
+                        >{{publication.publicationdescription}}</a>
+                        <div class="v-community-uid__publication__index"
+                             v-else
+                        >{{publication.publicationdescription}}</div>
+                    </template>
                 </div>
             </div>
         </template>
@@ -120,6 +126,7 @@ import {Ref, UnwrapRef} from "vue";
 import {IHemApi_communaute, IHemApi_PersonDetails, IHemApi_projectDetails} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
 import AppHeader from "~/components/appHeader.vue";
+import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 
 definePageMeta({
     pageTransition: {
@@ -186,12 +193,13 @@ async function loadPersonDetailsFromHEMAPI() {
   line-height: 3rem;
   font-size: 2.8rem;
   border-top: solid 1px;
-  cursor: pointer;
   position: relative;
   text-decoration: none;
   color: inherit;
+  user-select: none;
 
-  &:hover {
+  &:hover:not(div) {
+    cursor: pointer;
     color: white;
     background: black;
 

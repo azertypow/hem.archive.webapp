@@ -180,7 +180,6 @@ onMounted(() => {
 async function loadData() {
   const projectsData = await getProjectsData()
   allProjectsInfo.value = Object.values( projectsData.projects )
-  console.log(allProjectsInfo.value)
 }
 
 function setTagVisibilityInPageObserver() {

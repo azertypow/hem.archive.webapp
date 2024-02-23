@@ -21,7 +21,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
-                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
                     >
                         <h1>{{aboutContent.title}}</h1>
                     </div>
@@ -35,7 +35,7 @@
                 v-if="aboutContent.abouttext.length"
             >
                 <div
-                    class="fp-grid-coll-16-24"
+                    class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <template
                         v-for="textItem of aboutContent.abouttext"

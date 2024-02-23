@@ -10,7 +10,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
-                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center fp-grid-row-container--align-center"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center fp-grid-row-container--align-center"
                     >
                         <app-loader :is-black="false"/>
                     </div>
@@ -37,7 +37,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center v-communaute-index__header__box"
                 >
                     <div
-                        class="fp-grid-coll-16-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
                     >
                         <h1>
                             Communauté des chercheur•euse•s
@@ -70,12 +70,24 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                        class="fp-grid-coll-16-24 v-communaute-index__person-box"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 v-communaute-index__person-box"
                 >
                     <nuxt-link
                         :href="`/communaute/${person.uid}`"
                         class="v-communaute-index__person-box__item hem-rm-margins"
-                        v-for="person of communaute.pages"
+                        v-for="person of Object.values(communaute.pages).sort((a, b) => {
+                              const nameA = a.name.toUpperCase()
+                              const nameB = b.name.toUpperCase()
+                              //@ts-ignore
+                              if (nameA < nameB) {
+                                return -1
+                              }
+                              //@ts-ignore
+                              else if (nameA > nameB) {
+                                return 1
+                              }
+                              return 0
+                        })"
                     >
                         <h3
                             class="v-communaute-index__person-box__item__user"
@@ -105,6 +117,7 @@
 import {Ref, UnwrapRef} from "vue";
 import {IHemApi_bloks, IHemApi_bloks_image, IHemApi_communaute} from "~/global/hemApi";
 import {getCommunityData, getProjectDataByUdi} from "~/global/getDataFromHemApi";
+import ignore from "ignore";
 
 const communaute: Ref<UnwrapRef<null | IHemApi_communaute>> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)

@@ -24,7 +24,7 @@
                 alt="close project"
                 class="v-app-nav__icon v-app-nav__icon--close-project"
                 v-if="useRouter().currentRoute.value.path !== '/'"
-                @click="useRouter().push({path: '/'})"
+                @click="navigateTo('/')"
             >
 
             <a
@@ -75,33 +75,33 @@
                     >rechercher</button>
                 </div>
 
-                <div class="hem-form">
-                    <select>
-                        <option selected disabled >Nom du projet</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
-                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
-                        <option>Art.School. Differences</option>
-                        <option>Aux origines du piano français</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>
-                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>
-                        <option>Art.School. Differences</option>
-                        <option>Aux origines du piano français</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>
-                    </select>
-                    <select>
-                        <option selected disabled >Responsable de projet</option>
-                    </select>
-                    <select>
-                        <option selected disabled >Début du projet</option>
-                    </select>
-                </div>
+<!--                <div class="hem-form">-->
+<!--                    <select>-->
+<!--                        <option selected disabled >Nom du projet</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>-->
+<!--                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>-->
+<!--                        <option>Art.School. Differences</option>-->
+<!--                        <option>Aux origines du piano français</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>-->
+<!--                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>-->
+<!--                        <option>Art.School. Differences</option>-->
+<!--                        <option>Aux origines du piano français</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
+<!--                    </select>-->
+<!--                    <select>-->
+<!--                        <option selected disabled >Responsable de projet</option>-->
+<!--                    </select>-->
+<!--                    <select>-->
+<!--                        <option selected disabled >Début du projet</option>-->
+<!--                    </select>-->
+<!--                </div>-->
 
             </div>
 
@@ -115,7 +115,7 @@
         >
             <nuxt-link href="/about"
                        class="hem-font-xl"
-            >À propos</nuxt-link>
+            >À Propos</nuxt-link>
             <nuxt-link href="/communaute"
                        class="hem-font-xl"
             >Communauté</nuxt-link>
@@ -247,6 +247,11 @@ function onToggleTagInNav(name: string) {
     .search-is-open & {
         border-radius: 0;
     }
+
+    @media(max-width: scss-var.$breakpoint-reg) {
+        justify-content: space-between;
+        padding-left: var(--gutter-xl);
+    }
 }
 
 .v-app-nav__icon {
@@ -294,6 +299,14 @@ function onToggleTagInNav(name: string) {
     user-select: none;
     text-decoration: none;
     color: inherit;
+
+    @media (max-width:scss-var.$breakpoint-reg) {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0;
+    }
 }
 
 .v-app-nav__right {

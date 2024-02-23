@@ -6,7 +6,7 @@
         <nuxt-link
             class="v-cartel__link"
             :class="getClassColorUidFromAxesUid(projectInfo.axes[0].uid as AxesUid)"
-            :href="`/project/${projectInfo.uid}`"
+            :href="`/project/${projectInfo.uid}?c=${getShortedLetterFromAxeClassColor(projectInfo.axes[0].theme)}`"
             @click="onCartelClicked"
         >
             <div class="v-cartel__title"
@@ -43,7 +43,11 @@
 <script lang="ts" setup>
 import {Ref} from "vue";
 import {IHemApi_projectInfo} from "~/global/hemApi"
-import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {
+    AxesUid,
+    getClassColorUidFromAxesUid,
+    getShortedLetterFromAxeClassColor
+} from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 
 const props = defineProps<{

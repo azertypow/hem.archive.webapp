@@ -136,7 +136,7 @@ export interface IHemApi_PersonDetails {
         "id":                       string,
         "publicationdescription":   string,
         "publicationlink":          string
-    }[],
+    }[] | undefined,
     "researchProject": {
         [key: string]: {
             "children": string[],
@@ -173,8 +173,8 @@ export interface IHemApi_PersonDetails {
             "uri": string,
             "url": string
         }
-    },
-    "cover": IHemApi_imageData
+    } | undefined,
+    "cover": IHemApi_imageData | null
 }
 
 export interface IHemApi_searchResult {

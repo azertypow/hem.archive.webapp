@@ -44,12 +44,12 @@
                 class="fp-grid-coll-container fp-grid-coll-container--center"
             >
                 <div
-                    class="fp-grid-coll-16-24"
+                    class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <h2>Résumé</h2>
                 </div>
                 <div
-                    class="fp-grid-coll-16-24"
+                    class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                     <template
                         v-for="projectItem of project.content"
@@ -95,7 +95,7 @@
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
                     <div
-                        class="fp-grid-coll-16-24 hem-rm-margins"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins"
                     >
                         <h2>Fiche technique du projet</h2>
 
@@ -142,7 +142,6 @@
                             <div
                                 class="v--project-uid__details__item__content"
                             >
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores beatae blanditiis cumque deleniti dignissimos doloribus, dolorum eaque excepturi exercitationem hic, id impedit iusto nemo perspiciatis quaerat quibusdam saepe vitae voluptatum?</p>
                                 <div
                                     v-html="project.team"
                                 ></div>
@@ -196,6 +195,7 @@
                                     :title="theme.title"
                                     :uri="theme.uri"
                                     :is-active="false"
+                                    @click="onThemeFromProjectClicked(theme)"
                                 />
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                 <div
                     class="fp-grid-coll-container fp-grid-coll-container--center"
                 >
-                    <div class="fp-grid-coll-16-24">
+                    <div class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24">
                         <div
                             class="hem-rm-margins v--project-uid__filesChapter-box__chapter"
                             v-for="filesChapter of project.filesChapters"
@@ -264,22 +264,25 @@
             </div>
 
 
-            <div
-                class="v--project-uid__connected"
-            >
-                <div
-                    class="v--project-uid__connected__item"
-                >
-                    <cartel
-                        v-if="project"
-                        :project-info="project"
-                        @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
-                    />
-                </div>
-            </div>
+<!--            <div-->
+<!--                class="v&#45;&#45;project-uid__connected"-->
+<!--            >-->
+<!--                <div-->
+<!--                    class="v&#45;&#45;project-uid__connected__item"-->
+<!--                >-->
+<!--                    <cartel-->
+<!--                        v-if="project"-->
+<!--                        :project-info="project"-->
+<!--                        @cartel-clicked="(cartelElement) => goToProject(cartelElement)"-->
+<!--                    />-->
+<!--                </div>-->
+<!--            </div>-->
 
         </template>
-
+        <div class="v--project-uid__close-information"
+        >
+            <div class="v--project-uid__close-information__text">fermer le projet</div>
+        </div>
         <div
             class="v--project-uid__end-page"
         >
@@ -297,7 +300,7 @@ import {getProjectDataByUdi} from "~/global/getDataFromHemApi";
 import {onMounted} from "@vue/runtime-core";
 import AppHeader from "~/components/appHeader.vue";
 import {Ref, UnwrapRef} from "vue";
-import {IHemApi_projectDetails} from "~/global/hemApi";
+import {IHemApi_projectDetails, IHemApi_tag_theme} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
 import {
     AxesClassColor, AxesClassColorShort,
@@ -305,6 +308,7 @@ import {
     getClassColorUidFromAxesUid,
     getShortedLetterFromAxeClassColor
 } from "~/global/getClassColorUidFromAxesUid";
+import {useAppStateStore} from "~/stores/appState";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
@@ -341,6 +345,11 @@ onMounted(() => {
     loadProjectDataFromHEMAPI().then(() => activeBackHistoryNavigation.value = true)
 })
 
+function onThemeFromProjectClicked(theme: IHemApi_tag_theme) {
+    useAppStateStore().activeTag_theme = theme
+    navigateTo('/')
+}
+
 async function loadProjectDataFromHEMAPI() {
     const projectUid = useRoute().params.projectUid
     if( typeof projectUid === 'string') {
@@ -348,9 +357,9 @@ async function loadProjectDataFromHEMAPI() {
 
         if('error' in projectData) errorMessage.value = projectData.error
         else {
-            window.setTimeout(() => {
+            // window.setTimeout(() => {
                 project.value = projectData
-            }, 2_000)
+            // }, 2_000)
         }
     }
 }
@@ -367,6 +376,8 @@ function extractVideoID(url: string) {
 
 
 <style lang="scss" scoped >
+@use '@/assets/scss-var';
+
 .v--project-uid {
     background: white;
     position: fixed;
@@ -425,14 +436,24 @@ function extractVideoID(url: string) {
     width: 100%;
 }
 
-.v--project-uid__end-page {
+.v--project-uid__close-information {
+    height: 50vh;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
 
+.v--project-uid__close-information__text {
+    justify-self: center;
+    align-self: end;
+}
+
+.v--project-uid__end-page {
 }
 
 .v--project-uid__end-page__detector {
     width: 100%;
     height: 100vh;
-    background-color: var(--color-grey);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .v--project-uid__connected {
@@ -541,6 +562,7 @@ function extractVideoID(url: string) {
         border-top: black 1px solid;
         padding-top: 2rem;
         padding-bottom: 2rem;
+        flex-wrap: wrap;
 
         .dark-green & {
             border-color: white;
@@ -550,6 +572,10 @@ function extractVideoID(url: string) {
     .v--project-uid__details__item__title {
         width: calc(100% / 12 * 3);
         font-weight: 600;
+
+        @media (max-width: scss-var.$breakpoint-reg) {
+            width: 100%;
+        }
     }
 
     .v--project-uid__details__item__content {
@@ -559,6 +585,10 @@ function extractVideoID(url: string) {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        @media (max-width: scss-var.$breakpoint-reg) {
+            width: 100%;
         }
     }
 }
