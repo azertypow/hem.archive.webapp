@@ -20,6 +20,16 @@
             </div>
         </div>
 
+      <template v-if="useAppStateStore().searchHomeStatus === 'ended' && useAppStateStore().searchHomeResults.length > 0">
+        <div style="gap: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 5rem">
+          <tag
+            title="quitter la recherche"
+            @clicked="useAppStateStore().clearHomeResearch"
+          />
+        </div>
+      </template>
+
+
         <template v-if='useAppStateStore().searchHomeStatus === null'
         >
             <div
@@ -52,7 +62,13 @@
             </div>
         </template>
         <template v-else-if="useAppStateStore().searchHomeStatus === 'ended' && useAppStateStore().searchHomeResults.length === 0">
+          <div style="gap: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; height: calc(100vh - 40rem)">
             <div>Aucun résultats</div>
+            <tag
+              title="quitter la recherche"
+              @clicked="useAppStateStore().clearHomeResearch"
+            />
+          </div>
         </template>
         <template v-else>
             <div

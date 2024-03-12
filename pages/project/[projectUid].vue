@@ -33,10 +33,11 @@
             >
                 <app-header
                     :axesUid="projectUid"
-                    :date="`${new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'})}`"
+                    :date="`${new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`"
                     :responsables="project.authors"
                     :title="project.title"
                     :cover="Object.values(project.cover)[0].resize.xxl"
+                    :partners="project.partners"
                 />
             </div>
 
@@ -71,17 +72,33 @@
                         </div>
 
                         <div
+                            class="v--project-uid__content__gallery"
+                            v-if="projectItem.type === 'gallery'"
+                        >
+                            <div v-for="image of projectItem.content"
+                            >
+                                <img
+                                    :alt="image.alt || 'pas de texte alt'"
+                                    :src="image.resize.large"
+                                >
+                                <h6 v-if="image.caption && image.caption.length > 0" v-html="image.caption"></h6>
+                            </div>
+                        </div>
+
+                        <div
                             class="v--project-uid__content__video"
                             v-if="projectItem.type === 'video'"
                         >
-                            <iframe width="1280"
-                                    height="800"
-                                    :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen
-                            ></iframe>
-                            <h6>{{projectItem.content.caption}}</h6>
+                            <div class="v--project-uid__content__video__container">
+                                <iframe width="1280"
+                                        height="800"
+                                        :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                />
+                            </div>
+                            <h6 v-html="projectItem.content.caption" ></h6>
                         </div>
                     </template>
                 </div>
@@ -105,14 +122,14 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Responsable
+                                Responsable<template v-if="project.authors.length > 1" >s</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
                             >
                                 <template
                                     v-for="author of project.authors"
-                                >{{ author.firstname }} {{ author.Name }}, </template>
+                                >{{ author.firstname }} {{ author.Name }}<template v-if="project.authors.length > 1" >, </template></template>
                             </div>
                         </div>
                         <div
@@ -120,8 +137,9 @@
                         >
                             <div
                                 class="v--project-uid__details__item__title"
+                                v-if="project.partners && project.partners.length > 0"
                             >
-                                Partenaire
+                                Partenaire<template v-if="listWithMoreThanOneLine(project.partners)" >s</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
@@ -309,6 +327,7 @@ import {
     getShortedLetterFromAxeClassColor
 } from "~/global/getClassColorUidFromAxesUid";
 import {useAppStateStore} from "~/stores/appState";
+import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
@@ -507,11 +526,36 @@ function extractVideoID(url: string) {
     }
 }
 
+.v--project-uid__content__gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    img {
+        display: block;
+        width: 100%;
+    }
+
+    h6 {
+        margin-top: 1rem;
+    }
+}
+
 .v--project-uid__content__video {
     position: relative;
-    padding-bottom: 50%;
     margin-top: 3rem;
     margin-bottom: 3rem;
+
+    h6 {
+        margin-top: 1rem;
+    }
+}
+
+.v--project-uid__content__video__container {
+    position: relative;
+    padding-bottom: 50%;
 
     > iframe {
         display: block;
@@ -521,6 +565,7 @@ function extractVideoID(url: string) {
         width: 100%;
         height: 100%;
     }
+
 }
 
 .v--project-uid__details {
@@ -674,11 +719,18 @@ function extractVideoID(url: string) {
     }
 }
 
-.v--project-uid__content__img {
+.v--project-uid__content__img,
+.v--project-uid__content__gallery,
+.v--project-uid__content__video {
     h6 {
         @extend .hem-font-reg;
-        margin-top: .5rem;
     }
+}
+
+.v--project-uid__details__item__content {
+  ul {
+    margin: 0;
+  }
 }
 
 </style>

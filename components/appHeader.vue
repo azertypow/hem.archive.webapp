@@ -17,17 +17,14 @@
                         <div class="v-app-header__title">
                             <div><h5>Responsable</h5></div>
                             <div>
-                                <p v-for="responsable of responsables">{{ responsable.firstname }}</p>
+                                <p v-for="responsable of responsables">{{responsable.firstname}} {{responsable.Name}}</p>
                             </div>
                         </div>
-                        <div class="v-app-header__partners">
-                            <div><h5>Partenaires</h5></div>
-                            <div>
-                                <p>Jean-Christophe Revel, CRR Paris</p>
-                                <p>Mathieu Ferey , CNSM Lyon</p>
-                                <p>Pierre Bornachot , Centre Culturel d’Ambronay</p>
-                                <p>Nicolas Bucher, Centre de Musique Baroque de Versailles</p>
-                            </div>
+                        <div class="v-app-header__partners"
+                             v-if="partners && partners.length > 0"
+                        >
+                            <div><h5>Partenaire<template v-if="listWithMoreThanOneLine(partners)" >s</template></h5></div>
+                            <div v-html="partners"></div>
                         </div>
                         <div class="v-app-header__date" >
                             <div><h5>Période</h5></div>
@@ -59,6 +56,7 @@ import {onMounted} from "#imports";
 import {IHemApi_authorInfo} from "~/global/hemApi"
 import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
+import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 
 const props = defineProps<{
     title: string,
@@ -66,6 +64,7 @@ const props = defineProps<{
     responsables?: IHemApi_authorInfo[],
     date?: string,
     cover?: string,
+    partners?: string,
 }>()
 
 </script>
@@ -118,6 +117,12 @@ h1, p, h5 {
     > *:first-child {
         width: calc(100% / 4 * 1);
     }
+
+  ul > li {
+    :before {
+      content: none;
+    }
+  }
 }
 
 .brick,
@@ -126,5 +131,19 @@ h1, p, h5 {
     .v-app-header__right {
         mix-blend-mode: color-dodge;
     }
+}
+</style>
+
+<style lang="scss">
+.v-app-header__partners {
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      &:before {
+        content: none;
+      }
+    }
+  }
 }
 </style>

@@ -28,6 +28,10 @@ export const useAppStateStore = defineStore('appState', {
         toggleActiveTag_axes(value: IHemApi_tag_axes) {
             this.$state.activeTag_axes = this.$state.activeTag_axes?.uri === value.uri ? null : value
             this.$state.activeTag_theme = null
+        },
+        clearHomeResearch() {
+            this.searchHomeStatus = null
+            this.searchHomeResults = []
         }
     },
 })

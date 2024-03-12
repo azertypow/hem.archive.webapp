@@ -68,7 +68,7 @@
                     <input type="text"
                            placeholder="recherche"
                            v-model="querySearch"
-                           @keydown="(e) => {if(e.code === 'Enter') postQuerySearch()}"
+                           @keydown="(e) => {if(e.code.toLowerCase() === 'enter') postQuerySearch()}"
                     />
                     <button
                         @click="postQuerySearch"
@@ -121,6 +121,7 @@
             >Communauté</nuxt-link>
         </div>
 
+      <transition>
         <div
             class="v-app-nav__categories fp-grid-with-gutter"
             v-if="useRouter().currentRoute.value.fullPath === '/'
@@ -137,6 +138,7 @@
                 :is-unactive="useAppStateStore().activeTag_axes?.uri !== axe.uri"
             />
         </div>
+      </transition>
 
         <div
             class="v-app-nav__activated-tag"
@@ -176,19 +178,13 @@ async function postQuerySearch() {
     if( useAppStateStore().searchHomeStatus === null ) return
 
     const {result} = await getSearch(querySearch.value)
+    useAppStateStore().searchIsOpen = false
 
     window.setTimeout(() => {
-
-
-
 
         useAppStateStore().searchHomeStatus = 'ended'
         useAppStateStore().searchHomeResults = Object.values(result)
     }, 1_000)
-
-}
-
-function clearHomeResearch() {
 
 }
 

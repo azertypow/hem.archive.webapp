@@ -12,6 +12,12 @@
         >
             <app-nav/>
         </div>
+      <transition>
+        <div class="v-app__cache"
+             @click="closeMenuAndResearch"
+             v-if="useAppStateStore().searchIsOpen || useAppStateStore().menuIsOPen"
+        ></div>
+      </transition>
         <NuxtPage/>
     </div>
 </template>
@@ -21,7 +27,15 @@
 
 
 <style lang="scss" scoped>
-.v-app {
+.v-app__cache {
+  background: rgba(0, 0, 0, .75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  backdrop-filter: blur(2px);
 }
 
 .v-app__nav {
@@ -77,6 +91,11 @@ onMounted(async () => {
   useAppStateStore().tag_themeList = tagsList.listTheme
   useAppStateStore().tag_axesList = tagsList.listAxes
 })
+
+function closeMenuAndResearch() {
+  useAppStateStore().menuIsOPen = false
+  useAppStateStore().searchIsOpen = false
+}
 
 useRouter().beforeEach((to, from, next) => {
 

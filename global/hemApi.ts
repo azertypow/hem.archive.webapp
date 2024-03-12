@@ -21,7 +21,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   partners: string,
   team: string,
   financement: string,
-  content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image | IHemApi_bloks_video },
+  content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image | IHemApi_bloks_video | IHemApi_blocks_gallery },
   filesChapters: Record<string, IHemApi_filesChapter>
 }
 
@@ -73,6 +73,10 @@ export interface IHemApi_bloks_video extends IHemApi_bloks {
   }
 }
 
+export interface IHemApi_blocks_gallery extends IHemApi_bloks{
+    type: 'gallery'
+    content: IHemApi_imageData[]
+}
 
 export interface IHemApi_imageData {
   caption: string,
