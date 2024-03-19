@@ -88,6 +88,7 @@ import {getTagsList} from "~/global/getDataFromHemApi";
 
 onMounted(async () => {
   const tagsList = await getTagsList()
+    console.log(tagsList)
   useAppStateStore().tag_themeList = tagsList.listTheme
   useAppStateStore().tag_axesList = tagsList.listAxes
 })

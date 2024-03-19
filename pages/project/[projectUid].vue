@@ -134,10 +134,10 @@
                         </div>
                         <div
                             class="v--project-uid__details__item"
+                            v-if="project.partners && project.partners.length > 0"
                         >
                             <div
                                 class="v--project-uid__details__item__title"
-                                v-if="project.partners && project.partners.length > 0"
                             >
                                 Partenaire<template v-if="listWithMoreThanOneLine(project.partners)" >s</template>
                             </div>
@@ -182,6 +182,7 @@
                         </div>
                         <div
                             class="v--project-uid__details__item"
+                            v-if="project.financement && project.financement.length > 0"
                         >
                             <div
                                 class="v--project-uid__details__item__title"
