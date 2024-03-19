@@ -299,12 +299,9 @@
         </template>
         <div class="v--project-uid__close-information"
         >
-            <div class="v--project-uid__close-information__text app-button">fermer le projet</div>
-        </div>
-        <div
-            class="v--project-uid__end-page"
-        >
-            <div ref="endOfPage" class="v--project-uid__end-page__detector"></div>
+            <div class="v--project-uid__close-information__text app-button"
+                 @click="closeProject"
+            >fermer le projet</div>
         </div>
     </section>
 </template>
@@ -331,7 +328,6 @@ import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
-const endOfPage = ref()
 const activeBackHistoryNavigation: Ref<UnwrapRef<boolean>> = ref(false)
 
 const projectUid = ref(project.value?.axes[0].uid as AxesUid)
@@ -350,19 +346,13 @@ definePageMeta({
 
 onMounted(() => {
     nextTick(() => {
-        if(! (endOfPage.value instanceof HTMLElement) ) return
-
-        const endOfPageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(value => {
-                if(activeBackHistoryNavigation.value && value.isIntersecting) useRouter().go(-1)
-            })
-        })
-
-        endOfPageObserver.observe(endOfPage.value)
+        loadProjectDataFromHEMAPI().then(() => activeBackHistoryNavigation.value = true)
     })
-
-    loadProjectDataFromHEMAPI().then(() => activeBackHistoryNavigation.value = true)
 })
+
+function closeProject() {
+    if(activeBackHistoryNavigation.value) useRouter().go(-1)
+}
 
 function onThemeFromProjectClicked(theme: IHemApi_tag_theme) {
     useAppStateStore().activeTag_theme = theme
@@ -464,15 +454,6 @@ function extractVideoID(url: string) {
 .v--project-uid__close-information__text {
     justify-self: center;
     align-self: end;
-}
-
-.v--project-uid__end-page {
-}
-
-.v--project-uid__end-page__detector {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .v--project-uid__connected {
