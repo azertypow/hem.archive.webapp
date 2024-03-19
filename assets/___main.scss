@@ -90,6 +90,14 @@ button {
   line-height: 1em !important;
 }
 
+.app-button {
+  display: block;
+  border: solid 2px black;
+  border-radius: 2rem;
+  padding: var(--gutter);
+  cursor: pointer;
+}
+
 //form
 .hem-form {
   display: flex;

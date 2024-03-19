@@ -299,7 +299,7 @@
         </template>
         <div class="v--project-uid__close-information"
         >
-            <div class="v--project-uid__close-information__text">fermer le projet</div>
+            <div class="v--project-uid__close-information__text app-button">fermer le projet</div>
         </div>
         <div
             class="v--project-uid__end-page"

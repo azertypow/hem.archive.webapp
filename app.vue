@@ -102,8 +102,6 @@ useRouter().beforeEach((to, from, next) => {
 
     useAppStateStore().menuIsOPen = false
     useAppStateStore().searchIsOpen = false
-    useAppStateStore().activeTag_axes = null
-    if( from.name !== "project-projectUid" ) useAppStateStore().activeTag_theme = null
 
     if(to.name === 'project-projectUid' ) {
         window.setTimeout(() => {
@@ -112,6 +110,11 @@ useRouter().beforeEach((to, from, next) => {
     } else {
         next()
     }
+})
+
+useRouter().afterEach((to, from, next) => {
+    useAppStateStore().activeTag_axes = null
+    if( from.name !== "project-projectUid" ) useAppStateStore().activeTag_theme = null
 })
 
 </script>
