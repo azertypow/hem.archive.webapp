@@ -197,6 +197,23 @@
                                 ></div>
                             </div>
                         </div>
+                        <div
+                            class="v--project-uid__details__item"
+                            v-if="project.publications && project.publications.length > 0"
+                        >
+                            <div
+                                class="v--project-uid__details__item__title"
+                            >
+                                Publications
+                            </div>
+                            <div
+                                class="v--project-uid__details__item__content"
+                            >
+                                <div
+                                    v-html="project.publications"
+                                ></div>
+                            </div>
+                        </div>
 
                         <div
                             class="v--project-uid__details__item"
@@ -259,9 +276,9 @@
                                     >
                                         <div class="v--project-uid__filesChapter-box__chapter__files__item__box">
                                             <div
-                                                class="v--project-uid__filesChapter-box__chapter__files__item__name">
-                                                {{ file.name }}
-                                            </div>
+                                                v-html="file.caption?.length ? file.caption : file.name"
+                                                class="v--project-uid__filesChapter-box__chapter__files__item__name"
+                                            ></div>
                                         </div>
 
                                         <div class="v--project-uid__filesChapter-box__chapter__files__item__box">
@@ -347,8 +364,8 @@ definePageMeta({
 
 onMounted(() => {
     nextTick(() => {
-        loadProjectDataFromHEMAPI().then(() => activeBackHistoryNavigation.value = true)
     })
+    loadProjectDataFromHEMAPI().then(() => activeBackHistoryNavigation.value = true)
 })
 
 function closeProject() {
@@ -410,6 +427,10 @@ function extractVideoID(url: string) {
 
     background: var(--color-main--green);
     box-shadow: 0 -10rem 0 0 var(--color-main--green);
+
+    @media (max-width: scss-var.$breakpoint-sm) {
+        height: auto;
+    }
 
     .green & {
         background: var(--color-main--green);
@@ -599,6 +620,7 @@ function extractVideoID(url: string) {
     .v--project-uid__details__item__title {
         width: calc(100% / 12 * 3);
         font-weight: 600;
+        margin-bottom: 1rem;
 
         @media (max-width: scss-var.$breakpoint-reg) {
             width: 100%;
@@ -699,6 +721,11 @@ function extractVideoID(url: string) {
     h6 {
         @extend .hem-font-reg;
     }
+}
+
+.v--project-uid__filesChapter-box__chapter__files__item__name {
+    > *:first-child {margin-top: 0}
+    > *:last-child {margin-bottom: 0}
 }
 
 .v--project-uid__content__img,

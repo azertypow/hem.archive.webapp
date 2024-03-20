@@ -121,6 +121,10 @@
         padding-top: 16rem;
     }
 
+    @media (max-width: scss-var.$breakpoint-sm) {
+        padding-top: 22rem;
+    }
+
     &.ts-nav-transition {
         overflow: hidden;
     }
@@ -138,9 +142,17 @@
 
     @media (max-width: scss-var.$breakpoint-reg) {
         width: calc( 100% / 24 * 12 );
+        &.v-index__items--6,
+        &.v-index__items--7 {
+            width: calc( 100% / 24 * 12 );
+        }
     }
     @media (max-width: scss-var.$breakpoint-sm) {
         width: calc( 100% / 24 * 24 );
+        &.v-index__items--6,
+        &.v-index__items--7 {
+            width: calc( 100% / 24 * 24 );
+        }
     }
 }
 

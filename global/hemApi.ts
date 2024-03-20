@@ -21,6 +21,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   partners: string,
   team: string,
   financement: string,
+  publications: string,
   content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image | IHemApi_bloks_video | IHemApi_blocks_gallery },
   filesChapters: Record<string, IHemApi_filesChapter>
 }
@@ -34,6 +35,7 @@ export interface IHemApi_fileInfo {
   type: string;
   url: string;
   id: string;
+  caption?: string;
 }
 
 export interface IHemApi_filesChapter {

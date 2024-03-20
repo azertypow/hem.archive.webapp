@@ -5,7 +5,6 @@
         <nuxt-link
             href="/"
             class="v-app-nav__title"
-
         >Plateforme Recherche HEM</nuxt-link>
 
         <div
@@ -234,6 +233,10 @@ function onToggleTagInNav(name: string) {
         color .25s ease-in-out,
         background-color .25s ease-in-out;
 
+    @media (max-width: scss-var.$breakpoint-sm) {
+        flex-direction: row-reverse;
+    }
+
     .nav-is-open & {
         background-color: black;
         color: white;
@@ -302,6 +305,10 @@ function onToggleTagInNav(name: string) {
         left: 0;
         transform: none;
         margin: 0;
+    }
+
+    @media (max-width:scss-var.$breakpoint-sm) {
+        display: none;
     }
 }
 

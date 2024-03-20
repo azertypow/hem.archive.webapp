@@ -132,3 +132,30 @@
   .fp--reg-grid-coll-23-24 {box-sizing: border-box;width: calc(100% / 24 * 23);}
   .fp--reg-grid-coll-24-24 {box-sizing: border-box;width: calc(100% / 24 * 24);}
 }
+
+@media (max-width: scss-var.$breakpoint-sm) {
+  .fp--sm-grid-coll-1-24 {box-sizing: border-box;width: calc(100% / 24 * 1);}
+  .fp--sm-grid-coll-2-24 {box-sizing: border-box;width: calc(100% / 24 * 2);}
+  .fp--sm-grid-coll-3-24 {box-sizing: border-box;width: calc(100% / 24 * 3);}
+  .fp--sm-grid-coll-4-24 {box-sizing: border-box;width: calc(100% / 24 * 4);}
+  .fp--sm-grid-coll-5-24 {box-sizing: border-box;width: calc(100% / 24 * 5);}
+  .fp--sm-grid-coll-6-24 {box-sizing: border-box;width: calc(100% / 24 * 6);}
+  .fp--sm-grid-coll-7-24 {box-sizing: border-box;width: calc(100% / 24 * 7);}
+  .fp--sm-grid-coll-8-24 {box-sizing: border-box;width: calc(100% / 24 * 8);}
+  .fp--sm-grid-coll-9-24 {box-sizing: border-box;width: calc(100% / 24 * 9);}
+  .fp--sm-grid-coll-10-24 {box-sizing: border-box;width: calc(100% / 24 * 10);}
+  .fp--sm-grid-coll-11-24 {box-sizing: border-box;width: calc(100% / 24 * 11);}
+  .fp--sm-grid-coll-12-24 {box-sizing: border-box;width: calc(100% / 24 * 12);}
+  .fp--sm-grid-coll-13-24 {box-sizing: border-box;width: calc(100% / 24 * 13);}
+  .fp--sm-grid-coll-14-24 {box-sizing: border-box;width: calc(100% / 24 * 14);}
+  .fp--sm-grid-coll-15-24 {box-sizing: border-box;width: calc(100% / 24 * 15);}
+  .fp--sm-grid-coll-16-24 {box-sizing: border-box;width: calc(100% / 24 * 16);}
+  .fp--sm-grid-coll-17-24 {box-sizing: border-box;width: calc(100% / 24 * 17);}
+  .fp--sm-grid-coll-18-24 {box-sizing: border-box;width: calc(100% / 24 * 18);}
+  .fp--sm-grid-coll-19-24 {box-sizing: border-box;width: calc(100% / 24 * 19);}
+  .fp--sm-grid-coll-20-24 {box-sizing: border-box;width: calc(100% / 24 * 20);}
+  .fp--sm-grid-coll-21-24 {box-sizing: border-box;width: calc(100% / 24 * 21);}
+  .fp--sm-grid-coll-22-24 {box-sizing: border-box;width: calc(100% / 24 * 22);}
+  .fp--sm-grid-coll-23-24 {box-sizing: border-box;width: calc(100% / 24 * 23);}
+  .fp--sm-grid-coll-24-24 {box-sizing: border-box;width: calc(100% / 24 * 24);}
+}

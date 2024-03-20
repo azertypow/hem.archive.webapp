@@ -4,10 +4,10 @@
         :class="[getClassColorUidFromAxesUid(axesUid)]"
     >
         <div
-            class="fp-grid-coll-container"
+            class="fp-grid-coll-container v-app-header__container"
         >
             <div
-                class="fp-grid-coll-12-24"
+                class="fp-grid-coll-12-24 fp--sm-grid-coll-24-24"
             >
                 <div
                     class="v-app-header__left"
@@ -35,7 +35,7 @@
             </div>
 
             <div
-                class="fp-grid-coll-12-24"
+                class="fp-grid-coll-12-24 fp--sm-grid-coll-24-24"
             >
                 <div
                     class="v-app-header__right"
@@ -71,6 +71,8 @@ const props = defineProps<{
 
 
 <style lang="scss" scoped>
+@use '@/assets/scss-var';
+
 .v-app-header {
     box-sizing: border-box;
     width: 100%;
@@ -79,6 +81,20 @@ const props = defineProps<{
 
     > * {
         height: 100%;
+    }
+
+    @media (max-width: scss-var.$breakpoint-sm) {
+        height: auto;
+
+        > * {
+            height: auto;
+        }
+    }
+}
+
+.v-app-header__container {
+    @media (max-width: scss-var.$breakpoint-sm) {
+        flex-direction: column-reverse;
     }
 }
 
@@ -94,6 +110,10 @@ h1, p, h5 {
     padding: 3rem 2rem 3rem 5rem;
     box-sizing: border-box;
 
+    @media (max-width: scss-var.$breakpoint-sm) {
+        padding: 4rem 1rem;
+    }
+
     .brick &,
     .dark-green & {
         color: white;
@@ -106,6 +126,11 @@ h1, p, h5 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    @media (max-width: scss-var.$breakpoint-sm) {
+        height: 50vh;
+        width: 100%;
+    }
 }
 
 .v-app-header__title,
