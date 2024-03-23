@@ -1,8 +1,11 @@
+@use "scss-var";
+
 // first import
 @import 'normalize.css';
 @import "_var";
 @import "font-import";
 @import "grid";
+
 
 html {
   font-size: 12px;
@@ -23,6 +26,21 @@ h1,
   font-size: 6.8rem;
   line-height: 7rem;
   font-family: 'PPAgrandir', sans-serif;
+
+  @media (max-width: scss-var.$breakpoint-l) {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+
+  @media (max-width: scss-var.$breakpoint-reg) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+
+  @media (max-width: scss-var.$breakpoint-sm) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
 }
 
 h2,
@@ -31,6 +49,16 @@ h2,
   font-size: 3.4rem;
   line-height: 4rem;
   font-family: 'modernGothic', sans-serif;
+
+  @media (max-width: scss-var.$breakpoint-reg) {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+
+  @media (max-width: scss-var.$breakpoint-sm) {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+  }
 }
 
 h3 {

@@ -110,6 +110,10 @@ h1, p, h5 {
     padding: 3rem 2rem 3rem 5rem;
     box-sizing: border-box;
 
+    @media (max-width: scss-var.$breakpoint-l) {
+        padding: 3rem 2rem 3rem 1rem;
+    }
+
     @media (max-width: scss-var.$breakpoint-sm) {
         padding: 4rem 1rem;
     }
@@ -143,11 +147,15 @@ h1, p, h5 {
         width: calc(100% / 4 * 1);
     }
 
-  ul > li {
-    :before {
-      content: none;
+    @media (max-width: scss-var.$breakpoint-reg) {
+        flex-direction: column;
     }
-  }
+
+    ul > li {
+        :before {
+            content: none;
+        }
+    }
 }
 
 .brick,

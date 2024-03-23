@@ -75,14 +75,19 @@
                             class="v--project-uid__content__gallery"
                             v-if="projectItem.type === 'gallery'"
                         >
-                            <div v-for="image of projectItem.content"
-                            >
-                                <img
-                                    :alt="image.alt || 'pas de texte alt'"
-                                    :src="image.resize.large"
+                            <div class="v--project-uid__content__gallery__imgs">
+                                <div v-for="image of projectItem.content"
                                 >
-                                <h6 v-if="image.caption && image.caption.length > 0" v-html="image.caption"></h6>
+                                    <img
+                                        :alt="image.alt || 'pas de texte alt'"
+                                        :src="image.resize.large"
+                                    >
+                                    <h6 v-if="image.caption && image.caption.length > 0" v-html="image.caption"></h6>
+                                </div>
                             </div>
+                            <h6 v-if="projectItem.caption && projectItem.caption.length > 0"
+                                v-html="projectItem.caption"
+                            ></h6>
                         </div>
 
                         <div
@@ -259,6 +264,21 @@
                             <div
                                 v-html="filesChapter.textDescription"
                             ></div>
+
+                            <div class="v--project-uid__filesChapter-box__chapter__title__list-detail"
+                                 v-if="filesChapter.detailsListe"
+                            >
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
+                                     v-for="detailItem of filesChapter.detailsListe"
+                                >
+                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
+                                         v-html="detailItem.title"
+                                    ></div>
+                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
+                                         v-html="detailItem.liste"
+                                    ></div>
+                                </div>
+                            </div>
 
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
@@ -530,19 +550,41 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__content__gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
 
-    img {
-        display: block;
-        width: 100%;
-    }
-
     h6 {
         margin-top: 1rem;
+    }
+}
+
+.v--project-uid__content__gallery__imgs {
+    --gallery-gap: 2rem;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        --gallery-gap: 1rem;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gallery-gap);
+
+    > div {
+        width: calc( (100% - var(--gallery-gap) ) / 2 );
+
+        @media (max-width: scss-var.$breakpoint-sm) {
+            width: 100%;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        h6 {
+            margin-top: 1rem;
+        }
     }
 }
 
@@ -612,7 +654,8 @@ function extractVideoID(url: string) {
         padding-bottom: 2rem;
         flex-wrap: wrap;
 
-        .dark-green & {
+        .dark-green &,
+        .brick & {
             border-color: white;
         }
     }
@@ -641,6 +684,13 @@ function extractVideoID(url: string) {
         }
     }
 }
+
+.v--project-uid__filesChapter-box__chapter__title__list-detail__item__title {
+    font-weight: 800;
+}
+ .v--project-uid__filesChapter-box__chapter__title__list-detail__item__content {
+
+ }
 
 .v--project-uid__filesChapter-box {
     padding-top: 10rem;
@@ -708,6 +758,7 @@ function extractVideoID(url: string) {
 
 <style lang="scss">
 @use '../../assets/__main';
+@use '@/assets/scss-var';
 
 .v--project-uid__content__text {
     p {
@@ -716,6 +767,17 @@ function extractVideoID(url: string) {
         font-size: 2.25rem;
         margin-top: 3rem;
         margin-bottom: 3rem;
+
+
+        @media (max-width: scss-var.$breakpoint-reg) {
+            line-height: 2rem;
+            font-size: 1.75rem;
+        }
+
+        @media (max-width: scss-var.$breakpoint-sm) {
+            line-height: 1.85rem;
+            font-size: 1.6rem;
+        }
     }
 
     h6 {

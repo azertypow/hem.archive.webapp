@@ -40,6 +40,8 @@ defineEmits<{
 
 
 <style lang="scss" scoped >
+@use '@/assets/scss-var';
+
 .v-tag {
     position: relative;
     cursor: pointer;
@@ -55,6 +57,17 @@ defineEmits<{
     padding: 1rem 4rem;
     cursor: pointer;
     background: white;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        padding: 1rem;
+    }
+
+    @media (max-width: scss-var.$breakpoint-sm) {
+        font-size: 1rem;
+        line-height: 1ex;
+    }
 
     &.is-active,
     &:hover {

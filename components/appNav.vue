@@ -249,7 +249,6 @@ function onToggleTagInNav(name: string) {
 
     @media(max-width: scss-var.$breakpoint-reg) {
         justify-content: space-between;
-        padding-left: var(--gutter-xl);
     }
 }
 
@@ -302,7 +301,7 @@ function onToggleTagInNav(name: string) {
     @media (max-width:scss-var.$breakpoint-reg) {
         position: relative;
         top: 0;
-        left: 0;
+        left: var(--gutter-xl);
         transform: none;
         margin: 0;
     }
@@ -399,6 +398,7 @@ function onToggleTagInNav(name: string) {
     }
 
     @media (max-width: scss-var.$breakpoint-reg) {
+        gap: .5rem;
         flex-wrap: wrap;
         justify-content: flex-start;
     }

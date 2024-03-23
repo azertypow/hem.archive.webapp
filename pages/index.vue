@@ -162,14 +162,16 @@
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 2rem;
+    gap: 1rem;
 
     @media (max-width: scss-var.$breakpoint-reg) {
         justify-content: flex-start;
     }
-}
 
-.v-index__tag {
-    padding: .5rem;
+    @media (max-width: scss-var.$breakpoint-sm) {
+        padding-top: 0;
+        gap: .5rem;
+    }
 }
 
 .v-index__search--loader {

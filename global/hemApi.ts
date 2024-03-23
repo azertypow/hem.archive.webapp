@@ -44,6 +44,11 @@ export interface IHemApi_filesChapter {
   slug: string
   uri: string
   textDescription: string
+  detailsListe: {
+      id: string
+      liste: string
+      title: string
+  }[]
   files: Record<string, IHemApi_fileInfo>
 }
 
@@ -78,6 +83,7 @@ export interface IHemApi_bloks_video extends IHemApi_bloks {
 export interface IHemApi_blocks_gallery extends IHemApi_bloks{
     type: 'gallery'
     content: IHemApi_imageData[]
+    caption: string
 }
 
 export interface IHemApi_imageData {

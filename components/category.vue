@@ -72,6 +72,12 @@ defineEmits<{
         padding: .25rem 1rem;
     }
 
+    @media (max-width: scss-var.$breakpoint-sm) {
+        font-size: 1rem;
+        line-height: 1ex;
+        padding: 0 1rem;
+    }
+
     // green
     .v-category.green & {
         background-color: var(--color-main--green);
