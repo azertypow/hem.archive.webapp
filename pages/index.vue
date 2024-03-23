@@ -33,11 +33,11 @@
         <template v-if='useAppStateStore().searchHomeStatus === null'
         >
             <div
-                v-if="allProjectsInfo"
+                v-if="appHomeProjectsStore.allProjectsInfo"
                 class="fp-grid-coll-container fp-grid-with-gutter"
             >
                 <template
-                    v-for="(projectInfo, index) of allProjectsInfo"
+                    v-for="(projectInfo, index) of appHomeProjectsStore.allProjectsInfo"
                 >
                     <div
                         class="v-index__items"
@@ -192,12 +192,13 @@ import {goToProject} from "~/global/goToProject";
 import {onMounted} from "@vue/runtime-core";
 import {getProjectsData} from "~/global/getDataFromHemApi"
 import {IHemApi_projectInfo, IHemApi_tag_theme} from "~/global/hemApi"
+import {useAppHomeProjectsStore} from "~/stores/appHomeProjectsStore";
 
 const classColor: Ref<UnwrapRef< string >> = ref('default')
 
 const tagsContainer: Ref<HTMLElement|null> = ref(null)
 
-let allProjectsInfo: Ref<UnwrapRef<IHemApi_projectInfo[] | null>> = ref(null)
+let appHomeProjectsStore = useAppHomeProjectsStore()
 
 onMounted(() => {
     loadData()
@@ -209,7 +210,9 @@ onMounted(() => {
 
 async function loadData() {
   const projectsData = await getProjectsData()
-  allProjectsInfo.value = Object.values( projectsData.projects )
+    if( appHomeProjectsStore.allProjectsInfo === null ) {
+        appHomeProjectsStore.allProjectsInfo = Object.values( projectsData.projects ).sort((a, b) => 0.5 - Math.random())
+    }
 }
 
 function setTagVisibilityInPageObserver() {
