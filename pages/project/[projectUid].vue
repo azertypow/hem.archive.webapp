@@ -283,7 +283,7 @@
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
                             >
-                                <h5>À télécharger</h5>
+                                <h5 class="v--project-uid__files_chapter-box__chapter__files__title">À télécharger</h5>
                                 <div
                                     v-for="file of filesChapter.files"
                                     class="v--project-uid__files_chapter-box__chapter__files__coll"
@@ -706,6 +706,10 @@ function extractVideoID(url: string) {
 .v--project-uid__filesChapter-box__chapter__files {
     padding-bottom: 10rem;
     gap: 2rem;
+}
+
+.v--project-uid__files_chapter-box__chapter__files__title {
+    margin-bottom: 0;
 }
 
 .v--project-uid__files_chapter-box__chapter__files__coll {
