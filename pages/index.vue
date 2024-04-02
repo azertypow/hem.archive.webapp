@@ -201,8 +201,25 @@ onMounted(() => {
 
     nextTick(() => {
         setTagVisibilityInPageObserver()
+        setCategoryVisibility()
     })
 })
+
+let beforeScrollPosition = 0
+
+function setCategoryVisibility() {
+    useAppStateStore().categoriesContainerIsOpen = true
+
+    document.querySelector('.v-index')?.addEventListener('scroll', (e: Event) => {
+        const currentScrollPosition = (e.target as HTMLElement).scrollTop
+
+        const scrollDirection = currentScrollPosition > beforeScrollPosition ? 'toBottom' : 'toTop'
+        if (scrollDirection === 'toBottom') useAppStateStore().categoriesContainerIsOpen = false
+        else if (scrollDirection === 'toTop') useAppStateStore().categoriesContainerIsOpen = true
+
+        beforeScrollPosition = currentScrollPosition
+    })
+}
 
 async function loadData() {
   const projectsData = await getProjectsData()

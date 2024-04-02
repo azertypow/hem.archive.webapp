@@ -128,7 +128,7 @@
              v-if="useRouter().currentRoute.value.fullPath === '/'
                 && ! useAppStateStore().menuIsOPen
                 && ! useAppStateStore().searchIsOpen
-                && isMounted"
+                && appStateStore.categoriesContainerIsOpen"
         >
             <div class="v-app-nav__categories__item"
                  v-for="axe of appStateStore.tag_axesList"
@@ -179,11 +179,6 @@ const appStateStore    = useAppStateStore()
 const querySearch = ref('')
 const categoriesContainer: Ref<UnwrapRef<null | HTMLElement>> = ref(null)
 const appNavContainer: Ref<UnwrapRef<null | HTMLElement>> = ref(null)
-const isMounted = ref(false)
-
-onMounted(() => {
-    isMounted.value = true
-})
 
 function onAfterEnterCategories() {
     const appNavContainerElement = appNavContainer.value

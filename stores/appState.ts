@@ -12,7 +12,7 @@ export const useAppStateStore = defineStore('appState', {
 
         tag_axesList: [] as IHemApi_tag_axes[],
 
-
+        categoriesContainerIsOpen: false,
         menuIsOPen: false,
         searchIsOpen: false,
 
