@@ -18,6 +18,8 @@ export const useAppStateStore = defineStore('appState', {
 
         searchHomeStatus: null as null | 'waiting' | 'ended',
         searchHomeResults: [] as IHemApi_projectInfo[],
+
+        calculatingHomeNavHeight: null as null | number
     }),
 
     actions: {

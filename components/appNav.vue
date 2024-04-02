@@ -1,6 +1,6 @@
 <template>
-    <section
-        class="v-app-nav"
+    <section class="v-app-nav"
+             ref="appNavContainer"
     >
         <nuxt-link
             href="/"
@@ -120,12 +120,15 @@
             >Communauté</nuxt-link>
         </div>
 
-      <transition>
-        <div
-            class="v-app-nav__categories fp-grid-with-gutter"
-            v-if="useRouter().currentRoute.value.fullPath === '/'
-            && ! useAppStateStore().menuIsOPen
-            && ! useAppStateStore().searchIsOpen "
+      <transition
+          @after-enter="onAfterEnterCategories"
+      >
+        <div class="v-app-nav__categories fp-grid-with-gutter"
+             ref="categoriesContainer"
+             v-if="useRouter().currentRoute.value.fullPath === '/'
+                && ! useAppStateStore().menuIsOPen
+                && ! useAppStateStore().searchIsOpen
+                && isMounted"
         >
             <category
                 v-for="axe of appStateStore.tag_axesList"
@@ -165,10 +168,29 @@ import {useAppStateStore} from "~/stores/appState";
 import Tag from "~/components/tag.vue";
 import {IHemApi_tag_axes} from "~/global/hemApi";
 import {getSearch} from "~/global/getDataFromHemApi";
+import {UnwrapRef} from "vue";
+import {HTML} from "stylehacks/types/dictionary/tags";
 
 const appStateStore    = useAppStateStore()
 
 const querySearch = ref('')
+const categoriesContainer: Ref<UnwrapRef<null | HTMLElement>> = ref(null)
+const appNavContainer: Ref<UnwrapRef<null | HTMLElement>> = ref(null)
+const isMounted = ref(false)
+
+onMounted(() => {
+    isMounted.value = true
+})
+
+function onAfterEnterCategories() {
+    const appNavContainerElement = appNavContainer.value
+    if( !(appNavContainerElement instanceof HTMLElement) ) return
+
+    const categoryContainerElement = categoriesContainer.value
+    if( !(categoryContainerElement instanceof HTMLElement) ) return
+
+    appStateStore.calculatingHomeNavHeight = appNavContainerElement.getBoundingClientRect().height + categoryContainerElement.getBoundingClientRect().height
+}
 
 async function postQuerySearch() {
 
@@ -387,7 +409,6 @@ function onToggleTagInNav(name: string) {
     gap: 1rem;
     top: 5rem;
     padding-top: 1rem;
-    padding-bottom: 1rem;
     left: 0;
     width: 100%;
     position: fixed;

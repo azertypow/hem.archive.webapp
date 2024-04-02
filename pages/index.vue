@@ -2,6 +2,9 @@
     <div
         class="v-index"
         :class="classColor"
+        :style="{
+            paddingTop: useAppStateStore().calculatingHomeNavHeight + 'px'
+        }"
     >
         <div
             class="v-index__tags fp-grid-with-gutter"
@@ -116,14 +119,7 @@
     left: 50%;
     transform: translate(-50%, 0);
     background: white;
-
-    @media (max-width: scss-var.$breakpoint-reg) {
-        padding-top: 16rem;
-    }
-
-    @media (max-width: scss-var.$breakpoint-sm) {
-        padding-top: 22rem;
-    }
+    transition: padding-top ease-out 500ms;
 
     &.ts-nav-transition {
         overflow: hidden;
@@ -169,7 +165,7 @@
     }
 
     @media (max-width: scss-var.$breakpoint-sm) {
-        padding-top: 0;
+        padding-top: .5rem;
         gap: .5rem;
     }
 }
