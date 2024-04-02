@@ -120,7 +120,7 @@
             >Communauté</nuxt-link>
         </div>
 
-      <transition
+      <transition name="v-transition"
           @after-enter="onAfterEnterCategories"
       >
         <div class="v-app-nav__categories fp-grid-with-gutter"

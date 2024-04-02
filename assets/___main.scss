@@ -182,3 +182,16 @@ button {
 .v-leave-to {
   opacity: 0;
 }
+
+// v-transition with translation
+.v-transition-enter-active,
+.v-transition-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translate(0, 0);
+}
+
+.v-transition-enter-from,
+.v-transition-leave-to {
+  transform: translate(0, -50%);
+  opacity: 0;
+}
