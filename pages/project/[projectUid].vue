@@ -156,6 +156,7 @@
                         </div>
                         <div
                             class="v--project-uid__details__item"
+                            v-if="project.team && project.team.length > 0"
                         >
                             <div
                                 class="v--project-uid__details__item__title"
