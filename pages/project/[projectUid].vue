@@ -286,7 +286,7 @@
                                 <h5>À télécharger</h5>
                                 <div
                                     v-for="file of filesChapter.files"
-                                    class="v--project-uid__filesChapter-box__chapter__files__coll"
+                                    class="v--project-uid__files_chapter-box__chapter__files__coll"
                                 >
                                     <a
                                         :href="file.url"
@@ -708,7 +708,7 @@ function extractVideoID(url: string) {
     gap: 2rem;
 }
 
-.v--project-uid__filesChapter-box__chapter__files__coll {
+.v--project-uid__files_chapter-box__chapter__files__coll {
     width: 100%;
 }
 
