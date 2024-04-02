@@ -130,15 +130,18 @@
                 && ! useAppStateStore().searchIsOpen
                 && isMounted"
         >
-            <category
-                v-for="axe of appStateStore.tag_axesList"
-                @clicked="onToggleAxe(axe)"
-                :name="axe.title"
-                :theme="axe.theme"
-                :uri="axe.uri"
-                :is-active="useAppStateStore().activeTag_axes?.uri === axe.uri"
-                :is-unactive="useAppStateStore().activeTag_axes?.uri !== axe.uri"
-            />
+            <div class="v-app-nav__categories__item"
+                 v-for="axe of appStateStore.tag_axesList"
+            >
+                <category
+                    @clicked="onToggleAxe(axe)"
+                    :name="axe.title"
+                    :theme="axe.theme"
+                    :uri="axe.uri"
+                    :is-active="useAppStateStore().activeTag_axes?.uri === axe.uri"
+                    :is-unactive="useAppStateStore().activeTag_axes?.uri !== axe.uri"
+                />
+            </div>
         </div>
       </transition>
 
@@ -413,6 +416,7 @@ function onToggleTagInNav(name: string) {
     width: 100%;
     position: fixed;
     z-index: 1000;
+    pointer-events: none;
 
     .search-is-open & {
         background: var(--color-grey);
@@ -423,6 +427,10 @@ function onToggleTagInNav(name: string) {
         flex-wrap: wrap;
         justify-content: flex-start;
     }
+}
+
+.v-app-nav__categories__item {
+    pointer-events: all;
 }
 
 .v-app-nav__activated-tag {
