@@ -740,7 +740,6 @@ function extractVideoID(url: string) {
 .v--project-uid__filesChapter-box__chapter__files__item__name {
     font-weight: 600;
     overflow: hidden;
-    white-space: nowrap;
     position: relative;
 }
 
