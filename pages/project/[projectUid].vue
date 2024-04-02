@@ -710,6 +710,7 @@ function extractVideoID(url: string) {
 
 .v--project-uid__files_chapter-box__chapter__files__title {
     margin-bottom: 0;
+    font-weight: 800;
 }
 
 .v--project-uid__files_chapter-box__chapter__files__coll {
