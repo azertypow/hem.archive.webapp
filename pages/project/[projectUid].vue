@@ -286,7 +286,13 @@
                             >
                                 <h5 class="v--project-uid__files_chapter-box__chapter__files__title">À télécharger</h5>
                                 <div
-                                    v-for="file of filesChapter.files"
+                                    v-for="file of [
+                                            ...Object.values(filesChapter.archiveFiles),
+                                            ...Object.values(filesChapter.audioFiles),
+                                            ...Object.values(filesChapter.imagesFiles),
+                                            ...Object.values(filesChapter.pdfFiles),
+                                            ...Object.values(filesChapter.videoFiles),
+                                        ]"
                                     class="v--project-uid__files_chapter-box__chapter__files__coll"
                                 >
                                     <a

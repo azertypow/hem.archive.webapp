@@ -49,7 +49,11 @@ export interface IHemApi_filesChapter {
       liste: string
       title: string
   }[]
-  files: Record<string, IHemApi_fileInfo>
+  archiveFiles: Record<string, IHemApi_fileInfo>
+  imagesFiles: Record<string, IHemApi_fileInfo>
+  videoFiles: Record<string, IHemApi_fileInfo>
+  audioFiles: Record<string, IHemApi_fileInfo>
+  pdfFiles: Record<string, IHemApi_fileInfo>
 }
 
 export interface IHemApi_bloks {
