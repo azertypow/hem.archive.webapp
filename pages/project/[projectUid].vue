@@ -260,7 +260,8 @@
                         >
                             <h2
                                 class="v--project-uid__filesChapter-box__chapter__title"
-                            >{{ filesChapter.title }}</h2>
+                                v-html="italicMarkdownToHtml(filesChapter.title)"
+                            ></h2>
 
                             <div
                                 v-html="filesChapter.textDescription"
@@ -370,6 +371,7 @@ import {
 } from "~/global/getClassColorUidFromAxesUid";
 import {useAppStateStore} from "~/stores/appState";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
+import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
