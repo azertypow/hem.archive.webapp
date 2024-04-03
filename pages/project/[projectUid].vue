@@ -133,8 +133,8 @@
                                 class="v--project-uid__details__item__content"
                             >
                                 <template
-                                    v-for="author of project.authors"
-                                >{{ author.firstname }} {{ author.Name }}<template v-if="project.authors.length > 1" >, </template></template>
+                                    v-for="(author, key) of project.authors"
+                                ><template v-if="key > 0" >, </template>{{ author.firstname }} {{ author.Name }}</template>
                             </div>
                         </div>
                         <div
@@ -210,7 +210,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Publications
+                                Publication<template v-if="listWithMoreThanOneLine(project.publications)" >s</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
