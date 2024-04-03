@@ -145,6 +145,7 @@ h1, p, h5 {
 
     > *:first-child {
         width: calc(100% / 4 * 1);
+        flex-shrink: 0;
     }
 
     @media (max-width: scss-var.$breakpoint-reg) {
