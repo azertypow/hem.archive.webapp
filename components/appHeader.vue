@@ -143,6 +143,10 @@ h1, p, h5 {
     display: flex;
     margin-top: 2rem;
 
+    p {
+        font-weight: 400;
+    }
+
     > *:first-child {
         width: calc(100% / 4 * 1);
         flex-shrink: 0;
