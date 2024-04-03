@@ -18,7 +18,7 @@
             <div
                 class="v-cartel__details"
             >
-                <h5>Responsables</h5>
+                <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
                 <p
                     v-for="responsable of projectInfo.authors"
                 >{{responsable.firstname}} {{responsable.Name}}</p>

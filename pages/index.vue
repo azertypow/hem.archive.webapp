@@ -28,6 +28,7 @@
           <tag
             title="quitter la recherche"
             @clicked="useAppStateStore().clearHomeResearch"
+            :is-active="true"
           />
         </div>
       </template>
