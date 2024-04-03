@@ -809,4 +809,10 @@ function extractVideoID(url: string) {
   }
 }
 
+.v--project-uid__details {
+    a {
+        color: inherit;
+    }
+}
+
 </style>
