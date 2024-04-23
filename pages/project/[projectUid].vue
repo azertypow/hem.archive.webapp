@@ -75,19 +75,9 @@
                             class="v--project-uid__content__gallery"
                             v-if="projectItem.type === 'gallery'"
                         >
-                            <div class="v--project-uid__content__gallery__imgs">
-                                <div v-for="image of projectItem.content"
-                                >
-                                    <img
-                                        :alt="image.alt || 'pas de texte alt'"
-                                        :src="image.resize.large"
-                                    >
-                                    <h6 v-if="image.caption && image.caption.length > 0" v-html="image.caption"></h6>
-                                </div>
-                            </div>
-                            <h6 v-if="projectItem.caption && projectItem.caption.length > 0"
-                                v-html="projectItem.caption"
-                            ></h6>
+                            <app-gallery
+                                :app-gallery-data="projectItem"
+                            />
                         </div>
 
                         <div
@@ -567,35 +557,7 @@ function extractVideoID(url: string) {
     }
 }
 
-.v--project-uid__content__gallery__imgs {
-    --gallery-gap: 2rem;
 
-    @media (max-width: scss-var.$breakpoint-reg) {
-        --gallery-gap: 1rem;
-    }
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--gallery-gap);
-
-    > div {
-        width: calc( (100% - var(--gallery-gap) ) / 2 );
-
-        @media (max-width: scss-var.$breakpoint-sm) {
-            width: 100%;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-        }
-
-        h6 {
-            margin-top: 1rem;
-        }
-    }
-}
 
 .v--project-uid__content__video {
     position: relative;
