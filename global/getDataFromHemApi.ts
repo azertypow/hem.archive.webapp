@@ -6,8 +6,8 @@ import {
     IHemApi_projectDetails, IHemApi_searchResult, IHemApi_tag_axes, IHemApi_tag_theme
 } from "~/global/hemApi"
 
-// export const hemApiBaseUrl = 'https://admin.hem-rad.ch/webapp/api/v1'
-export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
+export const hemApiBaseUrl = 'https://admin.hem-rad.ch/webapp/api/v1'
+// export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
 
 export async function getProjectsData() {
   const response = await fetch(`${hemApiBaseUrl}/projects`)
