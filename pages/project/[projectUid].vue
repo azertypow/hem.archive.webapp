@@ -95,6 +95,15 @@
                             </div>
                             <h6 v-html="projectItem.content.caption" ></h6>
                         </div>
+
+                        <div class="v--project-uid__content__podcast"
+                             v-if="projectItem.type === 'code'"
+                        >
+                            <app-ausha-player
+                                :embed-code="projectItem"
+                            />
+                        </div>
+
                     </template>
                 </div>
             </div>

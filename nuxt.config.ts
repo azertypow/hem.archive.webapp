@@ -3,7 +3,14 @@
 export default defineNuxtConfig({
   app: {
     baseURL: '/',
-    pageTransition: { name: 'page', mode: 'in-out' }
+    pageTransition: { name: 'page', mode: 'in-out' },
+    head: {
+      script: [
+        {
+          src: 'https://player.ausha.co/ausha-player.js',
+        }
+      ],
+    },
   },
   typescript: {
     shim: true,

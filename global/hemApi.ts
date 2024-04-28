@@ -22,7 +22,13 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   team: string,
   financement: string,
   publications: string,
-  content: { [key: string]: IHemApi_bloks_text | IHemApi_bloks_image | IHemApi_bloks_video | IHemApi_blocks_gallery },
+  content: { [key: string]:
+          IHemApi_bloks_text
+          | IHemApi_bloks_image
+          | IHemApi_bloks_video
+          | IHemApi_blocks_gallery
+          | IHemApi_blocks__code
+  },
   filesChapters: Record<string, IHemApi_filesChapter>
 }
 
@@ -57,7 +63,7 @@ export interface IHemApi_filesChapter {
 }
 
 export interface IHemApi_bloks {
-  type: 'text' | 'image' | 'gallery' | 'video'
+  type: 'text' | 'image' | 'gallery' | 'video' | 'code'
   isHidden: boolean
 }
 
@@ -88,6 +94,13 @@ export interface IHemApi_blocks_gallery extends IHemApi_bloks{
     type: 'gallery'
     content: IHemApi_imageData[]
     caption: string
+}
+
+export interface IHemApi_blocks__code extends IHemApi_bloks {
+    type: 'code'
+    content: {
+        'code': string
+    }
 }
 
 export interface IHemApi_imageData {
