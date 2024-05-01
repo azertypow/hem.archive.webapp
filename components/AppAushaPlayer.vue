@@ -9,6 +9,7 @@
                 style="border: none; width:100%; height:220px"
                 :src="`https://player.ausha.co/?podcastId=${cleanedPodcastData.podcastId}&playlist=false&color=%23000000&v=1&playerId=${cleanedPodcastData.playerId}`"
         />
+        <h6>{{embedCode.content.caption}}</h6>
     </section>
 </template>
 

@@ -100,6 +100,7 @@ export interface IHemApi_blocks__code extends IHemApi_bloks {
     type: 'code'
     content: {
         'code': string
+        'caption': string
     }
 }
 
