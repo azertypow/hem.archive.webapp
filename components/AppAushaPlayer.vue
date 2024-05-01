@@ -17,7 +17,7 @@
 
 
 <script setup lang="ts">
-import {ComputedRef, defineProps} from 'vue'
+import {ComputedRef} from 'vue'
 import {IHemApi_blocks__code} from "~/global/hemApi";
 
 const props = defineProps<{
