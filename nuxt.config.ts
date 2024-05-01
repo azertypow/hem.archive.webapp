@@ -5,6 +5,13 @@ export default defineNuxtConfig({
     baseURL: '/',
     pageTransition: { name: 'page', mode: 'in-out' },
     head: {
+      title: 'Plateforme de recherche HEM',
+      meta: [
+        {
+          name: 'description',
+          content: 'Recherche appliquée portant sur des sujets qui couvrent la plupart des champs de la pratique artistique.',
+        }
+      ],
       script: [
         {
           src: 'https://player.ausha.co/ausha-player.js',
