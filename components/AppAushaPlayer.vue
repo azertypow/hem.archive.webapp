@@ -55,10 +55,20 @@ const cleanedPodcastData: ComputedRef<{ podcastId: string; playerId: string }> =
 
 
 <style lang="scss" >
+@use '../assets/__main';
+
 .v-app-ausha-player {
     display: block;
     width: 100%;
     position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+h6 {
+    @extend .hem-font-reg;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
 }
 
 iframe {
