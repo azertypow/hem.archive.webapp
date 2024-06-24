@@ -449,9 +449,8 @@ function extractVideoID(url: string) {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc( 100vh - 5rem);
-    min-height: 50rem;
-
+    height: auto;
+    min-height: calc( 100vh - 5rem);
     background: var(--color-main--green);
     box-shadow: 0 -10rem 0 0 var(--color-main--green);
 

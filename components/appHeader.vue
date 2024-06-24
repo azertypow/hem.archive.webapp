@@ -35,7 +35,7 @@
             </div>
 
             <div
-                class="fp-grid-coll-12-24 fp--sm-grid-coll-24-24"
+                class="fp-grid-coll-12-24 fp--sm-grid-coll-24-24 v-app-header__container__img"
             >
                 <div
                     class="v-app-header__right"
@@ -95,6 +95,13 @@ const props = defineProps<{
 .v-app-header__container {
     @media (max-width: scss-var.$breakpoint-sm) {
         flex-direction: column-reverse;
+    }
+}
+
+.v-app-header__container__img {
+    min-height: calc( 100vh - 5rem);
+    @media (max-width: scss-var.$breakpoint-sm) {
+        min-height: inherit;
     }
 }
 
