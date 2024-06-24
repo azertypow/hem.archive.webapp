@@ -181,8 +181,7 @@
                             <div
                                 class="v--project-uid__details__item__content"
                             >
-                                {{ new Date(project.dateStart).toLocaleString('FR-fr', {month: 'long', year:'numeric'}) }} -
-                                {{ new Date(project.dateEnd).toLocaleString('FR-fr', {month: 'long', year:'numeric'}) }}
+                                {{new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}} - {{new Date(project.dateEnd).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}}
                             </div>
                         </div>
                         <div
