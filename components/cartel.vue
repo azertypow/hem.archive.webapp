@@ -180,6 +180,7 @@ function onCartelClicked() {
         .purple &       {background: linear-gradient(0deg, #c29fe6ff 15%, #c29fe600);}
         .dark-green &   {background: linear-gradient(0deg, #18382aff 15%, #18382a00);}
         .orange &       {background: linear-gradient(0deg, #f27d4eff 15%, #f27d4e00);}
+        .brick &       {background: linear-gradient(0deg,  #610f08ff 15%, #610f0800);}
     }
 }
 
