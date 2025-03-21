@@ -16,7 +16,7 @@
                 src="/ui/HEM-loupe-10pt.png"
                 class="v-app-nav__icon v-app-nav__icon--search_open"
                 v-if="useRouter().currentRoute.value.fullPath === '/'"
-                @click="useAppStateStore().searchIsOpen = !useAppStateStore().searchIsOpen"
+                @click="useAppStateStore().toggleSearchIsOpen()"
             >
             <img
                 src="/ui/HEM-close-2.png"
@@ -48,7 +48,7 @@
             <img
                 v-else
                 alt="open menu"
-                @click="useAppStateStore().menuIsOPen = !useAppStateStore().menuIsOPen"
+                @click="useAppStateStore().toggleMenuIsOPen()"
                 class="v-app-nav__icon v-app-nav__icon--menu_open"
                 src="/ui/HEM-burger-10pt.png"
             >
