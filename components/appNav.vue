@@ -5,7 +5,7 @@
         <nuxt-link
             href="/"
             class="v-app-nav__title"
-        >Plateforme Recherche HEM</nuxt-link>
+        >Campus Digital HEM</nuxt-link>
 
         <div
             class="v-app-nav__right"

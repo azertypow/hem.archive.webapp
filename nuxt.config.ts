@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     baseURL: '/',
     pageTransition: { name: 'page', mode: 'in-out' },
     head: {
-      title: 'Plateforme de recherche HEM',
+      title: 'Campus Digital HEM',
       meta: [
         {
           name: 'description',
