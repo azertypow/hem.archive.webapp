@@ -23,9 +23,9 @@
                     v-for="responsable of projectInfo.authors"
                 >{{responsable.firstname}} {{responsable.Name}}</p>
 
-                <h5>Période</h5>
+                <h5>Publication</h5>
                 <p
-                >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(projectInfo.dateEnd).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
+                >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
             </div>
             <img
                 class="v-cartel__cover"

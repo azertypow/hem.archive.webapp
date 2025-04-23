@@ -33,7 +33,7 @@
             >
                 <app-header
                     :axesUid="projectUid"
-                    :date="`${new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`"
+                    :date="`${new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`"
                     :responsables="project.authors"
                     :title="project.title"
                     :cover="Object.values(project.cover)[0].resize.xxl"
@@ -181,7 +181,7 @@
                             <div
                                 class="v--project-uid__details__item__content"
                             >
-                                {{new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}} - {{new Date(project.dateEnd).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}}
+                                {{new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}}
                             </div>
                         </div>
                         <div
