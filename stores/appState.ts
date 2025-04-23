@@ -34,6 +34,18 @@ export const useAppStateStore = defineStore('appState', {
         clearHomeResearch() {
             this.searchHomeStatus = null
             this.searchHomeResults = []
-        }
+        },
+
+        toggleSearchIsOpen() {
+            this.$state.searchIsOpen = !this.$state.searchIsOpen
+            this.$state.menuIsOPen = false
+        },
+
+
+        toggleMenuIsOPen() {
+            this.$state.menuIsOPen = !this.$state.menuIsOPen
+            this.$state.searchIsOpen = false
+        },
+
     },
 })
