@@ -79,7 +79,7 @@ export interface IHemApi_bloks_mooc extends IHemApi_bloks {
         mooc_title: string
         array_cover: string[],
         url: string,
-        caption: string
+        caption?: string
     },
     array_cover: IHemApi_imageData[]
 }
