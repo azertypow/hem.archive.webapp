@@ -30,6 +30,13 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
           | IHemApi_blocks_gallery
           | IHemApi_blocks__code
   },
+  text_en: { [key: string]:
+          IHemApi_bloks_text
+          | IHemApi_bloks_image
+          | IHemApi_bloks_video
+          | IHemApi_blocks_gallery
+          | IHemApi_blocks__code
+  },
   filesChapters: Record<string, IHemApi_filesChapter>
 }
 
@@ -47,14 +54,21 @@ export interface IHemApi_fileInfo {
 
 export interface IHemApi_filesChapter {
   title: string
+  title_en: string
   uid: string
   slug: string
   uri: string
   textDescription: string
+  textDescription_EN: string
   detailsListe: {
       id: string
       liste: string
       title: string
+  }[]
+  detailsListe_EN: {
+    id: string
+    liste: string
+    title: string
   }[]
   archiveFiles: Record<string, IHemApi_fileInfo>
   imagesFiles: Record<string, IHemApi_fileInfo>
@@ -171,8 +185,11 @@ export interface IHemApi_PersonDetails {
     "firstname":    string,
     "name":         string,
     "bio":          string,
+    "bio_EN":          string,
     "job":          string,
+    "job_en":          string,
     "jobdetail":    string,
+    "jobDetail_EN":    string,
     "mail":         string,
     "publications":         {
         "id":                       string,
@@ -204,6 +221,28 @@ export interface IHemApi_PersonDetails {
                 "categories": string,
                 "uuid": string
             },
+            text_en: {
+              "title": string,
+              "text": string,
+              "cover": string,
+              "datestart": string,
+              "dateend": string,
+              "showmonth": string,
+              "author": string,
+              "partners": string,
+              "team": string,
+              "financement": string,
+              "axes": string,
+              "themes": string,
+              "theme": string,
+              "axe": string,
+              "imagesfiles": string,
+              "videofiles": string,
+              "autiofiles": string,
+              "pdffiles": string,
+              "categories": string,
+              "uuid": string
+            },
             "files": string[],
             "id": string,
             "mediaUrl": string,
@@ -229,6 +268,7 @@ export interface IHemApi_about {
     "uid": string,
     "title": string,
     "abouttext": (IHeadingBlock | ITextBlock)[]
+    "abouttext_en": (IHeadingBlock | ITextBlock)[]
 }
 
 export interface IHeadingBlock {
