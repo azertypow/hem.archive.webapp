@@ -23,6 +23,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   publications: string,
   content: { [key: string]:
           IHemApi_bloks_text
+          | IHemApi_bloks_mooc
           | IHemApi_bloks_image
           | IHemApi_bloks_video
           | IHemApi_blocks_gallery
@@ -62,13 +63,24 @@ export interface IHemApi_filesChapter {
 }
 
 export interface IHemApi_bloks {
-  type: 'text' | 'image' | 'gallery' | 'video' | 'code'
+  type: 'text' | 'image' | 'gallery' | 'video' | 'code' | "mooc"
   isHidden: boolean
 }
 
 export interface IHemApi_bloks_text extends IHemApi_bloks {
   type: 'text'
   value: string
+}
+
+export interface IHemApi_bloks_mooc extends IHemApi_bloks {
+    type: "mooc",
+    content: {
+        mooc_title: string
+        array_cover: string[],
+        url: string,
+        caption?: string
+    },
+    array_cover: IHemApi_imageData[]
 }
 
 export interface IHemApi_bloks_image extends IHemApi_bloks {

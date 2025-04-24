@@ -60,6 +60,16 @@
                             v-if="projectItem.type === 'text'"
                             v-html="projectItem.value"
                         ></div>
+
+                        <div
+                            class="v--project-uid__content__mooc"
+                            v-if="projectItem.type === 'mooc'"
+                        >
+                          <AppMooc
+                                  :data="projectItem"
+                          />
+                        </div>
+
                         <div
                             class="v--project-uid__content__img"
                             v-if="projectItem.type === 'image'"
@@ -431,6 +441,15 @@ function extractVideoID(url: string) {
 
 <style lang="scss" scoped >
 @use '@/assets/scss-var';
+
+.v--project-uid__content__mooc {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
 .v--project-uid {
     background: white;
