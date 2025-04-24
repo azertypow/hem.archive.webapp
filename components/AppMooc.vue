@@ -27,7 +27,6 @@
 
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import {IHemApi_bloks_mooc} from "~/global/hemApi";
 
 defineProps<{
