@@ -15,7 +15,7 @@
                 alt="open research"
                 src="/ui/HEM-loupe-10pt.png"
                 class="v-app-nav__icon v-app-nav__icon--search_open"
-                v-if="useRouter().currentRoute.value.fullPath === '/'"
+                v-if="useRouter().currentRoute.value.path === '/'"
                 @click="useAppStateStore().toggleSearchIsOpen()"
             >
             <img
@@ -125,7 +125,7 @@
       >
         <div class="v-app-nav__categories fp-grid-with-gutter"
              ref="categoriesContainer"
-             v-if="useRouter().currentRoute.value.fullPath === '/'
+             v-if="useRouter().currentRoute.value.path === '/'
                 && ! useAppStateStore().menuIsOPen
                 && ! useAppStateStore().searchIsOpen
                 && appStateStore.categoriesContainerIsOpen"
