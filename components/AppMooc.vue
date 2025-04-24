@@ -83,12 +83,14 @@ defineProps<{
 
 .brick {
   .v-app-mooc {
+    color: white;
     background-color: var(--color-main--brick);
   }
 }
 
 .dark-green {
   .v-app-mooc {
+    color: white;
     background-color: var(--color-main--dark-green);
   }
 }
