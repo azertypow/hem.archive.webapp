@@ -10,6 +10,18 @@
         <div
             class="v-app-nav__right"
         >
+          <button class="v-app-nav__lang"
+                  @click="useUrlLang().setLang('fr')"
+                  v-if="useUrlLang().lang.value === 'en'"
+          >
+            FR
+          </button>
+          <button class="v-app-nav__lang"
+                  @click="useUrlLang().setLang('en')"
+                  v-if="useUrlLang().lang.value === 'fr'"
+          >
+            EN
+          </button>
 
             <img
                 alt="open research"
@@ -173,6 +185,7 @@ import {IHemApi_tag_axes} from "~/global/hemApi";
 import {getSearch} from "~/global/getDataFromHemApi";
 import {UnwrapRef} from "vue";
 import {HTML} from "stylehacks/types/dictionary/tags";
+import {useUrlLang} from "~/composable/useUrlLang";
 
 const appStateStore    = useAppStateStore()
 
@@ -343,6 +356,14 @@ function onToggleTagInNav(name: string) {
     > * {
         cursor: pointer;
     }
+}
+
+.v-app-nav__lang {
+  background: none;
+  border: solid 2px black;
+  display: block;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .v-app-nav__icon--close-project {
