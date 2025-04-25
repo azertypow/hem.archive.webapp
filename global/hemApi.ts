@@ -33,6 +33,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
   },
   text_en: { [key: string]:
           IHemApi_bloks_text
+          | IHemApi_bloks_mooc
           | IHemApi_bloks_image
           | IHemApi_bloks_video
           | IHemApi_blocks_gallery
