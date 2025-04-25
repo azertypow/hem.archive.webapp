@@ -12,6 +12,12 @@
             <div class="v-cartel__title"
             >
                 <h2 class="v-cartel__title__value"
+                    v-if="useUrlLangStore().lang === 'en'"
+                    v-html="italicMarkdownToHtml(projectInfo.title_EN)"
+                ></h2>
+
+                <h2 class="v-cartel__title__value"
+                    v-else
                     v-html="italicMarkdownToHtml(projectInfo.title)"
                 ></h2>
             </div>
@@ -23,7 +29,10 @@
                     v-for="responsable of projectInfo.authors"
                 >{{responsable.firstname}} {{responsable.Name}}</p>
 
-                <h5>Période</h5>
+
+              <template v-if="useUrlLangStore().lang === 'en'"><h5>Periode</h5></template>
+              <template v-else><h5>Période</h5></template>
+
                 <p
                 >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(projectInfo.dateEnd).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
             </div>
@@ -49,6 +58,7 @@ import {
     getShortedLetterFromAxeClassColor
 } from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const props = defineProps<{
     projectInfo: IHemApi_projectInfo
