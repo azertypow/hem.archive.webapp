@@ -1,6 +1,7 @@
+import {useUrlLangStore} from "~/composable/useUrlLang";
+
 export default defineNuxtRouteMiddleware((to) => {
-    const lang = to.query.lang || 'fr'
-    const router = useRouter()
+    const lang = to.query.lang || useUrlLangStore().lang ||'fr'
 
     // Si paramètre manquant, l'ajouter
     if (!to.query.lang) {

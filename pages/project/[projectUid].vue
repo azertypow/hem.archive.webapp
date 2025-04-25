@@ -47,7 +47,7 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <template v-if="useUrlLang().lang.value === 'en'">
+                  <template v-if="useUrlLangStore().lang === 'en'">
                     <h2>Resume</h2>
                   </template>
                   <template v-else>
@@ -57,7 +57,7 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <template v-if="useUrlLang().lang.value === 'en' && project.text_en">
+                  <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template
                         v-for="projectItem of project.text_en"
                     >
@@ -200,7 +200,7 @@
                     <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins"
                     >
-                        <h2 v-if="useUrlLang().lang.value === 'en'">Project technical sheet</h2>
+                        <h2 v-if="useUrlLangStore().lang === 'en'">Project technical sheet</h2>
                         <h2 v-else>Fiche technique du projet</h2>
 
                         <div
@@ -226,7 +226,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                              <template v-if="useUrlLang().lang.value === 'en'">
+                              <template v-if="useUrlLangStore().lang === 'en'">
                                 Partner<template v-if="listWithMoreThanOneLine(project.partners)" >s</template>
                               </template>
                               <template v-else>
@@ -248,7 +248,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                <template v-if="useUrlLang().lang.value === 'en'">Team</template>
+                                <template v-if="useUrlLangStore().lang === 'en'">Team</template>
                                 <template v-else>Équipe</template>
                             </div>
                             <div
@@ -265,7 +265,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                              <template v-if="useUrlLang().lang.value === 'en'">Period</template>
+                              <template v-if="useUrlLangStore().lang === 'en'">Period</template>
                               <template v-else>Période</template>
                             </div>
                             <div
@@ -281,7 +281,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                <template v-if="useUrlLang().lang.value === 'en'">Funding</template>
+                                <template v-if="useUrlLangStore().lang === 'en'">Funding</template>
                                 <template v-else>Financement</template>
                             </div>
                             <div
@@ -316,7 +316,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                              <template v-if="useUrlLang().lang.value === 'en'">Themes</template>
+                              <template v-if="useUrlLangStore().lang === 'en'">Themes</template>
                               <template v-else>Thèmes</template>
                             </div>
                             <div
@@ -462,7 +462,7 @@ import {
 import {useAppStateStore} from "~/stores/appState";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
-import {useUrlLang} from "~/composable/useUrlLang";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)

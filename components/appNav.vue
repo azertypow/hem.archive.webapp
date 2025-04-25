@@ -11,14 +11,14 @@
             class="v-app-nav__right"
         >
           <button class="v-app-nav__lang"
-                  @click="useUrlLang().setLang('fr')"
-                  v-if="useUrlLang().lang.value === 'en'"
+                  @click="useUrlLangStore().setLang('fr')"
+                  v-if="useUrlLangStore().lang === 'en'"
           >
             FR
           </button>
           <button class="v-app-nav__lang"
-                  @click="useUrlLang().setLang('en')"
-                  v-if="useUrlLang().lang.value === 'fr'"
+                  @click="useUrlLangStore().setLang('en')"
+                  v-if="useUrlLangStore().lang === 'fr'"
           >
             EN
           </button>
@@ -185,7 +185,7 @@ import {IHemApi_tag_axes} from "~/global/hemApi";
 import {getSearch} from "~/global/getDataFromHemApi";
 import {UnwrapRef} from "vue";
 import {HTML} from "stylehacks/types/dictionary/tags";
-import {useUrlLang} from "~/composable/useUrlLang";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const appStateStore    = useAppStateStore()
 
