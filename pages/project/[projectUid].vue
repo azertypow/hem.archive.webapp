@@ -437,7 +437,11 @@
         >
             <div class="v--project-uid__close-information__text app-button"
                  @click="closeProject"
-            >fermer le projet</div>
+            >
+              <template v-if="useUrlLangStore().lang === 'en'">close project</template>
+              <template v-else>fermer le projet</template>
+            </div>
+
         </div>
     </section>
 </template>
