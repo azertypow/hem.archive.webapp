@@ -35,7 +35,7 @@
                     :axesUid="projectUid"
                     :date="`${new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(project.dateEnd).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`"
                     :responsables="project.authors"
-                    :title=" useUrlLang().lang.value === 'en' && project.title_EN ?  project.title_EN : project.title"
+                    :title=" useUrlLangStore().lang === 'en' && project.title_EN ?  project.title_EN : project.title"
                     :cover="Object.values(project.cover)[0].resize.xxl"
                     :partners="project.partners"
                 />
