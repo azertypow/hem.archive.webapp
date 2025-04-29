@@ -9,6 +9,7 @@
              v-html="data.content.caption"
           />
           <a class="v-app-mooc__link app-button-variant"
+             target="_blank"
              :href="data.content.url"
           >accéder au cours en ligne</a>
         </div>
