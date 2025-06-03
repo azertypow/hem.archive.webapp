@@ -27,7 +27,7 @@
                             <div v-html="partners"></div>
                         </div>
                         <div class="v-app-header__date" >
-                            <div><h5>Période</h5></div>
+                            <div><h5>Publication</h5></div>
                             <div>{{ date }}</div>
                         </div>
                     </div>

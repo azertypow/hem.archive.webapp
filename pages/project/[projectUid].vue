@@ -186,7 +186,7 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Période
+                              Publication
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
