@@ -40,7 +40,7 @@
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins fp-grid-row-container fp-grid-row-container--center"
                     >
                         <h1>
-                            Communauté des chercheur•euse•s
+                          communauté d'apprentissage
                         </h1>
                     </div>
                 </div>
