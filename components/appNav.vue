@@ -148,6 +148,7 @@
                 <category
                     @clicked="onToggleAxe(axe)"
                     :name="axe.title"
+                    :name_en="axe.title_EN"
                     :theme="axe.theme"
                     :uri="axe.uri"
                     :is-active="useAppStateStore().activeTag_axes?.uri === axe.uri"
@@ -163,6 +164,7 @@
             <tag
                 v-if="useAppStateStore().activeTag_theme && !useAppStateStore().tagsAreVisibleInIndexPage"
                 :title="useAppStateStore().activeTag_theme?.title"
+                :title_en="useAppStateStore().activeTag_theme?.title_EN"
                 :uri="useAppStateStore().activeTag_theme?.uri"
                 :is-active="true"
                 @clicked="onToggleTagInNav($event as any)"

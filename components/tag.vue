@@ -9,7 +9,12 @@
                 'is-active': isActive
             }"
         >
+          <template v-if="useUrlLangStore().lang === 'en' && title_en">
+            {{title_en}}
+          </template>
+          <template v-else>
             {{title}}
+          </template>
         </button>
         <div
             v-if="isActive"
@@ -23,8 +28,11 @@
 
 
 <script lang="ts" setup>
+import {useUrlLangStore} from "~/composable/useUrlLang";
+
 defineProps<{
     title?: string,
+    title_en?: string | null,
     isActive?: boolean,
     uri?: string,
 }>()

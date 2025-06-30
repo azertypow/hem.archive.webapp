@@ -17,6 +17,7 @@
                 <tag
                     @clicked="onToggleTag(tag)"
                     :title="tag.title"
+                    :title_en="tag.title_EN"
                     :uri="tag.uri"
                     :is-active="useAppStateStore().activeTag_theme?.uri === tag.uri"
                 />
@@ -26,6 +27,7 @@
       <template v-if="useAppStateStore().searchHomeStatus === 'ended' && useAppStateStore().searchHomeResults.length > 0">
         <div style="gap: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 5rem">
           <tag
+            title_en="close search"
             title="quitter la recherche"
             @clicked="useAppStateStore().clearHomeResearch"
             :is-active="true"
@@ -70,6 +72,7 @@
             <div>Aucun résultats</div>
             <tag
               title="quitter la recherche"
+              title_en="close search"
               @clicked="useAppStateStore().clearHomeResearch"
             />
           </div>

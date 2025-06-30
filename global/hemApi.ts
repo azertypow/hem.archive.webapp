@@ -172,6 +172,7 @@ export interface IHemApi_Person {
 
 export interface IHemApi_tag_theme {
     title: string,
+    title_EN: string | null ,
     uuid: string,
     uri: string,
     uid: string,

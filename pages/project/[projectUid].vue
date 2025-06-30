@@ -325,6 +325,7 @@
                                 <tag
                                     v-for="theme of project.themes"
                                     :title="theme.title"
+                                    :title_en="theme.title_EN"
                                     :uri="theme.uri"
                                     :is-active="false"
                                     @click="onThemeFromProjectClicked(theme)"
