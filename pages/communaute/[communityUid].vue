@@ -37,8 +37,15 @@
                         >
                             <div class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24">
                                 <h1>{{ personDetails.firstname }} {{ personDetails.name }}</h1>
-                                <h3>{{ personDetails.job }}</h3>
-                                <p>{{ personDetails.jobdetail }}</p>
+
+                                <template v-if="useUrlLangStore().lang === 'en'">
+                                  <h3>{{ personDetails.job_en }}</h3>
+                                  <p>{{ personDetails.jobDetail_EN }}</p>
+                                </template>
+                                <template v-else>
+                                  <h3>{{ personDetails.job }}</h3>
+                                  <p>{{ personDetails.jobdetail }}</p>
+                                </template>
 
                                 <p>{{ personDetails.mail }}</p>
                             </div>
@@ -52,6 +59,7 @@
             <div
                     class="fp-grid-coll-container fp-grid-coll-container--center"
             >
+              <template v-if="useUrlLangStore().lang === 'en'">
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
@@ -60,9 +68,19 @@
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                         v-html="personDetails.bio"
+                />
+              </template>
+              <template v-else>
+                <div
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-
+                  <h2>Biography</h2>
                 </div>
+                <div
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
+                        v-html="personDetails.bio_EN"
+                />
+              </template>
             </div>
 
             <div
@@ -72,7 +90,8 @@
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                    <h2>Projets de recherche</h2>
+                    <h2 v-if="useUrlLangStore().lang === 'en'">Research projects</h2>
+                    <h2 v-else>Projets de recherche</h2>
                 </div>
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
@@ -127,6 +146,7 @@ import {IHemApi_communaute, IHemApi_PersonDetails, IHemApi_projectDetails} from 
 import {goToProject} from "~/global/goToProject";
 import AppHeader from "~/components/appHeader.vue";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 definePageMeta({
     pageTransition: {
