@@ -30,6 +30,34 @@
             </div>
 
 
+          <template v-if="useUrlLangStore().lang === 'en' && aboutContent.abouttext_en.length">
+            <div class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
+            >
+              <div
+                      class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
+              >
+                <template
+                        v-for="textItem of aboutContent.abouttext_en"
+                >
+                  <template
+                          v-if="textItem.type === 'heading'"
+                  >
+                    <h2 v-if="(textItem as IHeadingBlock).content.level === 'h2'" >{{(textItem as IHeadingBlock).content.text}}</h2>
+                    <h3 v-if="(textItem as IHeadingBlock).content.level === 'h3'" >{{(textItem as IHeadingBlock).content.text}}</h3>
+                    <h4 v-if="(textItem as IHeadingBlock).content.level === 'h4'" >{{(textItem as IHeadingBlock).content.text}}</h4>
+                    <h5 v-if="(textItem as IHeadingBlock).content.level === 'h5'" >{{(textItem as IHeadingBlock).content.text}}</h5>
+                    <h6 v-if="(textItem as IHeadingBlock).content.level === 'h6'" >{{(textItem as IHeadingBlock).content.text}}</h6>
+                  </template>
+                  <template
+                          v-else-if="textItem.type === 'text'"
+                  >
+                    <div v-html="textItem.value" ></div>
+                  </template>
+                </template>
+              </div>
+            </div>
+          </template>
+          <template v-else>
             <div
                 class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
                 v-if="aboutContent.abouttext.length"
@@ -37,6 +65,9 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
+                  <p v-if="useUrlLangStore().lang === 'en'"
+                     style="color: var(--color-main--orange)"
+                  >This part is not yet translated</p>
                     <template
                         v-for="textItem of aboutContent.abouttext"
                     >
@@ -57,6 +88,7 @@
                     </template>
                 </div>
             </div>
+          </template>
         </template>
 
 
@@ -71,6 +103,8 @@
 import {Ref, UnwrapRef} from "vue";
 import {IHeadingBlock, IHemApi_about} from "~/global/hemApi";
 import {getAbout} from "~/global/getDataFromHemApi";
+import langGlobal from "~/middleware/lang.global";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const aboutContent: Ref<UnwrapRef<null | IHemApi_about>> = ref(null)
 
