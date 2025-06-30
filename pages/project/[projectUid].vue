@@ -61,15 +61,13 @@
                     <template
                         v-for="projectItem of project.text_en"
                     >
-                        <div
-                            class="v--project-uid__content__text hem-rm-margins"
-                            v-if="projectItem.type === 'text'"
-                            v-html="projectItem.value"
-                        ></div>
+                        <div class="v--project-uid__content__text hem-rm-margins"
+                             v-if="projectItem.type === 'text'"
+                             v-html="projectItem.value"
+                        />
 
-                        <div
-                            class="v--project-uid__content__mooc"
-                            v-if="projectItem.type === 'mooc'"
+                        <div class="v--project-uid__content__mooc"
+                             v-else-if="projectItem.type === 'mooc'"
                         >
                           <AppMooc
                                   :data="projectItem"
@@ -78,7 +76,7 @@
 
                         <div
                             class="v--project-uid__content__img"
-                            v-if="projectItem.type === 'image'"
+                            v-else-if="projectItem.type === 'image'"
                         >
                             <img
                                 :alt="projectItem.alt"
@@ -87,18 +85,16 @@
                             <h6 v-html="projectItem.caption" ></h6>
                         </div>
 
-                        <div
-                            class="v--project-uid__content__gallery"
-                            v-if="projectItem.type === 'gallery'"
+                        <div class="v--project-uid__content__gallery"
+                             v-else-if="projectItem.type === 'gallery'"
                         >
                             <app-gallery
                                 :app-gallery-data="projectItem"
                             />
                         </div>
 
-                        <div
-                            class="v--project-uid__content__video"
-                            v-if="projectItem.type === 'video'"
+                        <div class="v--project-uid__content__video"
+                             v-else-if="projectItem.type === 'video'"
                         >
                             <div class="v--project-uid__content__video__container">
                                 <iframe width="1280"
@@ -110,6 +106,21 @@
                                 />
                             </div>
                             <h6 v-html="projectItem.content.caption" ></h6>
+                        </div>
+                        <div class="v--project-uid__content__video-gallery"
+                                v-else-if="projectItem.type === 'video-gallery'"
+                        >
+                          <template v-for="video of projectItem.content.video_list">
+                            <div  class="v--project-uid__content__video-gallery__container">
+                              <iframe width="1280"
+                                      height="800"
+                                      :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                      frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen
+                              />
+                            </div>
+                          </template>
                         </div>
 
                         <div class="v--project-uid__content__podcast"
@@ -175,6 +186,22 @@
                           />
                         </div>
                         <h6 v-html="projectItem.content.caption" ></h6>
+                      </div>
+
+                      <div class="v--project-uid__content__video-gallery"
+                           v-else-if="projectItem.type === 'video-gallery'"
+                      >
+                        <template v-for="video of projectItem.content.video_list">
+                          <div  class="v--project-uid__content__video-gallery__container">
+                                <iframe width="1280"
+                                        height="800"
+                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                />
+                          </div>
+                        </template>
                       </div>
 
                       <div class="v--project-uid__content__podcast"
@@ -671,7 +698,36 @@ function extractVideoID(url: string) {
     }
 }
 
+.v--project-uid__content__video-gallery {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  justify-content: flex-start;
 
+  @media (max-width: scss-var.$breakpoint-sm) {
+    justify-content: center;
+  }
+}
+
+.v--project-uid__content__video-gallery__container {
+  width: calc( (100% + 1rem ) / 2 - 1rem );
+
+  @media (max-width: scss-var.$breakpoint-sm) {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
 
 .v--project-uid__content__video {
     position: relative;

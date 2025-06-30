@@ -28,6 +28,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
           | IHemApi_bloks_mooc
           | IHemApi_bloks_image
           | IHemApi_bloks_video
+          | IHemApi_bloks_gallery_video
           | IHemApi_blocks_gallery
           | IHemApi_blocks__code
   },
@@ -36,6 +37,7 @@ export interface IHemApi_projectDetails extends IHemApi_projectInfo {
           | IHemApi_bloks_mooc
           | IHemApi_bloks_image
           | IHemApi_bloks_video
+          | IHemApi_bloks_gallery_video
           | IHemApi_blocks_gallery
           | IHemApi_blocks__code
   },
@@ -80,7 +82,7 @@ export interface IHemApi_filesChapter {
 }
 
 export interface IHemApi_bloks {
-  type: 'text' | 'image' | 'gallery' | 'video' | 'code' | "mooc"
+  type: 'text' | 'image' | 'gallery' | 'video' | 'code' | "mooc" | "video-gallery"
   isHidden: boolean
 }
 
@@ -111,12 +113,25 @@ export interface IHemApi_bloks_image extends IHemApi_bloks {
 
 export interface IHemApi_bloks_video extends IHemApi_bloks {
   type: "video",
-  isHidden: false,
+  isHidden: boolean,
   content: {
     url: string,
     caption: "video caption"
   }
 }
+
+export interface IHemApi_bloks_gallery_video extends IHemApi_bloks {
+    type: "video-gallery"
+    isHidden: boolean,
+    content: {
+        video_list: {
+            url: "https://www.youtube.com/watch?v=zFaBO9LqDII"
+        }[]
+    }
+}
+
+
+
 
 export interface IHemApi_blocks_gallery extends IHemApi_bloks{
     type: 'gallery'
