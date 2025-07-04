@@ -9,7 +9,6 @@
     "check": "nuxi typecheck"
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "@types/node": "^18",
     "nuxt": "^3.4.3",
     "sass": "^1.62.1",
