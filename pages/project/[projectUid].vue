@@ -376,29 +376,58 @@
                             class="hem-rm-margins v--project-uid__filesChapter-box__chapter"
                             v-for="filesChapter of project.filesChapters"
                         >
+                          <template v-if="useUrlLangStore().lang === 'en'">
                             <h2
-                                class="v--project-uid__filesChapter-box__chapter__title"
-                                v-html="italicMarkdownToHtml(filesChapter.title)"
+                                    class="v--project-uid__filesChapter-box__chapter__title"
+                                    v-html="italicMarkdownToHtml(filesChapter.title_en)"
                             ></h2>
 
                             <div
-                                v-html="filesChapter.textDescription"
+                                    v-html="filesChapter.textDescription_EN"
+                            ></div>
+
+                            <div class="v--project-uid__filesChapter-box__chapter__title__list-detail"
+                                 v-if="filesChapter.detailsListe_EN"
+                            >
+                              <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
+                                   v-for="detailItem of filesChapter.detailsListe_EN"
+                              >
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
+                                     v-html="detailItem.title"
+                                ></div>
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
+                                     v-html="detailItem.liste"
+                                ></div>
+                              </div>
+                            </div>
+                          </template>
+                          <template v-else>
+                            <h2
+                                    class="v--project-uid__filesChapter-box__chapter__title"
+                                    v-html="italicMarkdownToHtml(filesChapter.title)"
+                            ></h2>
+
+                            <div
+                                    v-html="filesChapter.textDescription"
                             ></div>
 
                             <div class="v--project-uid__filesChapter-box__chapter__title__list-detail"
                                  v-if="filesChapter.detailsListe"
                             >
-                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
-                                     v-for="detailItem of filesChapter.detailsListe"
-                                >
-                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
-                                         v-html="detailItem.title"
-                                    ></div>
-                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
-                                         v-html="detailItem.liste"
-                                    ></div>
-                                </div>
+                              <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
+                                   v-for="detailItem of filesChapter.detailsListe"
+                              >
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
+                                     v-html="detailItem.title"
+                                ></div>
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
+                                     v-html="detailItem.liste"
+                                ></div>
+                              </div>
                             </div>
+                          </template>
+
+
 
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
