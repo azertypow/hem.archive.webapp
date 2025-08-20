@@ -23,11 +23,11 @@ export const useUrlLangStore = defineStore('urlLangStore', {
       const router = useRouter()
       const route = useRoute()
 
-      this.lang = newLang
-
       router.push({
         query: { ...route.query, lang: newLang }
       })
+
+      this.lang = newLang
     }
   }
 })

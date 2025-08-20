@@ -84,12 +84,14 @@
 
 import {useAppStateStore} from "~/stores/appState"
 import {getTagsList} from "~/global/getDataFromHemApi";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 
 onMounted(async () => {
   const tagsList = await getTagsList()
   useAppStateStore().tag_themeList = tagsList.listTheme
   useAppStateStore().tag_axesList = tagsList.listAxes
+  useUrlLangStore().init()
 })
 
 function closeMenuAndResearch() {
