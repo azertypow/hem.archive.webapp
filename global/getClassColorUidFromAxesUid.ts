@@ -1,10 +1,10 @@
 export type AxesUid =
-    'metiers-de-la-musique'
-    | 'musique-et-technologie'
-    | 'musique-et-societe'
-    | 'interpretation-historique'
-    | 'transmission'
-    | 'musique-du-monde'
+    'interpretation-instrumentale-et-vocale'
+    | 'musique-et-mouvement'
+    | 'musique-ancienne'
+    | 'ethnomusicologie'
+    | 'composition-et-theorie'
+    | 'disciplines-transversales'
 
 
 export type AxesClassColor = 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'
@@ -13,18 +13,18 @@ export function getClassColorUidFromAxesUid(themeUid?: AxesUid): AxesClassColor 
 
     if(themeUid === undefined) return 'interpretation-historique' as AxesClassColor
 
-    if(themeUid === 'interpretation-historique')
+    if(themeUid === 'ethnomusicologie')
         return 'dark-green'
-    if(themeUid === 'metiers-de-la-musique')
+    if(themeUid === 'interpretation-instrumentale-et-vocale')
         return 'green'
-    if(themeUid === 'musique-et-technologie')
+    if(themeUid === 'musique-et-mouvement')
         return 'yellow'
-    if(themeUid === 'musique-et-societe')
+    if(themeUid === 'musique-ancienne')
         return 'purple'
-    if(themeUid === 'transmission')
+    if(themeUid === 'composition-et-theorie')
         return 'orange'
 
-    // 'musique-du-monde' and default
+    // 'disciplines-transversales' and default
         return 'brick'
 }
 
