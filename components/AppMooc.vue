@@ -11,7 +11,14 @@
           <a class="v-app-mooc__link app-button-variant"
              target="_blank"
              :href="data.content.url"
-          >accéder au cours en ligne</a>
+          >
+              <template v-if="useUrlLangStore().lang === 'en'">
+                  access to online courses
+              </template>
+              <template v-else>
+                  accéder au cours en ligne
+              </template>
+          </a>
         </div>
 
         <img class="v-app-mooc__img"
@@ -29,6 +36,7 @@
 
 <script setup lang="ts">
 import {IHemApi_bloks_mooc} from "~/global/hemApi";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 defineProps<{
     data: IHemApi_bloks_mooc
