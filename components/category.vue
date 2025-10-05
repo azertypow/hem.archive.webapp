@@ -11,7 +11,12 @@
         <button
             class="v-category__button"
         >
+          <template v-if="useUrlLangStore().lang === 'en' && name_en">
+            {{name_en}}
+          </template>
+          <template v-else>
             {{name}}
+          </template>
         </button>
         <div
             v-if="isActive"
@@ -26,9 +31,11 @@
 
 <script lang="ts" setup>
 import {AxesClassColor} from "~/global/getClassColorUidFromAxesUid";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 defineProps<{
     name: string,
+    name_en: string | null,
     isActive: boolean
     isUnactive: boolean
     theme: AxesClassColor,

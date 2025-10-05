@@ -10,12 +10,24 @@
         <div
             class="v-app-nav__right"
         >
+          <button class="v-app-nav__lang"
+                  @click="useUrlLangStore().setLang('fr')"
+                  v-if="useUrlLangStore().lang === 'en'"
+          >
+            FR
+          </button>
+          <button class="v-app-nav__lang"
+                  @click="useUrlLangStore().setLang('en')"
+                  v-if="useUrlLangStore().lang === 'fr'"
+          >
+            EN
+          </button>
 
             <img
                 alt="open research"
                 src="/ui/HEM-loupe-10pt.png"
                 class="v-app-nav__icon v-app-nav__icon--search_open"
-                v-if="useRouter().currentRoute.value.fullPath === '/'"
+                v-if="useRouter().currentRoute.value.path === '/'"
                 @click="useAppStateStore().toggleSearchIsOpen()"
             >
             <img
@@ -125,7 +137,7 @@
       >
         <div class="v-app-nav__categories fp-grid-with-gutter"
              ref="categoriesContainer"
-             v-if="useRouter().currentRoute.value.fullPath === '/'
+             v-if="useRouter().currentRoute.value.path === '/'
                 && ! useAppStateStore().menuIsOPen
                 && ! useAppStateStore().searchIsOpen
                 && appStateStore.categoriesContainerIsOpen"
@@ -136,6 +148,7 @@
                 <category
                     @clicked="onToggleAxe(axe)"
                     :name="axe.title"
+                    :name_en="axe.title_EN"
                     :theme="axe.theme"
                     :uri="axe.uri"
                     :is-active="useAppStateStore().activeTag_axes?.uri === axe.uri"
@@ -151,6 +164,7 @@
             <tag
                 v-if="useAppStateStore().activeTag_theme && !useAppStateStore().tagsAreVisibleInIndexPage"
                 :title="useAppStateStore().activeTag_theme?.title"
+                :title_en="useAppStateStore().activeTag_theme?.title_EN"
                 :uri="useAppStateStore().activeTag_theme?.uri"
                 :is-active="true"
                 @clicked="onToggleTagInNav($event as any)"
@@ -173,6 +187,7 @@ import {IHemApi_tag_axes} from "~/global/hemApi";
 import {getSearch} from "~/global/getDataFromHemApi";
 import {UnwrapRef} from "vue";
 import {HTML} from "stylehacks/types/dictionary/tags";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const appStateStore    = useAppStateStore()
 
@@ -343,6 +358,14 @@ function onToggleTagInNav(name: string) {
     > * {
         cursor: pointer;
     }
+}
+
+.v-app-nav__lang {
+  background: none;
+  border: solid 2px black;
+  display: block;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .v-app-nav__icon--close-project {

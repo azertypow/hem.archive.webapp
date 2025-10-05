@@ -23,11 +23,23 @@
                         <div class="v-app-header__partners"
                              v-if="partners && partners.length > 0"
                         >
+                          <template v-if="useUrlLangStore().lang === 'en'">
+                            <div><h5>Partner<template v-if="listWithMoreThanOneLine(partners)" >s</template></h5></div>
+                          </template>
+                          <template v-else>
                             <div><h5>Partenaire<template v-if="listWithMoreThanOneLine(partners)" >s</template></h5></div>
+                          </template>
+
                             <div v-html="partners"></div>
                         </div>
                         <div class="v-app-header__date" >
-                            <div><h5>Publication</h5></div>
+                            <template v-if="useUrlLangStore().lang === 'en'">
+                              <div><h5>Publication</h5></div>
+                            </template>
+                            <template v-else>
+                              <div><h5>Publication</h5></div>
+                            </template>
+
                             <div>{{ date }}</div>
                         </div>
                     </div>
@@ -57,6 +69,7 @@ import {IHemApi_authorInfo} from "~/global/hemApi"
 import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const props = defineProps<{
     title: string,

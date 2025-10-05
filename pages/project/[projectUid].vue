@@ -35,8 +35,8 @@
                     :axesUid="projectUid"
                     :date="`${new Date(project.dateStart).toLocaleString('FR-fr', project.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`"
                     :responsables="project.authors"
-                    :title="project.title"
-                    :cover="Object.values(project.cover)[0].resize.xxl"
+                    :title=" useUrlLangStore().lang === 'en' && project.title_EN ?  project.title_EN : project.title"
+                    :cover="Object.values(project.cover)[0]?.resize.xxl"
                     :partners="project.partners"
                 />
             </div>
@@ -47,23 +47,27 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
+                  <template v-if="useUrlLangStore().lang === 'en'">
+                    <h2>Resume</h2>
+                  </template>
+                  <template v-else>
                     <h2>Résumé</h2>
+                  </template>
                 </div>
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
+                  <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template
-                        v-for="projectItem of project.content"
+                        v-for="projectItem of project.text_en"
                     >
-                        <div
-                            class="v--project-uid__content__text hem-rm-margins"
-                            v-if="projectItem.type === 'text'"
-                            v-html="projectItem.value"
-                        ></div>
+                        <div class="v--project-uid__content__text hem-rm-margins"
+                             v-if="projectItem.type === 'text'"
+                             v-html="projectItem.value"
+                        />
 
-                        <div
-                            class="v--project-uid__content__mooc"
-                            v-if="projectItem.type === 'mooc'"
+                        <div class="v--project-uid__content__mooc"
+                             v-else-if="projectItem.type === 'mooc'"
                         >
                           <AppMooc
                                   :data="projectItem"
@@ -72,27 +76,25 @@
 
                         <div
                             class="v--project-uid__content__img"
-                            v-if="projectItem.type === 'image'"
+                            v-else-if="projectItem.type === 'image'"
                         >
                             <img
                                 :alt="projectItem.alt"
-                                :src="projectItem.image.resize.large"
+                                :src="projectItem.image?.resize.large"
                             >
                             <h6 v-html="projectItem.caption" ></h6>
                         </div>
 
-                        <div
-                            class="v--project-uid__content__gallery"
-                            v-if="projectItem.type === 'gallery'"
+                        <div class="v--project-uid__content__gallery"
+                             v-else-if="projectItem.type === 'gallery'"
                         >
                             <app-gallery
                                 :app-gallery-data="projectItem"
                             />
                         </div>
 
-                        <div
-                            class="v--project-uid__content__video"
-                            v-if="projectItem.type === 'video'"
+                        <div class="v--project-uid__content__video"
+                             v-else-if="projectItem.type === 'video'"
                         >
                             <div class="v--project-uid__content__video__container">
                                 <iframe width="1280"
@@ -105,6 +107,21 @@
                             </div>
                             <h6 v-html="projectItem.content.caption" ></h6>
                         </div>
+                        <div class="v--project-uid__content__video-gallery"
+                                v-else-if="projectItem.type === 'video-gallery'"
+                        >
+                          <template v-for="video of projectItem.content.video_list">
+                            <div  class="v--project-uid__content__video-gallery__container">
+                              <iframe width="1280"
+                                      height="800"
+                                      :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                      frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen
+                              />
+                            </div>
+                          </template>
+                        </div>
 
                         <div class="v--project-uid__content__podcast"
                              v-if="projectItem.type === 'code'"
@@ -115,6 +132,88 @@
                         </div>
 
                     </template>
+                  </template>
+                  <template v-else>
+                    <template
+                            v-for="projectItem of project.content"
+                    >
+                      <div
+                              class="v--project-uid__content__text hem-rm-margins"
+                              v-if="projectItem.type === 'text'"
+                              v-html="projectItem.value"
+                      ></div>
+
+                      <div
+                              class="v--project-uid__content__mooc"
+                              v-if="projectItem.type === 'mooc'"
+                      >
+                        <AppMooc
+                                :data="projectItem"
+                        />
+                      </div>
+
+                      <div
+                              class="v--project-uid__content__img"
+                              v-if="projectItem.type === 'image'"
+                      >
+                        <img
+                                :alt="projectItem.alt"
+                                :src="projectItem.image?.resize.large"
+                        >
+                        <h6 v-html="projectItem.caption" ></h6>
+                      </div>
+
+                      <div
+                              class="v--project-uid__content__gallery"
+                              v-if="projectItem.type === 'gallery'"
+                      >
+                        <app-gallery
+                                :app-gallery-data="projectItem"
+                        />
+                      </div>
+
+                      <div
+                              class="v--project-uid__content__video"
+                              v-if="projectItem.type === 'video'"
+                      >
+                        <div class="v--project-uid__content__video__container">
+                          <iframe width="1280"
+                                  height="800"
+                                  :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
+                                  frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowfullscreen
+                          />
+                        </div>
+                        <h6 v-html="projectItem.content.caption" ></h6>
+                      </div>
+
+                      <div class="v--project-uid__content__video-gallery"
+                           v-else-if="projectItem.type === 'video-gallery'"
+                      >
+                        <template v-for="video of projectItem.content.video_list">
+                          <div  class="v--project-uid__content__video-gallery__container">
+                                <iframe width="1280"
+                                        height="800"
+                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                />
+                          </div>
+                        </template>
+                      </div>
+
+                      <div class="v--project-uid__content__podcast"
+                           v-if="projectItem.type === 'code'"
+                      >
+                        <app-ausha-player
+                                :embed-code="projectItem"
+                        />
+                      </div>
+
+                    </template>
+                  </template>
                 </div>
             </div>
 
@@ -128,7 +227,8 @@
                     <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-rm-margins"
                     >
-                        <h2>Fiche technique du projet</h2>
+                        <h2 v-if="useUrlLangStore().lang === 'en'">Project technical sheet</h2>
+                        <h2 v-else>Fiche technique du projet</h2>
 
                         <div
                             class="v--project-uid__details__item"
@@ -153,7 +253,12 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
+                              <template v-if="useUrlLangStore().lang === 'en'">
+                                Partner<template v-if="listWithMoreThanOneLine(project.partners)" >s</template>
+                              </template>
+                              <template v-else>
                                 Partenaire<template v-if="listWithMoreThanOneLine(project.partners)" >s</template>
+                              </template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
@@ -170,7 +275,8 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Équipe
+                                <template v-if="useUrlLangStore().lang === 'en'">Team</template>
+                                <template v-else>Équipe</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
@@ -186,7 +292,8 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                              Publication
+                              <template v-if="useUrlLangStore().lang === 'en'">Publication</template>
+                              <template v-else>Publication</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
@@ -201,7 +308,8 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Financement
+                                <template v-if="useUrlLangStore().lang === 'en'">Funding</template>
+                                <template v-else>Financement</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content"
@@ -235,7 +343,8 @@
                             <div
                                 class="v--project-uid__details__item__title"
                             >
-                                Thèmes
+                              <template v-if="useUrlLangStore().lang === 'en'">Themes</template>
+                              <template v-else>Thèmes</template>
                             </div>
                             <div
                                 class="v--project-uid__details__item__content v--project-uid__details__item__content--is-list"
@@ -243,6 +352,7 @@
                                 <tag
                                     v-for="theme of project.themes"
                                     :title="theme.title"
+                                    :title_en="theme.title_EN"
                                     :uri="theme.uri"
                                     :is-active="false"
                                     @click="onThemeFromProjectClicked(theme)"
@@ -266,29 +376,58 @@
                             class="hem-rm-margins v--project-uid__filesChapter-box__chapter"
                             v-for="filesChapter of project.filesChapters"
                         >
+                          <template v-if="useUrlLangStore().lang === 'en'">
                             <h2
-                                class="v--project-uid__filesChapter-box__chapter__title"
-                                v-html="italicMarkdownToHtml(filesChapter.title)"
+                                    class="v--project-uid__filesChapter-box__chapter__title"
+                                    v-html="italicMarkdownToHtml(filesChapter.title_en)"
                             ></h2>
 
                             <div
-                                v-html="filesChapter.textDescription"
+                                    v-html="filesChapter.textDescription_EN"
+                            ></div>
+
+                            <div class="v--project-uid__filesChapter-box__chapter__title__list-detail"
+                                 v-if="filesChapter.detailsListe_EN"
+                            >
+                              <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
+                                   v-for="detailItem of filesChapter.detailsListe_EN"
+                              >
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
+                                     v-html="detailItem.title"
+                                ></div>
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
+                                     v-html="detailItem.liste"
+                                ></div>
+                              </div>
+                            </div>
+                          </template>
+                          <template v-else>
+                            <h2
+                                    class="v--project-uid__filesChapter-box__chapter__title"
+                                    v-html="italicMarkdownToHtml(filesChapter.title)"
+                            ></h2>
+
+                            <div
+                                    v-html="filesChapter.textDescription"
                             ></div>
 
                             <div class="v--project-uid__filesChapter-box__chapter__title__list-detail"
                                  v-if="filesChapter.detailsListe"
                             >
-                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
-                                     v-for="detailItem of filesChapter.detailsListe"
-                                >
-                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
-                                         v-html="detailItem.title"
-                                    ></div>
-                                    <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
-                                         v-html="detailItem.liste"
-                                    ></div>
-                                </div>
+                              <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item"
+                                   v-for="detailItem of filesChapter.detailsListe"
+                              >
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__title"
+                                     v-html="detailItem.title"
+                                ></div>
+                                <div class="v--project-uid__filesChapter-box__chapter__title__list-detail__item__content"
+                                     v-html="detailItem.liste"
+                                ></div>
+                              </div>
                             </div>
+                          </template>
+
+
 
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
@@ -355,7 +494,11 @@
         >
             <div class="v--project-uid__close-information__text app-button"
                  @click="closeProject"
-            >fermer le projet</div>
+            >
+              <template v-if="useUrlLangStore().lang === 'en'">close project</template>
+              <template v-else>fermer le projet</template>
+            </div>
+
         </div>
     </section>
 </template>
@@ -380,6 +523,7 @@ import {
 import {useAppStateStore} from "~/stores/appState";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
+import {useUrlLangStore} from "~/composable/useUrlLang";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
@@ -583,7 +727,36 @@ function extractVideoID(url: string) {
     }
 }
 
+.v--project-uid__content__video-gallery {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  justify-content: flex-start;
 
+  @media (max-width: scss-var.$breakpoint-sm) {
+    justify-content: center;
+  }
+}
+
+.v--project-uid__content__video-gallery__container {
+  width: calc( (100% + 1rem ) / 2 - 1rem );
+
+  @media (max-width: scss-var.$breakpoint-sm) {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
 
 .v--project-uid__content__video {
     position: relative;
