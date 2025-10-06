@@ -13,7 +13,7 @@
              :href="data.content.url"
           >
               <template v-if="useUrlLangStore().lang === 'en'">
-                  access to online courses
+                  access to online course
               </template>
               <template v-else>
                   accéder au cours en ligne
