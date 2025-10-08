@@ -121,6 +121,12 @@
                               />
                             </div>
                           </template>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                               fill="#e3e3e3">
+                            <path
+                              d="M200-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Z"/>
+                          </svg>
                         </div>
 
                         <div class="v--project-uid__content__podcast"
@@ -202,6 +208,12 @@
                                 />
                           </div>
                         </template>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                             fill="#e3e3e3">
+                          <path
+                            d="M200-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Z"/>
+                        </svg>
                       </div>
 
                       <div class="v--project-uid__content__podcast"
@@ -735,27 +747,58 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__content__video-gallery {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
-  overflow: hidden;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: scroll;
   gap: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
   justify-content: flex-start;
 
-  @media (max-width: scss-var.$breakpoint-sm) {
-    justify-content: center;
+
+  //START scroll
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-main--dark-green) transparent;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-main--dark-green);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-main--dark-green);
+  }
+
+  //END scroll style
+
+  svg {
+    display: block;
+    position: absolute;
+    bottom: -.5rem;
+    left: 50%;
+    z-index: 10;
+    height: 4rem;
+    width: auto;
+    fill: var(--color-main--dark-green);
   }
 }
 
 .v--project-uid__content__video-gallery__container {
-  width: calc( (100% + 1rem ) / 2 - 1rem );
-
-  @media (max-width: scss-var.$breakpoint-sm) {
-    width: 100%;
-    max-width: 30rem;
-  }
+  width: 100%;
+  flex-shrink: 0;
 
   iframe {
     display: block;
