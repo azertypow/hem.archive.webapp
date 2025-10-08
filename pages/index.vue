@@ -228,7 +228,22 @@ function setCategoryVisibility() {
 async function loadData() {
   const projectsData = await getProjectsData()
     if( appHomeProjectsStore.allProjectsInfo === null ) {
-        appHomeProjectsStore.allProjectsInfo = Object.values( projectsData.projects ).sort((a, b) => 0.5 - Math.random())
+
+        const lastFiveYearsProjects = Object.values( projectsData.projects ).filter(project => {
+            const projectDate = new Date(project.dateStart)
+            const currentDate = new Date()
+            const diff = currentDate.getFullYear() - projectDate.getFullYear()
+            return diff <= 5
+        }).sort((a, b) => 0.5 - Math.random())
+
+        const overFiveYearsProjects = Object.values( projectsData.projects ).filter(project => {
+            const projectDate = new Date(project.dateStart)
+            const currentDate = new Date()
+            const diff = currentDate.getFullYear() - projectDate.getFullYear()
+            return diff > 5
+        }).sort((a, b) => 0.5 - Math.random())
+
+        appHomeProjectsStore.allProjectsInfo = [...lastFiveYearsProjects, ...overFiveYearsProjects]
     }
 }
 
