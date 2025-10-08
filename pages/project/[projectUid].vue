@@ -431,6 +431,13 @@
 
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
+                                v-if="[
+                                            ...Object.values(filesChapter.archiveFiles),
+                                            ...Object.values(filesChapter.audioFiles),
+                                            ...Object.values(filesChapter.imagesFiles),
+                                            ...Object.values(filesChapter.pdfFiles),
+                                            ...Object.values(filesChapter.videoFiles),
+                                        ].length > 0"
                             >
                                 <h5 class="v--project-uid__files_chapter-box__chapter__files__title">À télécharger</h5>
                                 <div
