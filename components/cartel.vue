@@ -175,7 +175,7 @@ function onCartelClicked() {
     overflow: hidden;
     font-weight: 500;
     line-height: 1em;
-    height: 4em;
+    height: 5em;
 
     &:after {
         content: "";
@@ -243,10 +243,24 @@ function onCartelClicked() {
     }
 }
 
+@container container-cartel (min-width: 0px) {
+  .v-cartel__title__value {
+    font-size: 3rem;
+  }
+}
 @container container-cartel (min-width: 500px) {
         .v-cartel__title__value {
-            font-size: 6rem;
+            font-size: 4rem;
         }
+}
+@container container-cartel (min-width: 700px) {
+  .v-cartel__details {
+    top: calc(100% / 3 * 2);
+  }
+
+  .v-cartel__title__value {
+    font-size: 7rem;
+  }
 }
 
 </style>
