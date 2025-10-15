@@ -40,13 +40,13 @@
         >
             <div
                 v-if="appHomeProjectsStore.allProjectsInfo"
-                class="fp-grid-coll-container fp-grid-with-gutter"
+                class="fp-grid-coll-container fp-grid-with-gutter v-index__container"
             >
                 <template
                     v-for="(projectInfo, index) of appHomeProjectsStore.allProjectsInfo"
                 >
                     <div
-                        class="v-index__items"
+                        class="v-index__container__items"
                         :class="`v-index__items--${index % 8}`"
                         v-if='showThisCartel({
                             themes: projectInfo.themes.map(value => {return value.uri}),
@@ -79,13 +79,13 @@
         </template>
         <template v-else>
             <div
-                class="fp-grid-coll-container fp-grid-with-gutter"
+                class="fp-grid-coll-container fp-grid-with-gutter v-index__container"
             >
                 <template
                     v-for="(projectInfo) of useAppStateStore().searchHomeResults"
                 >
                     <div
-                        class="v-index__items"
+                        class="v-index__container__items"
                         v-if='showThisCartel({
                             themes: projectInfo.themes.map(value => {return value.uri}),
                             axe: projectInfo.axes[0].uri,
@@ -130,7 +130,16 @@
     }
 }
 
-.v-index__items {
+.v-index__container {
+  /** START todo: demo pour guillaume pour la grille large ici */
+  //@media (min-width: scss-var.$breakpoint-xl) {
+  //  display: grid;
+  //  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  //}
+  /** END todo: demo pour guillaume pour la grille large ici */
+}
+
+.v-index__container__items {
     padding: 1rem;
     width: calc( 100% / 24 * 8 );
     box-sizing: border-box;
@@ -153,6 +162,19 @@
         &.v-index__items--7 {
             width: calc( 100% / 24 * 24 );
         }
+    }
+
+    @media (min-width: scss-var.$breakpoint-xl) {
+      width: calc( 100% / 24 * 6 );
+
+      /** END todo: demo pour guillaume pour la grille large ici */
+      //width: calc( 100% / 24 * 24 );
+      //
+      //&.v-index__items--6,
+      //&.v-index__items--7 {
+      //  width: calc( 100% / 24 * 24 );
+      //}
+      /** START todo: demo pour guillaume pour la grille large ici */
     }
 }
 
