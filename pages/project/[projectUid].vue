@@ -47,16 +47,6 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <template v-if="useUrlLangStore().lang === 'en'">
-                    <h2>Resume</h2>
-                  </template>
-                  <template v-else>
-                    <h2>Résumé</h2>
-                  </template>
-                </div>
-                <div
-                    class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
-                >
                   <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template
                         v-for="projectItem of project.text_en"
@@ -731,32 +721,7 @@ function extractVideoID(url: string) {
         display: block;
         width: 100%;
         object-fit: contain;
-        object-position: top left;
         max-height: calc(95vh - var(--nav-height));
-
-        .green & {
-          background: var(--color-main--green);
-        }
-
-        .yellow & {
-          background: var(--color-main--yellow);
-        }
-
-        .purple & {
-          background: var(--color-main--purple);
-        }
-
-        .dark-green & {
-          background: var(--color-main--dark-green);
-        }
-
-        .orange & {
-          background: var(--color-main--orange);
-        }
-
-        .brick & {
-          background: var(--color-main--brick);
-        }
     }
 
     h6 {

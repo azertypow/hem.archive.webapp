@@ -132,10 +132,10 @@
 
 .v-index__container {
   /** START todo: demo pour guillaume pour la grille large ici */
-  //@media (min-width: scss-var.$breakpoint-xl) {
-  //  display: grid;
-  //  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-  //}
+  @media (min-width: scss-var.$breakpoint-xl) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  }
   /** END todo: demo pour guillaume pour la grille large ici */
 }
 
@@ -168,12 +168,12 @@
       width: calc( 100% / 24 * 6 );
 
       /** END todo: demo pour guillaume pour la grille large ici */
-      //width: calc( 100% / 24 * 24 );
-      //
-      //&.v-index__items--6,
-      //&.v-index__items--7 {
-      //  width: calc( 100% / 24 * 24 );
-      //}
+      width: calc( 100% / 24 * 24 );
+
+      &.v-index__items--6,
+      &.v-index__items--7 {
+        width: calc( 100% / 24 * 24 );
+      }
       /** START todo: demo pour guillaume pour la grille large ici */
     }
 }
