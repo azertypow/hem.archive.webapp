@@ -730,6 +730,33 @@ function extractVideoID(url: string) {
     img {
         display: block;
         width: 100%;
+        object-fit: contain;
+        object-position: top left;
+        max-height: calc(95vh - var(--nav-height));
+
+        .green & {
+          background: var(--color-main--green);
+        }
+
+        .yellow & {
+          background: var(--color-main--yellow);
+        }
+
+        .purple & {
+          background: var(--color-main--purple);
+        }
+
+        .dark-green & {
+          background: var(--color-main--dark-green);
+        }
+
+        .orange & {
+          background: var(--color-main--orange);
+        }
+
+        .brick & {
+          background: var(--color-main--brick);
+        }
     }
 
     h6 {
