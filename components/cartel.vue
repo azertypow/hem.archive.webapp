@@ -1,6 +1,9 @@
 <template>
     <div
         class="v-cartel"
+        :class="{
+          'list-view': projectItemViewList,
+        }"
         ref="cartelElement"
     >
         <nuxt-link
@@ -24,17 +27,20 @@
             <div
                 class="v-cartel__details"
             >
-                <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
-                <p
-                    v-for="responsable of projectInfo.authors"
-                >{{responsable.firstname}} {{responsable.Name}}</p>
+              <div>
+                  <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
+                  <p
+                      v-for="responsable of projectInfo.authors"
+                  >{{responsable.firstname}} {{responsable.Name}}</p>
+              </div>
 
+              <div>
+                <template v-if="useUrlLangStore().lang === 'en'"><h5>Periode</h5></template>
+                <template v-else><h5>Période</h5></template>
 
-              <template v-if="useUrlLangStore().lang === 'en'"><h5>Periode</h5></template>
-              <template v-else><h5>Période</h5></template>
-
-                <p
-                >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(projectInfo.dateEnd).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
+                  <p
+                  >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})} - ${new Date(projectInfo.dateEnd).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
+              </div>
             </div>
             <img
                 class="v-cartel__cover"
@@ -59,6 +65,7 @@ import {
 } from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {useProjectItemViewList} from "~/composable/globalState";
 
 const props = defineProps<{
     projectInfo: IHemApi_projectInfo
@@ -69,6 +76,8 @@ const emit = defineEmits<{
 }>()
 
 const cartelElement: Ref<HTMLElement | null> = ref(null)
+
+const projectItemViewList = useProjectItemViewList()
 
 function onCartelClicked() {
     if( cartelElement.value instanceof HTMLElement) {
@@ -84,6 +93,8 @@ function onCartelClicked() {
 
 
 <style lang="scss" scoped >
+@use "../assets/scss-var";
+
 .v-cartel {
     position: relative;
     container-name: container-cartel;
@@ -261,6 +272,56 @@ function onCartelClicked() {
   .v-cartel__title__value {
     font-size: 7rem;
   }
+}
+
+.v-cartel.list-view {
+
+  .v-cartel__link {
+    padding-bottom: 0;
+    text-decoration: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .v-cartel__title {
+    position: relative;
+    opacity: 1;
+  }
+
+  .v-cartel__details {
+    opacity: 1;
+  }
+
+  .v-cartel__title__value {
+    font-size: 3rem;
+    height: auto;
+    padding-bottom: .25em;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+      font-size: 2.5rem;
+    }
+
+    &:after {
+      content: none;
+      display: none;
+    }
+  }
+
+  .v-cartel__details {
+    position: relative;
+    padding-bottom: var(--gutter-xl);
+    margin-top: .25em;
+    display: flex;
+    gap: var(--gutter-xl);
+
+    h5 {
+      font-weight: 900;
+    }
+  }
+
+
 }
 
 </style>
