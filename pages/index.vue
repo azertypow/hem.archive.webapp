@@ -71,23 +71,44 @@
                   'list-view': projectItemViewList,
                 }"
             >
+              <template v-if="projectItemViewList">
                 <template
-                    v-for="(projectInfo, index) of appHomeProjectsStore.allProjectsInfo"
+                  v-for="(projectInfo, index) of projectsSort(appHomeProjectsStore.allProjectsInfo)"
                 >
-                    <div
-                        class="v-index__container__items"
-                        :class="`v-index__items--${index % 8}`"
-                        v-if='showThisCartel({
-                            themes: projectInfo.themes.map(value => {return value.uri}),
-                            axe: projectInfo.axes[0].uri,
-                        })'
-                    >
-                        <cartel
-                            :project-info="projectInfo"
-                            @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
-                        />
-                    </div>
+                  <div
+                    class="v-index__container__items"
+                    :class="`v-index__items--${index % 8}`"
+                    v-if='showThisCartel({
+                              themes: projectInfo.themes.map(value => {return value.uri}),
+                              axe: projectInfo.axes[0].uri,
+                          })'
+                  >
+                    <cartel
+                      :project-info="projectInfo"
+                      @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    />
+                  </div>
                 </template>
+              </template>
+              <template v-else>
+                <template
+                  v-for="(projectInfo, index) of appHomeProjectsStore.allProjectsInfo"
+                >
+                  <div
+                    class="v-index__container__items"
+                    :class="`v-index__items--${index % 8}`"
+                    v-if='showThisCartel({
+                              themes: projectInfo.themes.map(value => {return value.uri}),
+                              axe: projectInfo.axes[0].uri,
+                          })'
+                  >
+                    <cartel
+                      :project-info="projectInfo"
+                      @cartel-clicked="(cartelElement) => goToProject(cartelElement)"
+                    />
+                  </div>
+                </template>
+              </template>
             </div>
         </template>
         <template v-else-if="useAppStateStore().searchHomeStatus === 'waiting'"
@@ -210,9 +231,10 @@
 
   .list-view & {
     width: 100%;
+    padding-bottom: 0;
 
     @media (min-width: scss-var.$breakpoint-l) {
-      max-width: 60rem;
+      //max-width: 60rem;
     }
   }
 }
@@ -281,6 +303,7 @@ import {getProjectsData} from "~/global/getDataFromHemApi"
 import {IHemApi_projectInfo, IHemApi_tag_theme} from "~/global/hemApi"
 import {useAppHomeProjectsStore} from "~/stores/appHomeProjectsStore";
 import {useProjectItemViewList} from "~/composable/globalState";
+import {projectsSort} from "~/global/projectSort";
 
 const classColor: Ref<UnwrapRef< string >> = ref('default')
 
