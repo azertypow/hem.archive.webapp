@@ -26,7 +26,7 @@
             >
 
               <template v-if="useUrlLangStore().lang === 'en'">
-                <h5>Responsible<template v-if="projectInfo.authors.length > 1">s</template></h5>
+                <h5>Manager<template v-if="projectInfo.authors.length > 1">s</template></h5>
               </template>
               <template v-else>
                 <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>

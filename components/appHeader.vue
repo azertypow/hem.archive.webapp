@@ -17,7 +17,7 @@
                         <div class="v-app-header__title">
 
                           <template v-if="useUrlLangStore().lang === 'en'">
-                            <div><h5>Responsible<template v-if="(responsables?.length || 0) > 1">s</template></h5></div>
+                            <div><h5>Manager<template v-if="(responsables?.length || 0) > 1">s</template></h5></div>
                           </template>
                           <template v-else>
                             <div><h5>Responsable<template v-if="(responsables?.length || 0) > 1">s</template></h5></div>
