@@ -15,7 +15,14 @@
                     <h1 class="" v-html="italicMarkdownToHtml(title)" ></h1>
                     <div>
                         <div class="v-app-header__title">
-                            <h5>Responsable<template v-if="(responsables?.length || 0) > 1">s</template></h5>
+
+                          <template v-if="useUrlLangStore().lang === 'en'">
+                            <div><h5>Responsible<template v-if="(responsables?.length || 0) > 1">s</template></h5></div>
+                          </template>
+                          <template v-else>
+                            <div><h5>Responsable<template v-if="(responsables?.length || 0) > 1">s</template></h5></div>
+                          </template>
+
                             <div>
                                 <p v-for="responsable of responsables">{{responsable.firstname}} {{responsable.Name}}</p>
                             </div>

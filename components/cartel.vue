@@ -24,7 +24,15 @@
             <div
                 class="v-cartel__details"
             >
+
+              <template v-if="useUrlLangStore().lang === 'en'">
+                <h5>Responsible<template v-if="projectInfo.authors.length > 1">s</template></h5>
+              </template>
+              <template v-else>
                 <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
+              </template>
+
+
                 <p
                     v-for="responsable of projectInfo.authors"
                 >{{responsable.firstname}} {{responsable.Name}}</p>
