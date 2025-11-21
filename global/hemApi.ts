@@ -81,7 +81,7 @@ export interface IHemApi_filesChapter {
 }
 
 export interface IHemApi_bloks {
-  type: 'text' | 'image' | 'gallery' | 'video' | 'code' | "mooc" | "video-gallery"
+  type: 'text' | 'image' | 'gallery' | 'video' | 'code' | "mooc" | "video-gallery" | "logo"
   isHidden: boolean
 }
 
@@ -109,6 +109,13 @@ export interface IHemApi_bloks_image extends IHemApi_bloks {
   photoCredit: string,
   image: IHemApi_imageData,
 }
+
+export interface IHemApi_bloks_logo extends IHemApi_bloks {
+  type: 'logo'
+  alt: string,
+  image: IHemApi_imageData,
+}
+
 
 export interface IHemApi_bloks_video extends IHemApi_bloks {
   type: "video",
@@ -283,7 +290,7 @@ export interface IHemApi_searchResult {
 export interface IHemApi_about {
     "uid": string,
     "title": string,
-    "abouttext": (IHeadingBlock | ITextBlock)[]
+    "abouttext": (IHeadingBlock | ITextBlock | IHemApi_bloks_image | IHemApi_bloks_logo)[]
     "abouttext_en": (IHeadingBlock | ITextBlock)[]
 }
 

@@ -85,6 +85,29 @@
                         >
                             <div v-html="textItem.value" ></div>
                         </template>
+
+                        <div
+                          class="v-community-uid__content__img"
+                          v-else-if="textItem.type === 'image'"
+                        >
+                          <img
+                            :alt="textItem.alt"
+                            :src="textItem.image?.resize.large"
+                          >
+                          <h6 v-html="textItem.caption" ></h6>
+                        </div>
+
+
+                      <div
+                        class="v-community-uid__content__logo"
+                        v-else-if="textItem.type === 'logo'"
+                      >
+                        <img
+                          :alt="textItem.alt"
+                          :src="textItem.image?.resize.large"
+                        >
+                      </div>
+
                     </template>
                 </div>
             </div>
@@ -186,5 +209,32 @@ async function loadCommunauteDataFromHEMAPI() {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.v-community-uid__content__img {
+  width: 100%;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.v-community-uid__content__logo {
+  width: 100%;
+
+  img {
+    display: block;
+    width: auto;
+    height: 10rem;
+    max-height: 90vh;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
 </style>
 
