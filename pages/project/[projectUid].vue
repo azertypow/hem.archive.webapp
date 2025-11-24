@@ -67,12 +67,18 @@
                         <div
                             class="v--project-uid__content__img"
                             v-else-if="projectItem.type === 'image'"
+                            :class="{
+                                'is-small': projectItem.small_layout === 'true',
+                              }"
                         >
                             <img
                                 :alt="projectItem.alt"
                                 :src="projectItem.image?.resize.large"
                             >
                             <h6 v-html="projectItem.caption" ></h6>
+                          <a :href="projectItem.link" target="_blank" rel="noopener noreferrer">
+                            lien
+                          </a>
                         </div>
 
                         <div class="v--project-uid__content__gallery"
@@ -151,10 +157,25 @@
                       <div
                               class="v--project-uid__content__img"
                               v-if="projectItem.type === 'image'"
+                              :class="{
+                                'is-small': projectItem.small_layout === 'true',
+                              }"
                       >
-                        <img
-                                :alt="projectItem.alt"
-                                :src="projectItem.image?.resize.large"
+                        <a v-if="projectItem.link"
+                           :href="projectItem.link" target="_blank" rel="noopener noreferrer"
+                           style="position: relative; bottom: 0; right: 0; width: 100%; display: flex; justify-content: center; align-items: center;"
+                        >
+                          <img
+                            :alt="projectItem.alt"
+                            :src="projectItem.image?.resize.large"
+                          >
+                          <svg
+                            style="position: absolute; bottom: 0; right: 0; background: var(--color-main--orange); padding: .5rem; border-radius: 100%; fill: white; width: auto; height: 1.5rem;"
+                            xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                        </a>
+                        <img  v-else
+                              :alt="projectItem.alt"
+                              :src="projectItem.image?.resize.large"
                         >
                         <h6 v-html="projectItem.caption" ></h6>
                       </div>
@@ -717,6 +738,21 @@ function extractVideoID(url: string) {
     margin-top: 4rem;
     margin-bottom: 4rem;
 
+
+    &.is-small {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: calc(100% / 12 * 8);
+
+        @media (max-width: scss-var.$breakpoint-sm) {
+          width: 100%;
+        }
+      }
+
+    }
+
     img {
         display: block;
         width: 100%;
@@ -749,6 +785,10 @@ function extractVideoID(url: string) {
   padding-bottom: 3rem;
   justify-content: flex-start;
 
+  * + & {
+    margin-top: 2rem;
+  }
+
 
   //START scroll
   scrollbar-width: thin;
@@ -779,7 +819,7 @@ function extractVideoID(url: string) {
   svg {
     display: block;
     position: absolute;
-    bottom: -.5rem;
+    bottom: 0;
     left: 50%;
     z-index: 10;
     height: 4rem;

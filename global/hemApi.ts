@@ -109,6 +109,7 @@ export interface IHemApi_bloks_image extends IHemApi_bloks {
   link: string,
   photoCredit: string,
   image: IHemApi_imageData,
+  small_layout: 'true' | 'false'
 }
 
 export interface IHemApi_bloks_video extends IHemApi_bloks {
