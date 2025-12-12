@@ -60,7 +60,7 @@
                   <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template v-if="project.text_en.length === 0">
                       <div class="v--project-uid__content__text hem-rm-margins"
-                           v-html="'<p>Traduction à venir…</p>'"
+                           v-html="'<p>Translation in progress…</p>'"
                       />
                     </template>
                     <template v-else>
