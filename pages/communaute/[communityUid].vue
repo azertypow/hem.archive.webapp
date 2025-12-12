@@ -63,22 +63,22 @@
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                    <h2>Biographie</h2>
+                    <h2>Biography</h2>
                 </div>
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
-                        v-html="personDetails.bio"
+                        v-html="personDetails.bio_EN"
                 />
               </template>
               <template v-else>
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <h2>Biography</h2>
+                  <h2>Biographie</h2>
                 </div>
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
-                        v-html="personDetails.bio_EN"
+                        v-html="personDetails.bio"
                 />
               </template>
             </div>
