@@ -294,14 +294,15 @@ function onCartelClicked() {
     opacity: 1;
     padding-bottom: 0;
     z-index: 10;
+    width: 50%;
     background: var(--color-main--green);
   }
-  .purple .v-cartel__title      { background: var(--color-main--purple);    box-shadow: 0 0 10px 10px var(--color-main--purple); }
-  .green .v-cartel__title       { background: var(--color-main--green);     box-shadow: 0 0 10px 10px var(--color-main--green);}
-  .dark-green .v-cartel__title  { background: var(--color-main--dark-green);box-shadow: 0 0 10px 10px var(--color-main--dark-green);}
-  .brick .v-cartel__title       { background: var(--color-main--brick);     box-shadow: 0 0 10px 10px var(--color-main--brick);}
-  .yellow .v-cartel__title      { background: var(--color-main--yellow);    box-shadow: 0 0 10px 10px var(--color-main--yellow);}
-  .orange .v-cartel__title      { background: var(--color-main--orange);    box-shadow: 0 0 10px 10px var(--color-main--orange);}
+  .purple .v-cartel__title      { background: var(--color-main--purple);    }
+  .green .v-cartel__title       { background: var(--color-main--green);     }
+  .dark-green .v-cartel__title  { background: var(--color-main--dark-green);}
+  .brick .v-cartel__title       { background: var(--color-main--brick);     }
+  .yellow .v-cartel__title      { background: var(--color-main--yellow);    }
+  .orange .v-cartel__title      { background: var(--color-main--orange);    }
 
 
 
@@ -339,6 +340,11 @@ function onCartelClicked() {
 
   .v-cartel__cover {
     z-index: 0;
+    height: 100%;
+    width: 33.33333%;
+    object-fit: cover;
+    right: 0;
+    left: auto;
   }
 
 }
