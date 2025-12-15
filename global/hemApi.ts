@@ -125,8 +125,9 @@ export interface IHemApi_bloks_gallery_video extends IHemApi_bloks {
     type: "video-gallery"
     isHidden: boolean,
     content: {
+        caption?: string,
         video_list: {
-            url: "https://www.youtube.com/watch?v=zFaBO9LqDII"
+            url: string
         }[]
     }
 }

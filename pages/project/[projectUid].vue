@@ -106,17 +106,19 @@
                         <div class="v--project-uid__content__video-gallery"
                                 v-else-if="projectItem.type === 'video-gallery'"
                         >
-                          <template v-for="video of projectItem.content.video_list">
-                            <div  class="v--project-uid__content__video-gallery__container">
-                              <iframe width="1280"
-                                      height="800"
-                                      :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
-                                      frameborder="0"
-                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                      allowfullscreen
-                              />
-                            </div>
-                          </template>
+                          <div class="v--project-uid__content__video-gallery__scroll-wrap">
+                            <template v-for="video of projectItem.content.video_list">
+                              <div  class="v--project-uid__content__video-gallery__container">
+                                <iframe width="1280"
+                                        height="800"
+                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                />
+                              </div>
+                            </template>
+                          </div>
 
                           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                                fill="#e3e3e3">
@@ -208,17 +210,24 @@
                       <div class="v--project-uid__content__video-gallery"
                            v-else-if="projectItem.type === 'video-gallery'"
                       >
-                        <template v-for="video of projectItem.content.video_list">
-                          <div  class="v--project-uid__content__video-gallery__container">
-                                <iframe width="1280"
-                                        height="800"
-                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen
-                                />
-                          </div>
-                        </template>
+                        <div class="v--project-uid__content__video-gallery__scroll-wrap">
+                          <template v-for="video of projectItem.content.video_list">
+                            <div  class="v--project-uid__content__video-gallery__container">
+                                  <iframe width="1280"
+                                          height="800"
+                                          :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                          frameborder="0"
+                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                          allowfullscreen
+                                  />
+                            </div>
+                          </template>
+                        </div>
+
+                        <div class="v--project-uid__content__video-gallery__caption"
+                             v-if="projectItem.content.caption"
+                             v-html="projectItem.content.caption"
+                        />
 
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                              fill="#e3e3e3">
@@ -777,13 +786,9 @@ function extractVideoID(url: string) {
 .v--project-uid__content__video-gallery {
   position: relative;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  flex-wrap: nowrap;
-  overflow: scroll;
-  gap: 1rem;
-  padding-bottom: 3rem;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2rem;
 
   * + & {
     margin-top: 2rem;
@@ -818,14 +823,25 @@ function extractVideoID(url: string) {
 
   svg {
     display: block;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    z-index: 10;
+    //position: absolute;
+    //bottom: 0;
+    //left: 50%;
+    //z-index: 10;
     height: 4rem;
     width: auto;
     fill: var(--color-main--dark-green);
   }
+}
+
+.v--project-uid__content__video-gallery__scroll-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  gap: 1rem;
+  padding-bottom: 0;
+  justify-content: flex-start;
 }
 
 .v--project-uid__content__video-gallery__container {
@@ -838,6 +854,10 @@ function extractVideoID(url: string) {
     height: auto;
     aspect-ratio: 16/9;
   }
+}
+
+.v--project-uid__content__video-gallery__caption {
+  width: 100%;
 }
 
 .v--project-uid__content__video {
