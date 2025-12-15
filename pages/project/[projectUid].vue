@@ -58,7 +58,7 @@
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
                   <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
-                    <template v-if="project.text_en.length === 0">
+                    <template v-if="Object.values(project.text_en).length === 0">
                       <div class="v--project-uid__content__text hem-rm-margins"
                            v-html="'<p>Translation in progress…</p>'"
                       />

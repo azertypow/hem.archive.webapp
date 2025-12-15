@@ -8,6 +8,10 @@ RedirectMatch 404 /\.git
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Redirection des routes /cours/[ID] vers le domaine externe
+  RewriteRule ^cours/(.+)$ https://campus-digital-mooc.sdrvl.ch/$1 [R=301,L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
