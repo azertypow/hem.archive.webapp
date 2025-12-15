@@ -329,8 +329,13 @@ function onCartelClicked() {
     position: relative;
     padding-bottom: var(--gutter-xl);
     margin-top: .25em;
+    left: 0;
     display: flex;
     gap: var(--gutter-xl);
+    box-sizing: border-box;
+    padding-left: var(--gutter-xl);
+    padding-right: var(--gutter-xl);
+    opacity: 1;
 
     h5 {
       font-weight: 900;
