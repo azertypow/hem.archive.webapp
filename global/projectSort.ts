@@ -1,7 +1,7 @@
 import {IHemApi_projectInfo} from "~/global/hemApi";
 
 function removeLeadingArticles(title: string): string {
-  return title.replace(/^(le|la|un|une|a|an|the)\s+/i, '').trim()
+  return title.replace(/^(le|la|un|une|a|an|the|l'|les)\s+/i, '').trim()
 }
 
 export function projectsSort(projects: IHemApi_projectInfo[]): IHemApi_projectInfo[] {
