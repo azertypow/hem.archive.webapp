@@ -14,9 +14,6 @@ export function projectsSort(projects: IHemApi_projectInfo[]): IHemApi_projectIn
     const titleA = removeLeadingArticles(a.title)
     const titleB = removeLeadingArticles(b.title)
 
-    console.log('a: ', titleA)
-    console.log('b: ', titleB)
-
     return titleA.localeCompare(titleB, ['fr', 'en',], {ignorePunctuation: true, sensitivity: 'base'})
   })
 }
