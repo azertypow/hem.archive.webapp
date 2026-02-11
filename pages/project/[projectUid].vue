@@ -96,10 +96,10 @@
                                 <div
                                   v-if="videoPlatformMatch(projectItem.content.url) === null"
                                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
-                                >Erreur avec l'URL: {{videoPlatformMatch(projectItem.content.url)?.src}}</div>
+                                >Erreur avec l'URL: {{projectItem.content.url}}</div>
                                 <iframe
-                                  v-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
-                                  class="vimeo-player"
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
+                                  class="switch-player"
                                   :src="videoPlatformMatch(projectItem.content.url)?.src"
                                   width="1280"
                                   height="720"

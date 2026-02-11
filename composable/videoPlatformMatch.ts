@@ -12,6 +12,13 @@ export function videoPlatformMatch(url: string): {
   const youtubeMatch = url.match(
     /youtu\.be\/([a-zA-Z0-9]+)/
   )
+  const youtubeVarianteMatch = url.match(
+    /youtube\.com\/([a-zA-Z0-9]+)/
+  )
+
+
+
+  console.log(switchMatch, vimeoMatch, youtubeMatch, youtubeVarianteMatch, url)
 
   if (switchMatch) {
     return {
@@ -29,6 +36,16 @@ export function videoPlatformMatch(url: string): {
     return {
       videoPlatform: "youtube",
       src: "https://www.youtube.com/embed/" + youtubeMatch[1],
+    }
+  }
+  else if(youtubeVarianteMatch) {
+    const urlObj = new URL(url);
+    const videoId = urlObj.searchParams.get('v');
+
+
+    return {
+      videoPlatform: "youtube",
+      src: "https://www.youtube.com/embed/" + videoId,
     }
   }
 
