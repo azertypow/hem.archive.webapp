@@ -93,12 +93,40 @@
                              v-else-if="projectItem.type === 'video'"
                         >
                             <div class="v--project-uid__content__video__container">
-                                <iframe width="1280"
-                                        height="800"
-                                        :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen
+                                <div
+                                  v-if="videoPlatformMatch(projectItem.content.url) === null"
+                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                                >Erreur avec l'URL: {{videoPlatformMatch(projectItem.content.url)?.src}}</div>
+                                <iframe
+                                  v-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
+                                  class="vimeo-player"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  allow="fullscreen"
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'vimeo'"
+                                  class="vimeo-player"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                  allowfullscreen
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'youtube'"
+                                  width="1280"
+                                  height="720"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src"
+                                  title="YouTube video player"
+                                  frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allowfullscreen
                                 />
                             </div>
                             <h6 v-html="projectItem.content.caption" ></h6>
@@ -563,6 +591,7 @@ import {useAppStateStore} from "~/stores/appState";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {videoPlatformMatch} from "~/composable/videoPlatformMatch";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
