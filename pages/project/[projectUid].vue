@@ -137,12 +137,40 @@
                           <div class="v--project-uid__content__video-gallery__scroll-wrap">
                             <template v-for="video of projectItem.content.video_list">
                               <div  class="v--project-uid__content__video-gallery__container">
-                                <iframe width="1280"
-                                        height="800"
-                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen
+                                <div
+                                  v-if="videoPlatformMatch(video.url) === null"
+                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                                >Erreur avec l'URL: {{video.url}}</div>
+                                <iframe
+                                  v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'switch'"
+                                  class="switch-player"
+                                  :src="videoPlatformMatch(video.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  allow="fullscreen"
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'vimeo'"
+                                  class="vimeo-player"
+                                  :src="videoPlatformMatch(video.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                  allowfullscreen
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'youtube'"
+                                  width="1280"
+                                  height="720"
+                                  :src="videoPlatformMatch(video.url)?.src"
+                                  title="YouTube video player"
+                                  frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allowfullscreen
                                 />
                               </div>
                             </template>
@@ -224,12 +252,40 @@
                               v-if="projectItem.type === 'video'"
                       >
                         <div class="v--project-uid__content__video__container">
-                          <iframe width="1280"
-                                  height="800"
-                                  :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
-                                  frameborder="0"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                  allowfullscreen
+                          <div
+                            v-if="videoPlatformMatch(projectItem.content.url) === null"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                          >Erreur avec l'URL: {{projectItem.content.url}}</div>
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
+                            class="switch-player"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            width="1280"
+                            height="720"
+                            frameborder="0"
+                            allow="fullscreen"
+                          />
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'vimeo'"
+                            class="vimeo-player"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            width="1280"
+                            height="720"
+                            frameborder="0"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            allowfullscreen
+                          />
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'youtube'"
+                            width="1280"
+                            height="720"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
                           />
                         </div>
                         <h6 v-html="projectItem.content.caption" ></h6>
