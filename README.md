@@ -27,3 +27,10 @@ export const axeColorMap: Map<AxesUid, AxesClassColor> = new Map([
 ])
 
 ```
+
+### api  base url
+
+```ts
+export const hemApiBaseUrl = 'https://admin.hem-rad.ch/webapp/api/v1'
+// export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
+```
