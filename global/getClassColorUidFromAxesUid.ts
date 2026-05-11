@@ -1,31 +1,13 @@
-export type AxesUid =
-    'interpretation-instrumentale-et-vocale'
-    | 'musique-et-mouvement'
-    | 'musique-ancienne'
-    | 'ethnomusicologie'
-    | 'composition-et-theorie'
-    | 'disciplines-transversales'
+import {axeColorMap, AxesUid} from "~/global/_params";
 
 
 export type AxesClassColor = 'green' |'yellow' |'purple' |'dark-green' |'orange' |'brick'
 
 export function getClassColorUidFromAxesUid(themeUid?: AxesUid): AxesClassColor {
 
-    if(themeUid === undefined) return 'interpretation-historique' as AxesClassColor
+    if( themeUid === undefined ) return 'brick'
 
-    if(themeUid === 'ethnomusicologie')
-        return 'dark-green'
-    if(themeUid === 'interpretation-instrumentale-et-vocale')
-        return 'green'
-    if(themeUid === 'musique-et-mouvement')
-        return 'yellow'
-    if(themeUid === 'musique-ancienne')
-        return 'purple'
-    if(themeUid === 'composition-et-theorie')
-        return 'orange'
-
-    // 'disciplines-transversales' and default
-        return 'brick'
+    return axeColorMap.get(themeUid) || 'brick'
 }
 
 

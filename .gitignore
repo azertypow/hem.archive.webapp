@@ -9,3 +9,5 @@ dist
 .idea
 
 docs
+
+global/_params.ts
