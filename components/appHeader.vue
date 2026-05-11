@@ -12,7 +12,10 @@
                 <div
                     class="v-app-header__left"
                 >
-                    <h1 class="" v-html="italicMarkdownToHtml(title)" ></h1>
+                    <h1 class=""
+                        v-html="italicMarkdownToHtml(title)"
+                        style="-webkit-hyphens: auto;-ms-hyphens: auto;hyphens: auto;"
+                    />
                     <div>
                         <div class="v-app-header__title">
                             <h5>Responsable<template v-if="(responsables?.length || 0) > 1">s</template></h5>
