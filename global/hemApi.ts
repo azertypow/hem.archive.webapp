@@ -8,7 +8,7 @@ export interface IHemApi_allProjectInfo {
 export interface IHemApi_projectInfo {
   uid:        string,
   title:      string,
-  title_EN:   string,
+  title_EN?:   string,
   authors:    IHemApi_authorInfo[],
   dateStart:  string,
   dateEnd:    string,
