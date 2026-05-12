@@ -979,7 +979,7 @@ function extractVideoID(url: string) {
     &.v--project-uid__content__video__container--square {
         height: calc(100vh - var(--nav-height) - 10rem);
         padding: 0;
-        aspect-ratio: 99.5/100;
+        aspect-ratio: 100/100;
         margin: auto;
     }
 
