@@ -92,7 +92,11 @@
                         <div class="v--project-uid__content__video"
                              v-else-if="projectItem.type === 'video'"
                         >
-                            <div class="v--project-uid__content__video__container">
+                            <div class="v--project-uid__content__video__container"
+                                 :class="{
+                                    'v--project-uid__content__video__container--square': projectItem.content.toggle_ratio_1_1 === 'true',
+                                 }"
+                            >
                                 <div
                                   v-if="videoPlatformMatch(projectItem.content.url) === null"
                                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
@@ -251,7 +255,11 @@
                               class="v--project-uid__content__video"
                               v-if="projectItem.type === 'video'"
                       >
-                        <div class="v--project-uid__content__video__container">
+                        <div class="v--project-uid__content__video__container"
+                             :class="{
+                                'v--project-uid__content__video__container--square': projectItem.content.toggle_ratio_1_1 === 'true',
+                             }"
+                        >
                           <div
                             v-if="videoPlatformMatch(projectItem.content.url) === null"
                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
@@ -966,6 +974,13 @@ function extractVideoID(url: string) {
         left: 0;
         width: 100%;
         height: 100%;
+    }
+
+    &.v--project-uid__content__video__container--square {
+        height: calc(100vh - var(--nav-height) - 10rem);
+        padding: 0;
+        aspect-ratio: 99.5/100;
+        margin: auto;
     }
 
 }
