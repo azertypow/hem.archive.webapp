@@ -118,6 +118,7 @@ export interface IHemApi_bloks_video extends IHemApi_bloks {
   content: {
     url: string,
     caption: "video caption"
+    toggle_ratio_1_1: "true" | "false"
   }
 }
 
