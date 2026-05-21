@@ -1,4 +1,4 @@
-import {AxesClassColor, AxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {AxesClassColor} from "~/global/getClassColorUidFromAxesUid";
 
 export interface IHemApi_allProjectInfo {
   projects: {[slug: string]: IHemApi_projectInfo}

@@ -174,9 +174,10 @@
                                   height="720"
                                   :src="videoPlatformMatch(video.url)?.src"
                                   title="YouTube video player"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"referrerpolicy="strict-origin-when-cross-origin"
-                                        allowfullscreen
+                                  frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allowfullscreen
                                 />
                               </div>
                             </template>
@@ -650,7 +651,7 @@ import {IHemApi_projectDetails, IHemApi_tag_theme} from "~/global/hemApi";
 import {goToProject} from "~/global/goToProject";
 import {
     AxesClassColor, AxesClassColorShort,
-    AxesUid, getAxeClassColorFromShortedLetter,
+    getAxeClassColorFromShortedLetter,
     getClassColorUidFromAxesUid,
     getShortedLetterFromAxeClassColor
 } from "~/global/getClassColorUidFromAxesUid";
@@ -659,6 +660,7 @@ import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
 import {videoPlatformMatch} from "~/composable/videoPlatformMatch";
+import {AxesUid} from "~/global/_params";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)

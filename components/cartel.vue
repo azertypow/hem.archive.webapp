@@ -32,17 +32,14 @@
                 <h5>Manager<template v-if="projectInfo.authors.length > 1">s</template></h5>
               </template>
               <template v-else>
-                <div>
-                <template v-if="!projectItemViewList">
                   <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
               </template>
 
 
                 <p
                     v-for="responsable of projectInfo.authors"
-                >{{responsable.firstname}} {{responsable.Name}}</p></div>
+                >{{responsable.firstname}} {{responsable.Name}}</p>
 
-              <div>
                 <template v-if="!projectItemViewList">
                   <template v-if="useUrlLangStore().lang === 'en'"><h5>Publication</h5></template>
                   <template v-else><h5>Publication</h5></template>
@@ -50,7 +47,6 @@
 
                   <p
                   >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
-              </div>
             </div>
             <img
                 class="v-cartel__cover"
@@ -69,13 +65,13 @@
 import {Ref} from "vue";
 import {IHemApi_projectInfo} from "~/global/hemApi"
 import {
-    AxesUid,
     getClassColorUidFromAxesUid,
     getShortedLetterFromAxeClassColor
 } from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
 import {useProjectItemViewList} from "~/composable/globalState";
+import {AxesUid} from "~/global/_params";
 
 const props = defineProps<{
     projectInfo: IHemApi_projectInfo

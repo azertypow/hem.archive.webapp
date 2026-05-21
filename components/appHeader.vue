@@ -74,12 +74,12 @@
 
 <script lang="ts" setup>
 
-import {onMounted} from "#imports";
 import {IHemApi_authorInfo} from "~/global/hemApi"
-import {AxesUid, getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
+import {getClassColorUidFromAxesUid} from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {AxesUid} from "~/global/_params";
 
 const props = defineProps<{
     title: string,
