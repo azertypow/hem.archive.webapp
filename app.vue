@@ -121,4 +121,20 @@ useRouter().afterEach((to, from, next) => {
     if( from.name !== "project-projectUid" ) useAppStateStore().activeTag_theme = null
 })
 
+const lang = useUrlLangStore()
+
+useHead({
+  htmlAttrs: {
+    lang: lang.lang,
+  },
+})
+
+watch(lang, (value) => {
+  useHead({
+    htmlAttrs: {
+      lang: value.lang
+    }
+  })
+})
+
 </script>

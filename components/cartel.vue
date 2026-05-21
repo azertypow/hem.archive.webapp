@@ -1,6 +1,9 @@
 <template>
     <div
         class="v-cartel"
+        :class="{
+          'list-view': projectItemViewList,
+        }"
         ref="cartelElement"
     >
         <nuxt-link
@@ -29,20 +32,25 @@
                 <h5>Manager<template v-if="projectInfo.authors.length > 1">s</template></h5>
               </template>
               <template v-else>
-                <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
+                <div>
+                <template v-if="!projectItemViewList">
+                  <h5>Responsable<template v-if="projectInfo.authors.length > 1">s</template></h5>
               </template>
 
 
                 <p
                     v-for="responsable of projectInfo.authors"
-                >{{responsable.firstname}} {{responsable.Name}}</p>
+                >{{responsable.firstname}} {{responsable.Name}}</p></div>
 
+              <div>
+                <template v-if="!projectItemViewList">
+                  <template v-if="useUrlLangStore().lang === 'en'"><h5>Publication</h5></template>
+                  <template v-else><h5>Publication</h5></template>
+                </template>
 
-              <template v-if="useUrlLangStore().lang === 'en'"><h5>Publication</h5></template>
-              <template v-else><h5>Publication</h5></template>
-
-                <p
-                >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
+                  <p
+                  >{{`${new Date(projectInfo.dateStart).toLocaleString('FR-fr', projectInfo.showMonth === 'true' ? {month: 'long', year:'numeric'} : {year:'numeric'})}`}}</p>
+              </div>
             </div>
             <img
                 class="v-cartel__cover"
@@ -67,6 +75,7 @@ import {
 } from "~/global/getClassColorUidFromAxesUid";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {useProjectItemViewList} from "~/composable/globalState";
 
 const props = defineProps<{
     projectInfo: IHemApi_projectInfo
@@ -77,6 +86,8 @@ const emit = defineEmits<{
 }>()
 
 const cartelElement: Ref<HTMLElement | null> = ref(null)
+
+const projectItemViewList = useProjectItemViewList()
 
 function onCartelClicked() {
     if( cartelElement.value instanceof HTMLElement) {
@@ -92,6 +103,8 @@ function onCartelClicked() {
 
 
 <style lang="scss" scoped >
+@use "../assets/scss-var";
+
 .v-cartel {
     position: relative;
     container-name: container-cartel;
@@ -182,8 +195,8 @@ function onCartelClicked() {
     margin: 0;
     overflow: hidden;
     font-weight: 500;
-    line-height: 1em;
-    height: 4em;
+    line-height: 1.15em;
+    height: 5em;
 
     &:after {
         content: "";
@@ -251,10 +264,100 @@ function onCartelClicked() {
     }
 }
 
+@container container-cartel (min-width: 0px) {
+  .v-cartel__title__value {
+    font-size: 3rem;
+  }
+}
 @container container-cartel (min-width: 500px) {
         .v-cartel__title__value {
-            font-size: 6rem;
+            font-size: 4rem;
         }
+}
+@container container-cartel (min-width: 650px) {
+  .v-cartel__details {
+    top: calc(100% / 3 * 2);
+  }
+
+  .v-cartel__title__value {
+    font-size: 7rem;
+  }
+}
+
+.v-cartel.list-view {
+
+  .v-cartel__link {
+    padding-bottom: 0;
+    text-decoration: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .v-cartel__title {
+    position: relative;
+    opacity: 1;
+    padding-bottom: 0;
+    z-index: 10;
+    width: 50%;
+    background: var(--color-main--green);
+  }
+  .purple .v-cartel__title      { background: var(--color-main--purple);    }
+  .green .v-cartel__title       { background: var(--color-main--green);     }
+  .dark-green .v-cartel__title  { background: var(--color-main--dark-green);}
+  .brick .v-cartel__title       { background: var(--color-main--brick);     }
+  .yellow .v-cartel__title      { background: var(--color-main--yellow);    }
+  .orange .v-cartel__title      { background: var(--color-main--orange);    }
+
+
+
+  .purple .v-cartel__title {
+    background: var(--color-main--purple);
+  }
+
+  .v-cartel__title__value {
+    font-size: 3rem;
+    height: auto;
+    padding-bottom: 0;
+
+    @media (max-width: scss-var.$breakpoint-reg) {
+      font-size: 2.5rem;
+    }
+
+    &:after {
+      content: none;
+      display: none;
+    }
+  }
+
+  .v-cartel__details {
+    position: relative;
+    padding-bottom: var(--gutter-xl);
+    margin-top: .25em;
+    left: 0;
+    display: flex;
+    gap: var(--gutter-xl);
+    box-sizing: border-box;
+    padding-left: var(--gutter-xl);
+    padding-right: var(--gutter-xl);
+    opacity: 1;
+
+    h5 {
+      font-weight: 900;
+    }
+  }
+
+
+  .v-cartel__cover {
+    z-index: 0;
+    height: 100%;
+    width: 33.33333%;
+    object-fit: cover;
+    right: 0;
+    left: auto;
+  }
+
 }
 
 </style>

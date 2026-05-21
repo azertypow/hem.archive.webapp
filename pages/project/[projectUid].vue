@@ -47,16 +47,6 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <template v-if="useUrlLangStore().lang === 'en'">
-                    <h2>Resume</h2>
-                  </template>
-                  <template v-else>
-                    <h2>Résumé</h2>
-                  </template>
-                </div>
-                <div
-                    class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
-                >
                   <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template v-if="Object.values(project.text_en).length === 0">
                       <div class="v--project-uid__content__text hem-rm-margins"
@@ -83,12 +73,18 @@
                           <div
                               class="v--project-uid__content__img"
                               v-else-if="projectItem.type === 'image'"
+                          :class="{
+                                'is-small': projectItem.small_layout === 'true',
+                              }"
                           >
                               <img
                                   :alt="projectItem.alt"
                                   :src="projectItem.image?.resize.large"
                               >
                               <h6 v-html="projectItem.caption" ></h6>
+                              <a :href="projectItem.link" target="_blank" rel="noopener noreferrer">
+                                lien
+                              </a>
                           </div>
 
                           <div class="v--project-uid__content__gallery"
@@ -102,13 +98,43 @@
                           <div class="v--project-uid__content__video"
                                v-else-if="projectItem.type === 'video'"
                           >
-                              <div class="v--project-uid__content__video__container">
-                                  <iframe width="1280"
-                                          height="800"
-                                          :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
+                              <div class="v--project-uid__content__video__container"
+                                  :class="{
+                                    'v--project-uid__content__video__container--square': projectItem.content.toggle_ratio_1_1 === 'true',
+                                 }"
+                            >
+                                <div
+                                  v-if="videoPlatformMatch(projectItem.content.url) === null"
+                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                                >Erreur avec l'URL: {{projectItem.content.url}}</div>
+                                <iframe
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
+                                  class="switch-player"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src" width="1280"
+                                          height="720"
+                                          frameborder="0"
+                                  allow="fullscreen"
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'vimeo'"
+                                  class="vimeo-player"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                  allowfullscreen
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'youtube'"
+                                  width="1280"
+                                  height="720"
+                                  :src="videoPlatformMatch(projectItem.content.url)?.src"
+                                  title="YouTube video player"
                                           frameborder="0"
                                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                          allowfullscreen
+                                    referrerpolicy="strict-origin-when-cross-origin"      allowfullscreen
                                   />
                               </div>
                               <h6 v-html="projectItem.content.caption" ></h6>
@@ -116,20 +142,54 @@
                           <div class="v--project-uid__content__video-gallery"
                                   v-else-if="projectItem.type === 'video-gallery'"
                           >
+                            <div class="v--project-uid__content__video-gallery__scroll-wrap">
                             <template v-for="video of projectItem.content.video_list">
                               <div  class="v--project-uid__content__video-gallery__container">
-                                <iframe width="1280"
-                                        height="800"
-                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                  <div
+                                  v-if="videoPlatformMatch(video.url) === null"
+                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                                >Erreur avec l'URL: {{video.url}}</div>
+                                <iframe
+                                    v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'switch'"
+                                    class="switch-player"
+                                    :src="videoPlatformMatch(video.url)?.src" width="1280"
+                                    height="720"
+                                    frameborder="0"
+                                    allow="fullscreen"
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'vimeo'"
+                                  class="vimeo-player"
+                                        :src="videoPlatformMatch(video.url)?.src"
+                                  width="1280"
+                                  height="720"
+                                  frameborder="0"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                  allowfullscreen
+                                />
+                                <iframe
+                                  v-else-if="videoPlatformMatch(video.url)?.videoPlatform === 'youtube'"
+                                  width="1280"
+                                  height="720"
+                                  :src="videoPlatformMatch(video.url)?.src"
+                                  title="YouTube video player"
                                         frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"referrerpolicy="strict-origin-when-cross-origin"
                                         allowfullscreen
                                 />
                               </div>
                             </template>
                           </div>
 
-                          <div class="v--project-uid__content__podcast"
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                               fill="#e3e3e3">
+                            <path
+                              d="M200-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Z"/>
+                          </svg>
+                        </div>
+
+                        <div class="v--project-uid__content__podcast"
                                v-if="projectItem.type === 'code'"
                           >
                               <app-ausha-player
@@ -162,10 +222,25 @@
                       <div
                               class="v--project-uid__content__img"
                               v-if="projectItem.type === 'image'"
+                              :class="{
+                                'is-small': projectItem.small_layout === 'true',
+                              }"
                       >
-                        <img
-                                :alt="projectItem.alt"
-                                :src="projectItem.image?.resize.large"
+                        <a v-if="projectItem.link"
+                           :href="projectItem.link" target="_blank" rel="noopener noreferrer"
+                           style="position: relative; bottom: 0; right: 0; width: 100%; display: flex; justify-content: center; align-items: center;"
+                        >
+                          <img
+                            :alt="projectItem.alt"
+                            :src="projectItem.image?.resize.large"
+                          >
+                          <svg
+                            style="position: absolute; bottom: 0; right: 0; background: var(--color-main--orange); padding: .5rem; border-radius: 100%; fill: white; width: auto; height: 1.5rem;"
+                            xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                        </a>
+                        <img  v-else
+                              :alt="projectItem.alt"
+                              :src="projectItem.image?.resize.large"
                         >
                         <h6 v-html="projectItem.caption" ></h6>
                       </div>
@@ -183,13 +258,45 @@
                               class="v--project-uid__content__video"
                               v-if="projectItem.type === 'video'"
                       >
-                        <div class="v--project-uid__content__video__container">
-                          <iframe width="1280"
-                                  height="800"
-                                  :src="`https://www.youtube.com/embed/${extractVideoID(projectItem.content.url)}`"
-                                  frameborder="0"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                  allowfullscreen
+                        <div class="v--project-uid__content__video__container"
+                             :class="{
+                                'v--project-uid__content__video__container--square': projectItem.content.toggle_ratio_1_1 === 'true',
+                             }"
+                        >
+                          <div
+                            v-if="videoPlatformMatch(projectItem.content.url) === null"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240,240,240)"
+                          >Erreur avec l'URL: {{projectItem.content.url}}</div>
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'switch'"
+                            class="switch-player"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            width="1280"
+                            height="720"
+                            frameborder="0"
+                            allow="fullscreen"
+                          />
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'vimeo'"
+                            class="vimeo-player"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            width="1280"
+                            height="720"
+                            frameborder="0"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            allowfullscreen
+                          />
+                          <iframe
+                            v-else-if="videoPlatformMatch(projectItem.content.url)?.videoPlatform === 'youtube'"
+                            width="1280"
+                            height="720"
+                            :src="videoPlatformMatch(projectItem.content.url)?.src"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
                           />
                         </div>
                         <h6 v-html="projectItem.content.caption" ></h6>
@@ -198,17 +305,30 @@
                       <div class="v--project-uid__content__video-gallery"
                            v-else-if="projectItem.type === 'video-gallery'"
                       >
-                        <template v-for="video of projectItem.content.video_list">
-                          <div  class="v--project-uid__content__video-gallery__container">
-                                <iframe width="1280"
-                                        height="800"
-                                        :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen
-                                />
-                          </div>
-                        </template>
+                        <div class="v--project-uid__content__video-gallery__scroll-wrap">
+                          <template v-for="video of projectItem.content.video_list">
+                            <div  class="v--project-uid__content__video-gallery__container">
+                                  <iframe width="1280"
+                                          height="800"
+                                          :src="`https://www.youtube.com/embed/${extractVideoID(video.url)}`"
+                                          frameborder="0"
+                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                          allowfullscreen
+                                  />
+                            </div>
+                          </template>
+                        </div>
+
+                        <div class="v--project-uid__content__video-gallery__caption"
+                             v-if="projectItem.content.caption"
+                             v-html="projectItem.content.caption"
+                        />
+
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                             fill="#e3e3e3">
+                          <path
+                            d="M200-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm280 80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Z"/>
+                        </svg>
                       </div>
 
                       <div class="v--project-uid__content__podcast"
@@ -438,6 +558,13 @@
 
                             <div
                                 class="fp-grid-coll-container v--project-uid__filesChapter-box__chapter__files"
+                                v-if="[
+                                            ...Object.values(filesChapter.archiveFiles),
+                                            ...Object.values(filesChapter.audioFiles),
+                                            ...Object.values(filesChapter.imagesFiles),
+                                            ...Object.values(filesChapter.pdfFiles),
+                                            ...Object.values(filesChapter.videoFiles),
+                                        ].length > 0"
                             >
                                 <h5 class="v--project-uid__files_chapter-box__chapter__files__title">À télécharger</h5>
                                 <div
@@ -531,6 +658,7 @@ import {useAppStateStore} from "~/stores/appState";
 import {listWithMoreThanOneLine} from "~/global/listWithMoreThanOneLine";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {videoPlatformMatch} from "~/composable/videoPlatformMatch";
 
 const project: Ref<UnwrapRef<null | IHemApi_projectDetails >> = ref(null)
 const errorMessage: Ref<UnwrapRef<null | string>> = ref(null)
@@ -715,9 +843,26 @@ function extractVideoID(url: string) {
     margin-top: 4rem;
     margin-bottom: 4rem;
 
+
+    &.is-small {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: calc(100% / 12 * 8);
+
+        @media (max-width: scss-var.$breakpoint-sm) {
+          width: 100%;
+        }
+      }
+
+    }
+
     img {
         display: block;
         width: 100%;
+        object-fit: contain;
+        max-height: calc(95vh - var(--nav-height));
     }
 
     h6 {
@@ -735,27 +880,69 @@ function extractVideoID(url: string) {
 }
 
 .v--project-uid__content__video-gallery {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  overflow: hidden;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2rem;
 
-  @media (max-width: scss-var.$breakpoint-sm) {
-    justify-content: center;
+  * + & {
+    margin-top: 2rem;
+  }
+
+
+  //START scroll
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-main--dark-green) transparent;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-main--dark-green);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-main--dark-green);
+  }
+
+  //END scroll style
+
+  svg {
+    display: block;
+    //position: absolute;
+    //bottom: 0;
+    //left: 50%;
+    //z-index: 10;
+    height: 4rem;
+    width: auto;
+    fill: var(--color-main--dark-green);
   }
 }
 
-.v--project-uid__content__video-gallery__container {
-  width: calc( (100% + 1rem ) / 2 - 1rem );
+.v--project-uid__content__video-gallery__scroll-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  gap: 1rem;
+  padding-bottom: 0;
+  justify-content: flex-start;
+}
 
-  @media (max-width: scss-var.$breakpoint-sm) {
-    width: 100%;
-    max-width: 30rem;
-  }
+.v--project-uid__content__video-gallery__container {
+  width: 100%;
+  flex-shrink: 0;
 
   iframe {
     display: block;
@@ -763,6 +950,10 @@ function extractVideoID(url: string) {
     height: auto;
     aspect-ratio: 16/9;
   }
+}
+
+.v--project-uid__content__video-gallery__caption {
+  width: 100%;
 }
 
 .v--project-uid__content__video {
@@ -786,6 +977,13 @@ function extractVideoID(url: string) {
         left: 0;
         width: 100%;
         height: 100%;
+    }
+
+    &.v--project-uid__content__video__container--square {
+        height: calc(100vh - var(--nav-height) - 10rem);
+        padding: 0;
+        aspect-ratio: 100/100;
+        margin: auto;
     }
 
 }

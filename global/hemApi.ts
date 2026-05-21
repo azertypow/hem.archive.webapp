@@ -8,7 +8,7 @@ export interface IHemApi_allProjectInfo {
 export interface IHemApi_projectInfo {
   uid:        string,
   title:      string,
-  title_EN:   string,
+  title_EN?:   string,
   authors:    IHemApi_authorInfo[],
   dateStart:  string,
   showMonth: string,
@@ -108,6 +108,7 @@ export interface IHemApi_bloks_image extends IHemApi_bloks {
   link: string,
   photoCredit: string,
   image: IHemApi_imageData,
+  small_layout: 'true' | 'false'
 }
 
 export interface IHemApi_bloks_logo extends IHemApi_bloks {
@@ -123,6 +124,7 @@ export interface IHemApi_bloks_video extends IHemApi_bloks {
   content: {
     url: string,
     caption: "video caption"
+    toggle_ratio_1_1: "true" | "false"
   }
 }
 
@@ -130,8 +132,9 @@ export interface IHemApi_bloks_gallery_video extends IHemApi_bloks {
     type: "video-gallery"
     isHidden: boolean,
     content: {
+        caption?: string,
         video_list: {
-            url: "https://www.youtube.com/watch?v=zFaBO9LqDII"
+            url: string
         }[]
     }
 }

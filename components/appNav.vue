@@ -425,7 +425,7 @@ function onToggleTagInNav(name: string) {
 .v-app-nav__categories {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     top: 5rem;
