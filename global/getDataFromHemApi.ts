@@ -5,9 +5,7 @@ import {
     IHemApi_PersonDetails,
     IHemApi_projectDetails, IHemApi_searchResult, IHemApi_tag_axes, IHemApi_tag_theme
 } from "~/global/hemApi"
-
-export const hemApiBaseUrl = 'https://campus-digital-admin.sdrvl.ch/webapp/api/v1'
-// export const hemApiBaseUrl = 'http://localhost:8000/webapp/api/v1'
+import {hemApiBaseUrl} from "~/global/_params";
 
 export async function getProjectsData() {
   const response = await fetch(`${hemApiBaseUrl}/projects`)
