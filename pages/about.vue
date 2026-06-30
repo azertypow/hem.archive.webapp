@@ -30,33 +30,52 @@
             </div>
 
 
-          <template v-if="useUrlLangStore().lang === 'en' && aboutContent.abouttext_en.length">
+          <!--
+          ===== text EN =====
+          -->
+          <template v-if="useUrlLangStore().lang === 'en'">
             <div class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
             >
               <div
                       class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
               >
-                <template
-                        v-for="textItem of aboutContent.abouttext_en"
-                >
-                  <template
-                          v-if="textItem.type === 'heading'"
-                  >
-                    <h2 v-if="(textItem as IHeadingBlock).content.level === 'h2'" >{{(textItem as IHeadingBlock).content.text}}</h2>
-                    <h3 v-if="(textItem as IHeadingBlock).content.level === 'h3'" >{{(textItem as IHeadingBlock).content.text}}</h3>
-                    <h4 v-if="(textItem as IHeadingBlock).content.level === 'h4'" >{{(textItem as IHeadingBlock).content.text}}</h4>
-                    <h5 v-if="(textItem as IHeadingBlock).content.level === 'h5'" >{{(textItem as IHeadingBlock).content.text}}</h5>
-                    <h6 v-if="(textItem as IHeadingBlock).content.level === 'h6'" >{{(textItem as IHeadingBlock).content.text}}</h6>
-                  </template>
-                  <template
-                          v-else-if="textItem.type === 'text'"
-                  >
-                    <div v-html="textItem.value" ></div>
-                  </template>
+                <p v-if="aboutContent.abouttext_en.length === 0"
+                   style="color: var(--color-main--orange)"
+                >This part is not yet translated</p>
+
+                <template v-else>
+                    <template
+                            v-for="textItem of aboutContent.abouttext_en"
+                    >
+                      <template
+                              v-if="textItem.type === 'heading'"
+                      >
+                        <h2 v-if="(textItem as IHeadingBlock).content.level === 'h2'" >{{(textItem as IHeadingBlock).content.text}}</h2>
+                        <h3 v-if="(textItem as IHeadingBlock).content.level === 'h3'" >{{(textItem as IHeadingBlock).content.text}}</h3>
+                        <h4 v-if="(textItem as IHeadingBlock).content.level === 'h4'" >{{(textItem as IHeadingBlock).content.text}}</h4>
+                        <h5 v-if="(textItem as IHeadingBlock).content.level === 'h5'" >{{(textItem as IHeadingBlock).content.text}}</h5>
+                        <h6 v-if="(textItem as IHeadingBlock).content.level === 'h6'" >{{(textItem as IHeadingBlock).content.text}}</h6>
+                      </template>
+                      <template
+                              v-else-if="textItem.type === 'text'"
+                      >
+                        <div v-html="textItem.value" ></div>
+                      </template>
+                    </template>
                 </template>
+
+
               </div>
             </div>
           </template>
+
+
+
+
+          <!--
+          ===== text FR =====
+          -->
+
           <template v-else>
             <div
                 class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
@@ -65,9 +84,6 @@
                 <div
                     class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                  <p v-if="useUrlLangStore().lang === 'en'"
-                     style="color: var(--color-main--orange)"
-                  >This part is not yet translated</p>
                     <template
                         v-for="textItem of aboutContent.abouttext"
                     >
