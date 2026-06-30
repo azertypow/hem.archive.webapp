@@ -294,7 +294,7 @@ export interface IHemApi_about {
     "uid": string,
     "title": string,
     "abouttext": (IHeadingBlock | ITextBlock | IHemApi_bloks_image | IHemApi_bloks_logo)[]
-    "abouttext_en": (IHeadingBlock | ITextBlock)[]
+    "abouttext_en": (IHeadingBlock | ITextBlock | IHemApi_bloks_image | IHemApi_bloks_logo)[]
 }
 
 export interface IHeadingBlock {
