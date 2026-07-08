@@ -85,35 +85,6 @@
                         @click="postQuerySearch"
                     >rechercher</button>
                 </div>
-
-<!--                <div class="hem-form">-->
-<!--                    <select>-->
-<!--                        <option selected disabled >Nom du projet</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>-->
-<!--                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>-->
-<!--                        <option>Art.School. Differences</option>-->
-<!--                        <option>Aux origines du piano français</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Alphabet du geste : l’art scénique du chanteur d’opéra</option>-->
-<!--                        <option>Apprentissage au clavier : Influence du mouvement corporel lorem sample</option>-->
-<!--                        <option>Art.School. Differences</option>-->
-<!--                        <option>Aux origines du piano français</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                        <option>Actes du congrès de l’Institut Jaques-Dalcroze</option>-->
-<!--                    </select>-->
-<!--                    <select>-->
-<!--                        <option selected disabled >Responsable de projet</option>-->
-<!--                    </select>-->
-<!--                    <select>-->
-<!--                        <option selected disabled >Début du projet</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-
             </div>
 
 
@@ -178,15 +149,12 @@
 
 
 <script lang="ts" setup>
-// defineProps<{
-// }>()
 
 import {useAppStateStore} from "~/stores/appState";
 import Tag from "~/components/tag.vue";
 import {IHemApi_tag_axes} from "~/global/hemApi";
 import {getSearch} from "~/global/getDataFromHemApi";
 import {UnwrapRef} from "vue";
-import {HTML} from "stylehacks/types/dictionary/tags";
 import {useUrlLangStore} from "~/composable/useUrlLang";
 import {siteTitle} from "~/global/_params";
 
