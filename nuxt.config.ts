@@ -13,7 +13,19 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content: 'Recherche appliquée portant sur des sujets qui couvrent la plupart des champs de la pratique artistique.',
-        }
+        },
+
+        {
+          name: 'apple-mobile-web-app-title',
+          content: 'hem - rad',
+        },
+      ],
+      link: [
+        {rel:"icon", type:"image/png", href:"/favicon-96x96.png", sizes:"96x96"},
+        {rel:"icon", type:"image/svg+xml", href:"/favicon.svg"},
+        {rel:"shortcut icon", href:"/favicon.ico"},
+        {rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png"},
+        {rel:"manifest", href:"/site.webmanifest"},
       ],
       script: [
         {
