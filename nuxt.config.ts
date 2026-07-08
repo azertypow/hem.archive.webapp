@@ -1,11 +1,14 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import {siteTitle} from "./global/_params";
+
 export default defineNuxtConfig({
   app: {
     baseURL: '/',
     pageTransition: { name: 'page', mode: 'in-out' },
     head: {
-      title: 'Campus Digital HEM',
+      title: siteTitle,
       meta: [
         {
           name: 'description',

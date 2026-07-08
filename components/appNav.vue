@@ -5,7 +5,7 @@
         <nuxt-link
             href="/"
             class="v-app-nav__title"
-        >Campus Digital HEM</nuxt-link>
+        >{{siteTitle}}</nuxt-link>
 
         <div
             class="v-app-nav__right"
@@ -188,6 +188,7 @@ import {getSearch} from "~/global/getDataFromHemApi";
 import {UnwrapRef} from "vue";
 import {HTML} from "stylehacks/types/dictionary/tags";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {siteTitle} from "~/global/_params";
 
 const appStateStore    = useAppStateStore()
 
