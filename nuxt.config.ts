@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 
         {
           name: 'apple-mobile-web-app-title',
-          content: 'hem - rad',
+          content: siteTitle,
         },
       ],
       link: [
