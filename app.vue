@@ -101,9 +101,6 @@ function closeMenuAndResearch() {
 
 useRouter().beforeEach((to, from, next) => {
 
-  console.log("hello")
-
-
     useAppStateStore().menuIsOPen = false
     useAppStateStore().searchIsOpen = false
 
