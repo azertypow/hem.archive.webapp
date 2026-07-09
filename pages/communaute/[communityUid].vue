@@ -66,7 +66,7 @@
                     <h2>Biography</h2>
                 </div>
                 <div
-                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-text-large"
                         v-html="personDetails.bio_EN"
                 />
               </template>
@@ -77,7 +77,7 @@
                   <h2>Biographie</h2>
                 </div>
                 <div
-                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
+                        class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24 hem-text-large"
                         v-html="personDetails.bio"
                 />
               </template>

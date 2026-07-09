@@ -35,7 +35,7 @@
           -->
           <template v-if="useUrlLangStore().lang === 'en'">
           <div
-            class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
+            class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication hem-text-large"
             v-if="aboutContent.abouttext_en.length"
           >
             <div
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div
-            class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
+            class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication hem-text-large"
             v-if="aboutContent.abouttext_en.length"
           >
             <p v-if="aboutContent.abouttext_en.length === 0"
@@ -104,7 +104,7 @@
 
           <template v-else>
             <div
-                class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication"
+                class="fp-grid-coll-container fp-grid-coll-container--center v-community-uid__publication hem-text-large"
                 v-if="aboutContent.abouttext.length"
             >
                 <div

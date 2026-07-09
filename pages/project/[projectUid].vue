@@ -49,7 +49,7 @@
                 >
                   <template v-if="useUrlLangStore().lang === 'en' && project.text_en">
                     <template v-if="Object.values(project.text_en).length === 0">
-                      <div class="v--project-uid__content__text hem-rm-margins"
+                      <div class="v--project-uid__content__text hem-rm-margins hem-text-large"
                            v-html="'<p>Translation in progress…</p>'"
                       />
                     </template>
@@ -57,7 +57,7 @@
                       <template
                           v-for="projectItem of project.text_en"
                       >
-                          <div class="v--project-uid__content__text hem-rm-margins"
+                          <div class="v--project-uid__content__text hem-rm-margins hem-text-large"
                                v-if="projectItem.type === 'text'"
                                v-html="projectItem.value"
                           />
@@ -206,7 +206,7 @@
                             v-for="projectItem of project.content"
                     >
                       <div
-                              class="v--project-uid__content__text hem-rm-margins"
+                              class="v--project-uid__content__text hem-rm-margins hem-text-large"
                               v-if="projectItem.type === 'text'"
                               v-html="projectItem.value"
                       ></div>
@@ -1176,32 +1176,6 @@ function extractVideoID(url: string) {
 
 <style lang="scss">
 @use '../../assets/__main';
-@use '@/assets/scss-var';
-
-.v--project-uid__content__text {
-    p {
-        font-weight: 400;
-        line-height: 2.5rem;
-        font-size: 2.25rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-
-
-        @media (max-width: scss-var.$breakpoint-reg) {
-            line-height: 2rem;
-            font-size: 1.75rem;
-        }
-
-        @media (max-width: scss-var.$breakpoint-sm) {
-            line-height: 1.85rem;
-            font-size: 1.6rem;
-        }
-    }
-
-    h6 {
-        @extend .hem-font-reg;
-    }
-}
 
 .v--project-uid__filesChapter-box__chapter__files__item__name {
     > *:first-child {margin-top: 0}
