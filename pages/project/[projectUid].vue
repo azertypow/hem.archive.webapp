@@ -780,6 +780,7 @@ function extractVideoID(url: string) {
     min-height: calc( 100vh - 5rem);
     background: var(--color-main--green);
     box-shadow: 0 -10rem 0 0 var(--color-main--green);
+  margin-bottom: 3rem;
 
     @media (max-width: scss-var.$breakpoint-sm) {
         height: auto;
