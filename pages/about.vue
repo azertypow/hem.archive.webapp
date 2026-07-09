@@ -271,8 +271,7 @@ async function loadCommunauteDataFromHEMAPI() {
   img {
     display: block;
     width: auto;
-    height: 10rem;
-    max-height: 90vh;
+    height: 8rem;
     object-fit: contain;
     object-position: center;
   }
