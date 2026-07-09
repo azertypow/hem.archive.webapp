@@ -1,7 +1,7 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import {siteTitle} from "./global/_params";
+import {siteMetaDescription, siteTitle} from "./global/_params";
 
 export default defineNuxtConfig({
   app: {
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content: 'Recherche appliquée portant sur des sujets qui couvrent la plupart des champs de la pratique artistique.',
+          content: siteMetaDescription,
         },
 
         {
