@@ -90,8 +90,8 @@
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
                 >
-                    <h2 v-if="useUrlLangStore().lang === 'en'">Research projects</h2>
-                    <h2 v-else>Projets de recherche</h2>
+                    <h2 v-if="useUrlLangStore().lang === 'en'">{{sectionTitleForProjectsOfResearcher.EN}}</h2>
+                    <h2 v-else>{{sectionTitleForProjectsOfResearcher.FR}}</h2>
                 </div>
                 <div
                         class="fp-grid-coll-16-24 fp--reg-grid-coll-22-24"
@@ -147,6 +147,7 @@ import {goToProject} from "~/global/goToProject";
 import AppHeader from "~/components/appHeader.vue";
 import {italicMarkdownToHtml} from "~/global/italicMarkdownToHtml";
 import {useUrlLangStore} from "~/composable/useUrlLang";
+import {sectionTitleForProjectsOfResearcher} from "~/global/_params";
 
 definePageMeta({
     pageTransition: {
