@@ -51,6 +51,8 @@ defineProps<{
 .v-app-mooc {
   border: solid 1px;
   border-radius: 1rem;
+  container-name: container-app-mooc;
+  container-type: inline-size;
 }
 
 .v-app-mooc__body {
@@ -73,6 +75,17 @@ defineProps<{
   aspect-ratio: 16/9;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
+}
+
+@container container-app-mooc (max-width: 600px) {
+  .v-app-mooc__body {
+    flex-direction: column-reverse;
+  }
+
+  .v-app-mooc__img {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+  }
 }
 
 </style>
