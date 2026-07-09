@@ -754,6 +754,15 @@ function extractVideoID(url: string) {
   margin-top: 5rem;
   margin-bottom: 5rem;
 
+  @media (max-width: scss-var.$breakpoint-sm) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
