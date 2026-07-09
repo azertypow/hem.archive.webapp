@@ -34,8 +34,17 @@
                 src="/ui/HEM-close-2.png"
                 alt="close project"
                 class="v-app-nav__icon v-app-nav__icon--close-project"
-                v-if="useRouter().currentRoute.value.path !== '/'"
+                v-if="useRouter().currentRoute.value.name === 'project-projectUid'"
                 @click="navigateTo('/')"
+            >
+            <img
+                src="/ui/HEM-close-2.png"
+                alt="close project"
+                class="v-app-nav__icon v-app-nav__icon--close-project"
+                v-else-if="useRouter().currentRoute.value.name === 'communaute-communityUid'"
+                @click="navigateTo({
+                    name: 'communaute'
+                })"
             >
 
             <a
